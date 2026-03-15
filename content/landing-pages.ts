@@ -40,19 +40,14 @@ export const LANDING_PAGE_CONTENT: Record<string, LandingPageContent> = {
       "exhale coffee discount",
       "healthy coffee",
     ],
-    whyIUseIt: `I drink a lot of coffee—I have a three-year-old who doesn’t sleep well, a full-time job and unmedicated ADHD, so I’ve always relied on it. I drink cappuccinos and espressos at home with a Swan espresso machine and milk frother, and I was going through ground beans quickly. Two problems: my anxiety was getting worse, and I kept running out and having to dash out for expensive Co-op beans.
+    whyIUseIt: `I drink a lot of coffee—I have a three-year-old who doesn’t sleep well, a full-time job and unmedicated ADHD, so I’ve always relied on it. I drink cappuccinos and espressos at home with a [Swan espresso machine and milk frother](https://www.amazon.co.uk/Swan-SK22110GRN-Espresso-Machine-Pressure/dp/B07KGR92MD), and I was going through ground beans quickly. Two problems: my anxiety was getting worse, and I kept running out and having to dash out for expensive Co-op beans.
 
-I wasn’t actually looking for a subscription. I got a free bag of Exhale healthy coffee with a MyProtein order and thought I’d try it. That bag changed things. The coffee tastes much better—almost chocolatey—and I use the ultra-fine dark roast. I get far fewer jitters and less anxiety, I spend less, I never run out because it’s delivered every two weeks, and it’s genuinely delicious.`,
+I wasn’t actually looking for a subscription. I got a free bag of Exhale healthy coffee with a [MyProtein order](https://referral-hub.app/discounts/health/myprotein) and thought I’d try it. That bag changed things. The coffee tastes much better—almost chocolatey—and I use the [ultra-fine dark roast](https://exhalecoffee.com/products/organic-darkish-roast?variant=39634306203694&selling_plan=711354876280). I get far fewer jitters and less anxiety, I spend less, I never run out because it’s delivered every two weeks, and it’s genuinely delicious.`,
     howItWorks:
       "Use my referral link to get 50% off your first subscription order.",
     whatDoIGet: "£5 for every referral.",
     disclaimer:
       "If you subscribe using my referral link I receive £5 per referral. I’m grateful for your support.",
-    links: [
-      { label: "Swan espresso machine (Amazon)", url: "https://www.amazon.co.uk/Swan-SK22110GRN-Espresso-Machine-Pressure/dp/B07KGR92MD" },
-      { label: "MyProtein (referral discount)", url: "https://referral-hub.app/discounts/health/myprotein" },
-      { label: "Exhale ultra fine dark roast", url: "https://exhalecoffee.com/products/organic-darkish-roast?variant=39634306203694&selling_plan=711354876280" },
-    ],
     trustpilot: { url: "https://uk.trustpilot.com/review/exhalecoffee.com", score: 4.8 },
     faq: [
       { question: "How do I get 50% off Exhale Coffee?", answer: "Use the referral link on this page to get 50% off your first subscription order. The discount is applied when you sign up for a subscription through Exhale Coffee." },
@@ -71,16 +66,12 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       "gluten free protein powder",
       "myprotein uk",
     ],
-    whyIUseIt: `I’ve used MyProtein for years. After being diagnosed with coeliac disease I struggled to find protein powder I could have. MyProtein has a dedicated gluten-free section, and their Impact Whey Isolate in vanilla works perfectly for me—no issues at all. I have a scoop every morning in my porridge and it makes it taste like custard.`,
+    whyIUseIt: `I’ve used MyProtein for years. After being diagnosed with coeliac disease I struggled to find protein powder I could have. MyProtein has a dedicated [gluten-free section](https://www.myprotein.com/thezone/supplements/whey-protein-gluten-free/), and their [Impact Whey Isolate in vanilla](https://www.myprotein.com/p/sports-nutrition/impact-whey-isolate-powder/10530911/?variation=13442785) works perfectly for me—no issues at all. I have a scoop every morning in my porridge and it makes it taste like custard.`,
     howItWorks:
       "Use my referral link and you’ll get £15 off any order over £45.",
     whatDoIGet: "£15 credit on my MyProtein account.",
     disclaimer:
       "If you order using my referral link I receive £15 off my next order. I’m very grateful for your support.",
-    links: [
-      { label: "MyProtein gluten-free section", url: "https://www.myprotein.com/thezone/supplements/whey-protein-gluten-free/" },
-      { label: "Impact Whey Isolate vanilla", url: "https://www.myprotein.com/p/sports-nutrition/impact-whey-isolate-powder/10530911/?variation=13442785" },
-    ],
     trustpilot: { url: "https://uk.trustpilot.com/review/myprotein.com", score: 4.4 },
     faq: [
       { question: "How do I get £15 off MyProtein?", answer: "Use the referral link on this page when you order. You get £15 off any order over £45. The discount is applied at checkout." },

@@ -11,6 +11,35 @@ import { TrackedCtaLink } from "@/components/landing/TrackedCtaLink";
 
 const headingIconClass = "size-5 shrink-0 text-[var(--muted)]";
 
+/** Renders "Why I use it" text with optional markdown-style inline links [label](url). */
+function WhyIUseItWithLinks({ text }: { text: string }) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (match) {
+          const [, label, url] = match;
+          const isExternal =
+            url.startsWith("http") && !url.includes("referral-hub.app");
+          return (
+            <Link
+              key={i}
+              href={url}
+              target={isExternal ? "_blank" : undefined}
+              rel={isExternal ? "noopener noreferrer" : undefined}
+              className="text-[var(--accent)] hover:underline"
+            >
+              {label}
+            </Link>
+          );
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </>
+  );
+}
+
 function SectionHeading({
   icon: Icon,
   children,
@@ -95,24 +124,8 @@ export function LandingPageTemplate({ brand, content, children }: LandingPageTem
       <section className="mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6 shadow-md shadow-black/10">
         <SectionHeading icon={Heart}>Why I use it</SectionHeading>
         <div className="mt-3 whitespace-pre-line text-[var(--muted)] leading-relaxed">
-          {content.whyIUseIt}
+          <WhyIUseItWithLinks text={content.whyIUseIt} />
         </div>
-        {content.links && content.links.length > 0 && (
-          <ul className="mt-4 space-y-2">
-            {content.links.map((link) => (
-              <li key={link.url}>
-                <Link
-                  href={link.url}
-                  target={link.url.startsWith("http") ? "_blank" : undefined}
-                  rel={link.url.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="text-[var(--accent)] hover:underline"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
         {content.images && content.images.length > 0 && (
           <div className="mt-6">
             <p className="mb-3 text-sm font-medium text-[var(--foreground)]">My progress</p>
