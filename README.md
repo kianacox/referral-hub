@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Referral Hub
 
-## Getting Started
+A personal referral hub hosting landing pages that drive traffic to partner sites via referral links. Built with Next.js, React, and Tailwind.
 
-First, run the development server:
+**Live:** [referral-hub.app](https://referral-hub.app)
+
+## Tech stack
+
+- **Next.js 16** (App Router), **React 19**, **TypeScript**
+- **Tailwind CSS** for styling (dark, mobile-first)
+- **Vercel** for deployment
+- **Google Analytics** for tracking (optional)
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` to `.env.local` and set as needed:
 
-## Learn More
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_SHOW_GYMSHARK` | Set to `"true"` to show the Gymshark brand and landing page. Omit or leave empty to hide it. |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics measurement ID (e.g. `G-XXXXXXXXXX`). Leave empty to disable GA. |
 
-To learn more about Next.js, take a look at the following resources:
+## Routes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **/** — Homepage with ranked referral cards
+- **/discounts** — All discounts with filters (Bills, Health, Finance)
+- **/discounts/health**, **/discounts/finance**, **/discounts/bills** — Filtered discount lists
+- **/discounts/[category]/[slug]** — Brand landing pages (e.g. `/discounts/health/exhale-coffee`)
+- **/earn** — Placeholder (coming later)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Runna screenshots
+
+To show Runna app screenshots on the Runna landing page, add images under:
+
+- `public/runna_first_run/` (e.g. `screenshot.png`)
+- `public/runna_recent_run/`
+- `public/runna_total_km/`
+
+Then set the `images` array for the `runna` entry in `content/landing-pages.ts` to use these paths.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Set the same environment variables in the Vercel project. The canonical URL is `https://referral-hub.app`.

@@ -1,0 +1,161 @@
+export type BrandCategory = "health" | "finance" | "bills";
+
+export type Brand = {
+  id: string;
+  name: string;
+  slug: string;
+  category: BrandCategory;
+  logoPath: string;
+  overview: string;
+  offerSummary: string;
+  refereeReward: string;
+  /** Lower = better ROI, shown first on homepage */
+  rewardRank: number;
+  referralLink?: string;
+  referralCode?: string;
+  /** App store / brand URL when using code instead of link */
+  brandUrl?: string;
+  /** If set, brand is only shown when matching env var is truthy */
+  featureFlag?: "gymshark";
+};
+
+const SHOW_GYMSHARK = process.env.NEXT_PUBLIC_SHOW_GYMSHARK === "true";
+
+export const ALL_BRANDS: Brand[] = [
+  {
+    id: "ribbon-rewards",
+    name: "Ribbon Rewards",
+    slug: "ribbon-rewards",
+    category: "bills",
+    logoPath: "/ribbon_rewards_logo.webp",
+    overview:
+      "Earn cashback on rent. Pay through Ribbon Rewards and collect points on a payment you’re already making.",
+    offerSummary: "2,500 points (worth £25) when you pay rent for the first time.",
+    refereeReward: "2,500 points (worth £25)",
+    rewardRank: 1,
+    referralLink: "https://www.ribbonrewards.io/?ref=KIAN63DB",
+  },
+  {
+    id: "airtime",
+    name: "Airtime",
+    slug: "airtime",
+    category: "bills",
+    logoPath: "/airtime_logo.png",
+    overview:
+      "Cashback on everyday spending by linking your accounts. Works in-app and tracks eligible purchases automatically—no need to rely on tracking cookies.",
+    offerSummary: "£2 credit after spending £5 in your first 7 days.",
+    refereeReward: "£2 credit after £5 spend in first 7 days",
+    rewardRank: 2,
+    referralCode: "UKV9QCKE",
+    brandUrl: "https://airtime.app",
+  },
+  {
+    id: "exhale-coffee",
+    name: "Exhale Coffee",
+    slug: "exhale-coffee",
+    category: "health",
+    logoPath: "/exhale_logo.png",
+    overview:
+      "Healthy coffee subscription delivered to your door. Lower caffeine, fewer jitters and a better taste.",
+    offerSummary: "50% off your first subscription order.",
+    refereeReward: "50% off first order",
+    rewardRank: 3,
+    referralLink: "https://rc-refer.com/kiana-2esl05",
+  },
+  {
+    id: "emma-budgeting",
+    name: "Emma",
+    slug: "emma-budgeting",
+    category: "finance",
+    logoPath: "/emma_logo.png",
+    overview:
+      "Budgeting app that auto-categorises spending, tracks subscriptions and upcoming payments, and gives you a clear view across all your accounts.",
+    offerSummary: "30-day free trial when you sign up via my link.",
+    refereeReward: "30-day free trial",
+    rewardRank: 4,
+    referralLink: "https://emma.to/kianacox",
+  },
+  {
+    id: "myprotein",
+    name: "MyProtein",
+    slug: "myprotein",
+    category: "health",
+    logoPath: "/my_protein_logo.webp",
+    overview:
+      "Sports nutrition and protein with strong gluten-free options, including whey isolate that works in porridge and shakes.",
+    offerSummary: "£15 off any order over £45 with my referral link.",
+    refereeReward: "£15 off orders over £45",
+    rewardRank: 5,
+    referralLink: "https://www.myprotein.com/referrals.list?applyCode=KIANA-R2B",
+  },
+  {
+    id: "runna",
+    name: "Runna",
+    slug: "runna",
+    category: "health",
+    logoPath: "/runna_logo.png",
+    overview:
+      "Running app with structured plans for 5K, 10K, Hyrox and more. Guides you from beginner to regular runner.",
+    offerSummary: "2 weeks of Runna Premium free with my referral code.",
+    refereeReward: "2 weeks free premium",
+    rewardRank: 6,
+    referralCode: "RUNNA1WGGS6T",
+    brandUrl: "https://www.runna.com",
+  },
+  {
+    id: "provocan",
+    name: "Provocan",
+    slug: "provocan",
+    category: "health",
+    logoPath: "/provocan_logo.jpg",
+    overview:
+      "Full-spectrum CBD oils and gummies, independently tested. A more affordable option for quality CBD.",
+    offerSummary: "£10 off when you spend £45 or more.",
+    refereeReward: "£10 off when you spend £45+",
+    rewardRank: 7,
+    referralLink: "https://prz.io/4groamaSO",
+  },
+  {
+    id: "gymshark",
+    name: "Gymshark",
+    slug: "gymshark",
+    category: "health",
+    logoPath: "/gymshark_logo.png",
+    overview: "Sportswear and gym wear for training and everyday use.",
+    offerSummary: "£10 off when new customers place their first order of £50 or more.",
+    refereeReward: "£10 off first order of £50+",
+    rewardRank: 8,
+    referralLink: "", // pending
+    featureFlag: "gymshark",
+  },
+];
+
+export function getVisibleBrands(): Brand[] {
+  return ALL_BRANDS.filter((b) => {
+    if (b.featureFlag === "gymshark") return SHOW_GYMSHARK;
+    return true;
+  });
+}
+
+export function getBrandsByCategory(category: BrandCategory): Brand[] {
+  return getVisibleBrands().filter((b) => b.category === category);
+}
+
+export function getBrandBySlug(category: BrandCategory, slug: string): Brand | undefined {
+  const brand = ALL_BRANDS.find((b) => b.category === category && b.slug === slug);
+  if (!brand) return undefined;
+  if (brand.featureFlag === "gymshark" && !SHOW_GYMSHARK) return undefined;
+  return brand;
+}
+
+export function getAllSlugs(): { category: BrandCategory; slug: string }[] {
+  return getVisibleBrands().map((b) => ({ category: b.category, slug: b.slug }));
+}
+
+export const CATEGORIES: BrandCategory[] = ["bills", "health", "finance"];
+
+export const CATEGORY_LABELS: Record<BrandCategory, string> = {
+  bills: "Bills",
+  health: "Health",
+  finance: "Finance",
+};
