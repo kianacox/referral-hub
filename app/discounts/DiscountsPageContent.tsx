@@ -64,15 +64,15 @@ export function DiscountsPageContent({
   );
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-10 sm:py-16">
-      <section className="mb-8">
+    <div className="mx-auto max-w-[600px] px-4 py-12 sm:py-20">
+      <section className="mb-10">
         <h1 className="text-2xl font-bold tracking-tight text-[var(--foreground)] sm:text-3xl">
           Discounts
         </h1>
-        <p className="mt-4 text-[var(--muted)] leading-relaxed">{DISCOUNTS_INTRO}</p>
+        <p className="mt-4 text-[var(--body-text)] leading-[1.6]">{DISCOUNTS_INTRO}</p>
       </section>
 
-      <section className="mb-8 flex flex-wrap items-center gap-2">
+      <section className="mb-10 flex flex-wrap items-center gap-2">
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
@@ -80,8 +80,8 @@ export function DiscountsPageContent({
             onClick={() => toggleFilter(cat)}
             className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
               activeFilters.includes(cat)
-                ? "bg-[var(--accent)] text-[var(--accent-foreground)]"
-                : "border border-[var(--border)] bg-[var(--card)] text-[var(--foreground)] hover:bg-[var(--border)]"
+                ? "bg-gradient-to-r from-[var(--cta-from)] to-[var(--cta-to)] text-[var(--accent-foreground)]"
+                : "border border-[#1F1F1F] bg-[#0A0A0A] text-[var(--foreground)] hover:bg-[#1F1F1F]"
             }`}
           >
             {CATEGORY_LABELS[cat]}
@@ -91,14 +91,14 @@ export function DiscountsPageContent({
           <button
             type="button"
             onClick={clearAll}
-            className="rounded-full px-4 py-2 text-sm font-medium text-[var(--muted)] hover:text-[var(--foreground)]"
+            className="rounded-full px-4 py-2 text-sm font-medium text-[var(--body-text)] hover:text-[var(--foreground)]"
           >
             Clear all
           </button>
         )}
       </section>
 
-      <section className="grid gap-6 sm:gap-8">
+      <section className="grid gap-8">
         {sortedBrands.map((brand) => (
           <BrandCard key={brand.id} brand={brand} showCategory />
         ))}

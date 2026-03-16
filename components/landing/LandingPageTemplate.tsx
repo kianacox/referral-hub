@@ -8,8 +8,11 @@ import { CopyableCode } from "@/components/ui/CopyableCode";
 import { TrustpilotBadge } from "@/components/ui/TrustpilotBadge";
 import { AppStoreCtas } from "@/components/landing/AppStoreCtas";
 import { TrackedCtaLink } from "@/components/landing/TrackedCtaLink";
+import { FaqAccordion } from "@/components/ui/FaqAccordion";
 
-const headingIconClass = "size-5 shrink-0 text-[var(--muted)]";
+const headingIconClass = "size-5 shrink-0 text-[var(--accent-icon)]";
+const cardClass =
+  "rounded-xl border border-[#1F1F1F] bg-[#0A0A0A] p-5 sm:p-6 shadow-md shadow-black/5";
 
 /** Renders "Why I use it" text with optional markdown-style inline links [label](url). */
 function WhyIUseItWithLinks({ text }: { text: string }) {
@@ -28,7 +31,7 @@ function WhyIUseItWithLinks({ text }: { text: string }) {
               href={url}
               target={isExternal ? "_blank" : undefined}
               rel={isExternal ? "noopener noreferrer" : undefined}
-              className="text-[var(--accent)] hover:underline"
+              className="text-[var(--accent-icon)] hover:text-[var(--accent)] hover:underline"
             >
               {label}
             </Link>
@@ -52,7 +55,7 @@ function SectionHeading({
   return (
     <h2
       id={id}
-      className="flex items-center gap-2 text-xl font-semibold text-[var(--foreground)]"
+      className="flex items-center gap-2 text-xl font-bold tracking-tight text-[var(--foreground)]"
     >
       <Icon className={headingIconClass} aria-hidden />
       {children}
@@ -84,18 +87,21 @@ export function LandingPageTemplate({ brand, content, children }: LandingPageTem
   const showBrandUrl = brand.brandUrl && !hasAppStoreLinks;
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 sm:py-16">
-      <div className="mb-10">
+    <div className="mx-auto max-w-[600px] px-4 py-12 sm:py-20">
+      <div className="mb-12">
         <h1 className="text-2xl font-bold tracking-tight text-[var(--foreground)] sm:text-3xl">
           {brand.name}
         </h1>
-        <p className="mt-2 text-lg text-[var(--muted)]">{brand.offerSummary}</p>
+        <p className="mt-2 text-lg text-[var(--body-text)]">{brand.offerSummary}</p>
         {content.trustpilot && (
           <div className="mt-6 flex justify-center">
             <TrustpilotBadge brandName={brand.name} trustpilot={content.trustpilot} />
           </div>
         )}
-        <div className="mt-6 flex justify-center">
+        <div
+          className="mt-6 flex justify-center rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
+          style={{ boxShadow: "0 0 24px rgba(99, 102, 241, 0.08)" }}
+        >
           {hasLink && (
             <CtaBlock
               referralLink={brand.referralLink}
@@ -121,9 +127,9 @@ export function LandingPageTemplate({ brand, content, children }: LandingPageTem
         </div>
       </div>
 
-      <section className="mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6 shadow-md shadow-black/10">
+      <section className={`mb-10 overflow-hidden ${cardClass}`}>
         <SectionHeading icon={Heart}>Why I use it</SectionHeading>
-        <div className="mt-3 whitespace-pre-line text-[var(--muted)] leading-relaxed">
+        <div className="mt-3 whitespace-pre-line text-[var(--body-text)] leading-[1.6]">
           <WhyIUseItWithLinks text={content.whyIUseIt} />
         </div>
         {content.images && content.images.length > 0 && (
@@ -131,7 +137,7 @@ export function LandingPageTemplate({ brand, content, children }: LandingPageTem
             <p className="mb-3 text-sm font-medium text-[var(--foreground)]">My progress</p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {content.images.map((img) => (
-              <div key={img.src} className="relative aspect-[3/4] overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--main-bg)]">
+              <div key={img.src} className="relative aspect-[3/4] overflow-hidden rounded-lg border border-[#1F1F1F] bg-[var(--main-bg)]">
                 <Image src={img.src} alt={img.alt} fill className="object-contain" sizes="(max-width: 640px) 100vw, 50vw, 33vw" />
               </div>
             ))}
@@ -140,9 +146,9 @@ export function LandingPageTemplate({ brand, content, children }: LandingPageTem
         )}
       </section>
 
-      <section className="mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6 shadow-md shadow-black/10">
+      <section className={`mb-10 overflow-hidden ${cardClass}`}>
         <SectionHeading icon={Gift}>How the offer works</SectionHeading>
-        <p className="mt-3 text-[var(--muted)] leading-relaxed">{content.howItWorks}</p>
+        <p className="mt-3 text-[var(--body-text)] leading-relaxed">{content.howItWorks}</p>
         {content.appStoreLinks && (content.appStoreLinks.ios || content.appStoreLinks.android) && (
           <AppStoreCtas
             provider={brand.slug}
@@ -176,32 +182,28 @@ export function LandingPageTemplate({ brand, content, children }: LandingPageTem
         </div>
       </section>
 
-      <section className="mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6 shadow-md shadow-black/10">
+      <section className={`mb-10 overflow-hidden ${cardClass}`}>
         <SectionHeading icon={Info}>What do I get</SectionHeading>
-        <p className="mt-3 text-[var(--muted)]">{content.whatDoIGet}</p>
+        <p className="mt-3 text-[var(--body-text)]">{content.whatDoIGet}</p>
       </section>
 
       {content.extraSections &&
         Object.entries(content.extraSections).map(([heading, body]) => (
-          <section key={heading} className="mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6 shadow-md shadow-black/10">
+          <section key={heading} className={`mb-10 overflow-hidden ${cardClass}`}>
             <SectionHeading icon={BookOpen}>{heading}</SectionHeading>
             <ExtraSectionBody body={body} />
           </section>
         ))}
 
       {content.faq && content.faq.length > 0 && (
-        <section className="mb-6 overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6 shadow-md shadow-black/10" aria-labelledby="faq-heading">
+        <section
+          className={`mb-10 overflow-hidden ${cardClass}`}
+          aria-labelledby="faq-heading"
+        >
           <SectionHeading icon={HelpCircle} id="faq-heading">
             Frequently asked questions
           </SectionHeading>
-          <ul className="mt-4 space-y-6">
-            {content.faq.map((item, i) => (
-              <li key={i}>
-                <h3 className="font-medium text-[var(--foreground)]">{item.question}</h3>
-                <p className="mt-1 text-[var(--muted)] leading-relaxed">{item.answer}</p>
-              </li>
-            ))}
-          </ul>
+          <FaqAccordion items={content.faq} />
         </section>
       )}
 
@@ -213,7 +215,7 @@ export function LandingPageTemplate({ brand, content, children }: LandingPageTem
 function ExtraSectionBody({ body }: { body: string }) {
   const parts = body.split(/(\*\*[^*]+\*\*)/g);
   return (
-    <div className="mt-3 whitespace-pre-wrap text-[var(--muted)] leading-relaxed">
+    <div className="mt-3 whitespace-pre-wrap text-[var(--body-text)] leading-relaxed">
       {parts.map((p, i) =>
         p.startsWith("**") && p.endsWith("**") ? (
           <strong key={i} className="text-[var(--foreground)]">

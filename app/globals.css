@@ -1,16 +1,22 @@
 @import "tailwindcss";
 
-/* Dark theme: navbar/footer darker, main content lighter */
+/* Premium dark theme: cards charcoal, thin borders, accent for CTAs and section icons */
 :root {
   --header-footer-bg: #0a0a0a;
-  --main-bg: #171717;
-  --foreground: #ededed;
-  --card: #1f1f1f;
-  --card-foreground: #e5e5e5;
-  --border: #262626;
-  --accent: #3b82f6;
+  --main-bg: #0f0f0f;
+  --foreground: #fafafa;
+  --card: #0a0a0a;
+  --card-foreground: #fafafa;
+  --border: #1f1f1f;
+  --body-text: #a1a1aa;
+  --muted: #71717a;
+  /* Accent for section icons (vibrant) and gradient CTA */
+  --accent: #6366f1;
   --accent-foreground: #ffffff;
-  --muted: #737373;
+  --accent-icon: #a78bfa;
+  /* Gradient CTA: indigo → violet */
+  --cta-from: #6366f1;
+  --cta-to: #8b5cf6;
 }
 
 @theme inline {
@@ -30,4 +36,11 @@ body {
   background: var(--main-bg);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Subtle radial spotlight top-center (faint indigo) to break up flat black */
+.spotlight-bg {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.12), transparent 55%),
+    var(--main-bg);
 }

@@ -34,7 +34,7 @@ export function CtaBlock({
           target="_blank"
           rel="noopener noreferrer"
           onClick={handleCtaClick}
-          className="inline-flex items-center justify-center rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-[var(--accent-foreground)] hover:opacity-90"
+          className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-[var(--cta-from)] to-[var(--cta-to)] px-5 py-2.5 text-sm font-semibold text-[var(--accent-foreground)] shadow-lg shadow-indigo-500/20 transition-shadow hover:shadow-indigo-500/30 hover:shadow-xl"
         >
           {label}
         </Link>

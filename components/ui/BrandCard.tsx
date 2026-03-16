@@ -30,7 +30,7 @@ export function BrandCard({ brand, showCategory }: BrandCardProps) {
   const landingHref = `/discounts/${brand.category}/${brand.slug}`;
 
   return (
-    <article className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 text-[var(--card-foreground)] shadow-md shadow-black/10">
+    <article className="rounded-xl border border-[#1F1F1F] bg-[#0A0A0A] p-5 text-[var(--card-foreground)] shadow-md shadow-black/5">
       <div className="flex flex-col gap-4">
         <div className="flex items-start gap-4">
           <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-white">

@@ -48,11 +48,26 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     whatDoIGet: "£5 for every referral.",
     disclaimer:
       "If you subscribe using my referral link I receive £5 per referral. I’m grateful for your support.",
-    trustpilot: { url: "https://uk.trustpilot.com/review/exhalecoffee.com", score: 4.8 },
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/exhalecoffee.com",
+      score: 4.8,
+    },
     faq: [
-      { question: "How do I get 50% off Exhale Coffee?", answer: "Use the referral link on this page to get 50% off your first subscription order. The discount is applied when you sign up for a subscription through Exhale Coffee." },
-      { question: "What is Exhale Coffee?", answer: "Exhale Coffee is a healthy coffee subscription brand. The coffee is lower in caffeine, designed to reduce jitters, and delivered to your door. They offer organic options including ultra-fine dark roast." },
-      { question: "Is Exhale Coffee subscription flexible?", answer: "Yes. You can manage your subscription (including rescheduling or pausing) through your Exhale account. Delivery is typically every two weeks." },
+      {
+        question: "How do I get 50% off Exhale Coffee?",
+        answer:
+          "Use the referral link on this page to get 50% off your first subscription order. The discount is applied when you sign up for a subscription through Exhale Coffee.",
+      },
+      {
+        question: "What is Exhale Coffee?",
+        answer:
+          "Exhale Coffee is a healthy coffee subscription brand. The coffee is lower in caffeine, designed to reduce jitters, and delivered to your door. They offer organic options including ultra-fine dark roast.",
+      },
+      {
+        question: "Is Exhale Coffee subscription flexible?",
+        answer:
+          "Yes. You can manage your subscription (including rescheduling or pausing) through your Exhale account. Delivery is typically every two weeks.",
+      },
     ],
   },
   myprotein: {
@@ -72,11 +87,26 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     whatDoIGet: "£15 credit on my MyProtein account.",
     disclaimer:
       "If you order using my referral link I receive £15 off my next order. I’m very grateful for your support.",
-    trustpilot: { url: "https://uk.trustpilot.com/review/myprotein.com", score: 4.4 },
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/myprotein.com",
+      score: 4.4,
+    },
     faq: [
-      { question: "How do I get £15 off MyProtein?", answer: "Use the referral link on this page when you order. You get £15 off any order over £45. The discount is applied at checkout." },
-      { question: "Does MyProtein have gluten-free protein powder?", answer: "Yes. MyProtein has a dedicated gluten-free section including Impact Whey Isolate, which is suitable for people with coeliac disease. Always check the product page for the latest allergen information." },
-      { question: "What is the MyProtein referral offer?", answer: "New customers who use a referral link get £15 off orders over £45. The referrer receives £15 credit on their MyProtein account when the referred customer places an order." },
+      {
+        question: "How do I get £15 off MyProtein?",
+        answer:
+          "Use the referral link on this page when you order. You get £15 off any order over £45. The discount is applied at checkout.",
+      },
+      {
+        question: "Does MyProtein have gluten-free protein powder?",
+        answer:
+          "Yes. MyProtein has a dedicated gluten-free section including Impact Whey Isolate, which is suitable for people with coeliac disease. Always check the product page for the latest allergen information.",
+      },
+      {
+        question: "What is the MyProtein referral offer?",
+        answer:
+          "New customers who use a referral link get £15 off orders over £45. The referrer receives £15 credit on their MyProtein account when the referred customer places an order.",
+      },
     ],
     extraSections: {
       "Gluten-free protein porridge recipe": `**Ingredients**
@@ -96,16 +126,29 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
   },
   gymshark: {
     seoTitle: "Gymshark discount: £10 off your first order",
-    seoDescription: "Gymshark referral offer: £10 off when new customers spend £50 or more.",
+    seoDescription:
+      "Gymshark referral offer: £10 off when new customers spend £50 or more.",
     keywords: ["gymshark discount", "gymshark referral", "gymshark code"],
     whyIUseIt: "More content coming soon.",
     howItWorks:
       "New customers get £10 off when they place their first order of £50 or more with Gymshark.",
-    whatDoIGet: "I receive a reward when you place your first qualifying order.",
-    trustpilot: { url: "https://uk.trustpilot.com/review/gymshark.com", score: 3.7 },
+    whatDoIGet:
+      "I receive a reward when you place your first qualifying order.",
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/gymshark.com",
+      score: 3.7,
+    },
     faq: [
-      { question: "How do I get £10 off Gymshark?", answer: "New customers get £10 off when they place their first order of £50 or more with Gymshark. Use the referral link when you sign up or at checkout." },
-      { question: "What does Gymshark sell?", answer: "Gymshark sells sportswear and gym wear including leggings, tops, hoodies and training gear. They are known for fitness and casual athletic wear." },
+      {
+        question: "How do I get £10 off Gymshark?",
+        answer:
+          "New customers get £10 off when they place their first order of £50 or more with Gymshark. Use the referral link when you sign up or at checkout.",
+      },
+      {
+        question: "What does Gymshark sell?",
+        answer:
+          "Gymshark sells sportswear and gym wear including leggings, tops, hoodies and training gear. They are known for fitness and casual athletic wear.",
+      },
     ],
   },
   runna: {
@@ -125,19 +168,44 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     whatDoIGet:
       "£10 credit towards the Runna apparel store when someone I refer starts a Premium subscription.",
     appStoreLinks: {
-      ios: "https://apps.apple.com/app/runna/id1639210712",
-      android: "https://play.google.com/store/apps/details?id=com.runna.app",
+      ios: "https://apps.apple.com/gb/app/runna-running-plans-coach/id1594204443",
+      android:
+        "https://play.google.com/store/apps/details?id=com.runbuddy.prod",
     },
     images: [
-      { src: "/runna_first_run.png", alt: "My first Runna run, April 2025: Easy Effort, 3.74 km in 36:04 at 9:39/km — run/walk intervals." },
-      { src: "/runna_recent_run.png", alt: "A recent Runna run: 6 km Progressive Repeat, 5.91 km in 50:00 at 8:27/km — showing pace improvement." },
-      { src: "/runna_total_km.png", alt: "Total distance tracked in Runna: 250 km so far with my current shoes, 51 runs, 33+ hours of running." },
+      {
+        src: "/runna_first_run.png",
+        alt: "My first Runna run, April 2025: Easy Effort, 3.74 km in 36:04 at 9:39/km — run/walk intervals.",
+      },
+      {
+        src: "/runna_recent_run.png",
+        alt: "A recent Runna run: 6 km Progressive Repeat, 5.91 km in 50:00 at 8:27/km — showing pace improvement.",
+      },
+      {
+        src: "/runna_total_km.png",
+        alt: "Total distance tracked in Runna: 250 km so far with my current shoes, 51 runs, 33+ hours of running.",
+      },
     ],
-    trustpilot: { url: "https://uk.trustpilot.com/review/runna.com", score: 4.0 },
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/runna.com",
+      score: 4.0,
+    },
     faq: [
-      { question: "How do I get 2 weeks free Runna Premium?", answer: "Download the Runna app (iOS or Android), then enter the referral code on this page when signing up. You get two weeks of Runna Premium free." },
-      { question: "What is Runna?", answer: "Runna is a running app that provides structured training plans for distances like 5K, 10K and events like Hyrox. It coaches you from beginner to regular runner with tailored plans." },
-      { question: "Is Runna free?", answer: "Runna has a free tier and a Premium subscription. With a referral code you get two weeks of Premium free. After that you can subscribe or use the free version." },
+      {
+        question: "How do I get 2 weeks free Runna Premium?",
+        answer:
+          "Download the Runna app (iOS or Android), then enter the referral code on this page when signing up. You get two weeks of Runna Premium free.",
+      },
+      {
+        question: "What is Runna?",
+        answer:
+          "Runna is a running app that provides structured training plans for distances like 5K, 10K and events like Hyrox. It coaches you from beginner to regular runner with tailored plans.",
+      },
+      {
+        question: "Is Runna free?",
+        answer:
+          "Runna has a free tier and a Premium subscription. With a referral code you get two weeks of Premium free. After that you can subscribe or use the free version.",
+      },
     ],
   },
   provocan: {
@@ -153,13 +221,29 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       "cbd products uk",
     ],
     whyIUseIt: `I have a medicinal cannabis prescription for ADHD and insomnia. Part of my treatment plan included using CBD to help with side effects like morning grogginess, but I’ve found that daily use also helps my anxiety and inflammation-related pain in my back and knees. The CBD oil from my prescription provider was expensive, so I switched to Provocan—same quality, much lower price. They offer full-spectrum oils and other products that are independently tested. I use the 10mg CBD gummies; I didn’t get on with the oil, but the gummies work well and taste good.`,
-    howItWorks: "Use my referral link to get £10 off when you spend £45 or more.",
+    howItWorks:
+      "Use my referral link to get £10 off when you spend £45 or more.",
     whatDoIGet: "1,000 rewards points (worth £10).",
-    trustpilot: { url: "https://uk.trustpilot.com/review/provacan.co.uk", score: 4.6 },
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/provacan.co.uk",
+      score: 4.6,
+    },
     faq: [
-      { question: "How do I get £10 off Provocan?", answer: "Use the referral link on this page. When you spend £45 or more on your order you get £10 off. The discount is applied at checkout." },
-      { question: "What is Provocan?", answer: "Provocan is a CBD brand offering full-spectrum oils and gummies. Products are independently tested. They are often used for relaxation, anxiety support and inflammation-related discomfort." },
-      { question: "Are Provocan products tested?", answer: "Provocan states that their products are independently tested. Check the product page or Provocan website for the latest testing and certificate information." },
+      {
+        question: "How do I get £10 off Provocan?",
+        answer:
+          "Use the referral link on this page. When you spend £45 or more on your order you get £10 off. The discount is applied at checkout.",
+      },
+      {
+        question: "What is Provocan?",
+        answer:
+          "Provocan is a CBD brand offering full-spectrum oils and gummies. Products are independently tested. They are often used for relaxation, anxiety support and inflammation-related discomfort.",
+      },
+      {
+        question: "Are Provocan products tested?",
+        answer:
+          "Provocan states that their products are independently tested. Check the product page or Provocan website for the latest testing and certificate information.",
+      },
     ],
   },
   "emma-budgeting": {
@@ -178,16 +262,31 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       "Download Emma and sign up via my referral link to get a 30-day free trial. Download for iOS or Android below.",
     whatDoIGet: "£50 in Emma credits.",
     appStoreLinks: {
-      ios: "https://apps.apple.com/app/emma-budget-tracker-save-money/id1315580305",
-      android: "https://play.google.com/store/apps/details?id=com.emmaapp.emma",
+      ios: "https://apps.apple.com/gb/app/emma-budget-planner-tracker/id1270062373",
+      android: "https://play.google.com/store/apps/details?id=com.emmaprod",
     },
     disclaimer:
       "If you sign up using my referral link I receive £50 in Emma credits. Thank you for your support.",
-    trustpilot: { url: "https://uk.trustpilot.com/review/emma-app.com", score: 4.4 },
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/emma-app.com",
+      score: 4.4,
+    },
     faq: [
-      { question: "How do I get the Emma app free trial?", answer: "Download the Emma app and sign up using the referral link on this page. You get a 30-day free trial of Emma Premium." },
-      { question: "What is the Emma app?", answer: "Emma is a budgeting app that connects to your bank accounts, auto-categorises transactions, tracks subscriptions and upcoming payments, and helps you set and monitor budgets across all your accounts." },
-      { question: "Is Emma app free?", answer: "Emma offers a free trial. After the trial, Emma has a subscription for premium features. Check the Emma website or app store for current pricing." },
+      {
+        question: "How do I get the Emma app free trial?",
+        answer:
+          "Download the Emma app and sign up using the referral link on this page. You get a 30-day free trial of Emma Premium.",
+      },
+      {
+        question: "What is the Emma app?",
+        answer:
+          "Emma is a budgeting app that connects to your bank accounts, auto-categorises transactions, tracks subscriptions and upcoming payments, and helps you set and monitor budgets across all your accounts.",
+      },
+      {
+        question: "Is Emma app free?",
+        answer:
+          "Emma offers a free trial. After the trial, Emma has a subscription for premium features. Check the Emma website or app store for current pricing.",
+      },
     ],
   },
   "ribbon-rewards": {
@@ -207,11 +306,26 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     whatDoIGet: "2,500 points (worth £25).",
     disclaimer:
       "If you use my referral link I receive 2,500 points (worth £25). I’m grateful for your support.",
-    trustpilot: { url: "https://uk.trustpilot.com/review/ribbonrewards.io", score: 4.8 },
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/ribbonrewards.io",
+      score: 4.8,
+    },
     faq: [
-      { question: "How do I get £25 from Ribbon Rewards?", answer: "Sign up to Ribbon Rewards using the referral link on this page. The first time you pay your rent through Ribbon Rewards you receive 2,500 points, worth £25. Points can be spent on vouchers (e.g. travel, hotels, Amazon)." },
-      { question: "What is Ribbon Rewards?", answer: "Ribbon Rewards is a service that lets you earn points (cashback) when you pay your rent through their platform. You pay rent as usual and earn rewards on a payment you are already making." },
-      { question: "How do I spend Ribbon Rewards points?", answer: "Ribbon Rewards points can be redeemed for vouchers including for travel, hotels and Amazon. Check the Ribbon Rewards app or website for the current list of redemption options." },
+      {
+        question: "How do I get £25 from Ribbon Rewards?",
+        answer:
+          "Sign up to Ribbon Rewards using the referral link on this page. The first time you pay your rent through Ribbon Rewards you receive 2,500 points, worth £25. Points can be spent on vouchers (e.g. travel, hotels, Amazon).",
+      },
+      {
+        question: "What is Ribbon Rewards?",
+        answer:
+          "Ribbon Rewards is a service that lets you earn points (cashback) when you pay your rent through their platform. You pay rent as usual and earn rewards on a payment you are already making.",
+      },
+      {
+        question: "How do I spend Ribbon Rewards points?",
+        answer:
+          "Ribbon Rewards points can be redeemed for vouchers including for travel, hotels and Amazon. Check the Ribbon Rewards app or website for the current list of redemption options.",
+      },
     ],
   },
   airtime: {
@@ -230,16 +344,31 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       "Sign up with my referral code and spend £5 within your first 7 days to receive £2 credit. Download the app for iOS or Android below.",
     whatDoIGet: "£5 credit on my account.",
     appStoreLinks: {
-      ios: "https://apps.apple.com/app/airtime-rewards/id1181558482",
-      android: "https://play.google.com/store/apps/details?id=com.airtimerewards",
+      ios: "https://apps.apple.com/gb/app/airtime-mobile-rewards/id975840117",
+      android: "https://play.google.com/store/apps/details?id=com.karrot",
     },
     disclaimer:
       "If you sign up using my referral code I receive £5 in credit. Thank you for your support.",
-    trustpilot: { url: "https://uk.trustpilot.com/review/airtimerewards.co.uk", score: 3.6 },
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/airtimerewards.co.uk",
+      score: 3.6,
+    },
     faq: [
-      { question: "How do I get £2 credit with Airtime?", answer: "Sign up to Airtime using the referral code on this page. Once you spend £5 within your first 7 days you receive £2 credit on your Airtime account." },
-      { question: "What is Airtime?", answer: "Airtime is a cashback app that links to your spending accounts and automatically applies cashback to eligible purchases. You can also buy vouchers (e.g. for retailers) through Airtime for extra cashback. Balance can be used towards your phone bill." },
-      { question: "How does Airtime cashback work?", answer: "You link your bank or payment accounts to Airtime. When you make eligible purchases, Airtime tracks them and adds cashback to your account. Unlike some cashback sites, it works in-app and does not rely on clicking through from a specific link or cookie tracking." },
+      {
+        question: "How do I get £2 credit with Airtime?",
+        answer:
+          "Sign up to Airtime using the referral code on this page. Once you spend £5 within your first 7 days you receive £2 credit on your Airtime account.",
+      },
+      {
+        question: "What is Airtime?",
+        answer:
+          "Airtime is a cashback app that links to your spending accounts and automatically applies cashback to eligible purchases. You can also buy vouchers (e.g. for retailers) through Airtime for extra cashback. Balance can be used towards your phone bill.",
+      },
+      {
+        question: "How does Airtime cashback work?",
+        answer:
+          "You link your bank or payment accounts to Airtime. When you make eligible purchases, Airtime tracks them and adds cashback to your account. Unlike some cashback sites, it works in-app and does not rely on clicking through from a specific link or cookie tracking.",
+      },
     ],
   },
 };

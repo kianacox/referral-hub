@@ -15,7 +15,7 @@ export function TrustpilotBadge({ brandName, trustpilot }: TrustpilotBadgeProps)
 
   return (
     <div
-      className="inline-flex flex-col items-center gap-1.5 rounded-full bg-white px-4 py-2.5 text-center shadow-[0_0_20px_rgba(255,255,255,0.35),0_0_40px_rgba(16,185,129,0.2)] ring-1 ring-slate-200/80"
+      className="inline-flex flex-col items-center gap-1.5 rounded-full bg-white/95 px-4 py-2.5 text-center shadow-[0_4px_24px_rgba(0,0,0,0.2),0_0_1px_rgba(255,255,255,0.1)] backdrop-blur-sm"
       aria-label={`Trustpilot rating: ${score.toFixed(1)} out of 5`}
     >
       <div className="flex items-center gap-0.5">

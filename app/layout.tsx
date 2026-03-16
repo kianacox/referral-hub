@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased bg-[var(--main-bg)]`}
+        className={`${geistSans.variable} ${geistMono.variable} spotlight-bg flex min-h-screen flex-col antialiased`}
       >
         <GoogleAnalytics />
         <DisclaimerProvider>
