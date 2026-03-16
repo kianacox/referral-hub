@@ -1,17 +1,26 @@
+"use client";
+
 import { Star } from "lucide-react";
 import type { TrustpilotData } from "@/content/landing-pages";
+import { trackBrandTrustpilotClick } from "@/lib/analytics";
 
 const STAR_SIZE = 14;
 
 type TrustpilotBadgeProps = {
   brandName: string;
   trustpilot: TrustpilotData;
+  /** Brand slug for GA event (e.g. exhale-coffee, runna). Pass to track trustpilot clicks. */
+  brand?: string;
 };
 
-export function TrustpilotBadge({ brandName, trustpilot }: TrustpilotBadgeProps) {
+export function TrustpilotBadge({ brandName, trustpilot, brand: brandSlug }: TrustpilotBadgeProps) {
   const { url, score } = trustpilot;
   const fullStars = Math.floor(score);
   const hasHalf = score % 1 >= 0.25 && score % 1 < 0.75;
+
+  const handleClick = () => {
+    if (brandSlug) trackBrandTrustpilotClick(brandSlug);
+  };
 
   return (
     <div
@@ -40,6 +49,7 @@ export function TrustpilotBadge({ brandName, trustpilot }: TrustpilotBadgeProps)
         href={url}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={handleClick}
         className="text-xs font-semibold text-emerald-600 underline decoration-emerald-600/60 underline-offset-2 hover:text-emerald-700 hover:decoration-emerald-600"
       >
         Check out {brandName} on Trustpilot

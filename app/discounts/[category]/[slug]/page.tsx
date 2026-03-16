@@ -5,6 +5,7 @@ import type { BrandCategory } from "@/lib/brands";
 import { LANDING_PAGE_CONTENT } from "@/content/landing-pages";
 import { buildFaqJsonLd } from "@/lib/seo";
 import { LandingPageTemplate } from "@/components/landing/LandingPageTemplate";
+import { ExhaleLandingPage } from "@/components/landing/ExhaleLandingPage";
 
 type PageProps = {
   params: Promise<{ category: string; slug: string }>;
@@ -39,6 +40,9 @@ export default async function BrandLandingPage({ params }: PageProps) {
 
   if (!brand || !content) notFound();
 
+  const isExhale = slug === "exhale-coffee";
+  const PageContent = isExhale ? ExhaleLandingPage : LandingPageTemplate;
+
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -64,7 +68,7 @@ export default async function BrandLandingPage({ params }: PageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       )}
-      <LandingPageTemplate brand={brand} content={content} />
+      <PageContent brand={brand} content={content} />
     </>
   );
 }

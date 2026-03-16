@@ -29,3 +29,7 @@ export function trackProviderIosCtaClick(provider: string) {
 export function trackProviderAndroidCtaClick(provider: string) {
   sendEvent("provider_android_cta_click", { provider });
 }
+
+export function trackBrandTrustpilotClick(brand: string) {
+  sendEvent("brand_trustpilot_click", { brand });
+}

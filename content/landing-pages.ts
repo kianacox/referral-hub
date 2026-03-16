@@ -26,6 +26,16 @@ export type LandingPageContent = {
   faq?: FaqItem[];
   /** Extra sections keyed by heading, value is body */
   extraSections?: Record<string, string>;
+  /** Premium product layout: 3 key specs for hero product summary box */
+  productSummary?: string[];
+  /** Premium: benefit cards (icon: Zap | Shield | Clock | Leaf | Package) */
+  keyBenefits?: { icon: string; title: string; description: string }[];
+  /** Premium: how to redeem steps */
+  howToRedeem?: string[];
+  /** Premium: transparency disclaimer (referee + referrer) */
+  transparency?: { referee: string; referrer: string };
+  /** Premium: product specs table rows */
+  productSpecs?: { label: string; value: string }[];
 };
 
 export const LANDING_PAGE_CONTENT: Record<string, LandingPageContent> = {
@@ -66,8 +76,56 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       {
         question: "Is Exhale Coffee subscription flexible?",
         answer:
-          "Yes. You can manage your subscription (including rescheduling or pausing) through your Exhale account. Delivery is typically every two weeks.",
+          "Yes. You can manage your subscription (including rescheduling or pausing) through your Exhale account. Delivery frequency is flexible.",
       },
+    ],
+    productSummary: [
+      "Organic & pesticide free",
+      "Optimized caffeine (fewer jitters)",
+      "Eco-friendly packaging",
+    ],
+    keyBenefits: [
+      {
+        icon: "Zap",
+        title: "Smooth energy",
+        description:
+          "Lower caffeine content designed to reduce anxiety and jitters while still giving you a clean lift.",
+      },
+      {
+        icon: "Shield",
+        title: "Health-first",
+        description:
+          "Organic, pesticide-free beans. A better choice for daily drinkers who care about what they put in their body.",
+      },
+      {
+        icon: "Clock",
+        title: "Delivered on schedule",
+        description:
+          "Subscription delivery flexible so you never run out. Pause or reschedule anytime.",
+      },
+    ],
+    howToRedeem: [
+      "Click the referral link below.",
+      "Choose your subscription and roast on Exhale Coffee.",
+      "50% off is applied at checkout on your first order.",
+    ],
+    transparency: {
+      referee:
+        "You receive 50% off your first subscription order when you sign up via the referral link on this page.",
+      referrer:
+        "I receive £5 per referral when you subscribe using my link. I use this site to share offers I genuinely use.",
+    },
+    productSpecs: [
+      {
+        label: "Roast level",
+        value: "Light to dark (e.g. Ultra-Fine Dark Roast)",
+      },
+      {
+        label: "Caffeine vs standard coffee",
+        value: "Optimized / reduced for fewer jitters",
+      },
+      { label: "Origin & certification", value: "Organic, pesticide free" },
+      { label: "Delivery", value: "Flexible subscription" },
     ],
   },
   myprotein: {

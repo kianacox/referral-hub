@@ -95,7 +95,7 @@ export function LandingPageTemplate({ brand, content, children }: LandingPageTem
         <p className="mt-2 text-lg text-[var(--body-text)]">{brand.offerSummary}</p>
         {content.trustpilot && (
           <div className="mt-6 flex justify-center">
-            <TrustpilotBadge brandName={brand.name} trustpilot={content.trustpilot} />
+            <TrustpilotBadge brandName={brand.name} trustpilot={content.trustpilot} brand={brand.slug} />
           </div>
         )}
         <div
@@ -183,7 +183,7 @@ export function LandingPageTemplate({ brand, content, children }: LandingPageTem
       </section>
 
       <section className={`mb-10 overflow-hidden ${cardClass}`}>
-        <SectionHeading icon={Info}>What do I get</SectionHeading>
+        <SectionHeading icon={Info}>What I get</SectionHeading>
         <p className="mt-3 text-[var(--body-text)]">{content.whatDoIGet}</p>
       </section>
 
