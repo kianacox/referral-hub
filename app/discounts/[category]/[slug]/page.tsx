@@ -6,6 +6,7 @@ import { LANDING_PAGE_CONTENT } from "@/content/landing-pages";
 import { buildFaqJsonLd } from "@/lib/seo";
 import { LandingPageTemplate } from "@/components/landing/LandingPageTemplate";
 import { ExhaleLandingPage } from "@/components/landing/ExhaleLandingPage";
+import { RibbonRewardsLandingPage } from "@/components/landing/RibbonRewardsLandingPage";
 
 type PageProps = {
   params: Promise<{ category: string; slug: string }>;
@@ -41,7 +42,12 @@ export default async function BrandLandingPage({ params }: PageProps) {
   if (!brand || !content) notFound();
 
   const isExhale = slug === "exhale-coffee";
-  const PageContent = isExhale ? ExhaleLandingPage : LandingPageTemplate;
+  const isRibbon = slug === "ribbon-rewards";
+  const PageContent = isRibbon
+    ? RibbonRewardsLandingPage
+    : isExhale
+      ? ExhaleLandingPage
+      : LandingPageTemplate;
 
   const productJsonLd = {
     "@context": "https://schema.org",
