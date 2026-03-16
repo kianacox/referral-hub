@@ -1,6 +1,7 @@
 /**
- * GA4 event helpers for provider CTA tracking.
- * Events: provider_cta_click, provider_code_copy, provider_ios_cta_click, provider_android_cta_click.
+ * GA4 event helpers for brand-level tracking (CTA, code copy, app store, Trustpilot).
+ * Events: brand_cta_click, brand_code_copy, brand_ios_cta_click, brand_android_cta_click, brand_trustpilot_click.
+ * All events send a `brand` parameter (slug) so analytics can segment by brand.
  */
 
 declare global {
@@ -14,20 +15,20 @@ function sendEvent(eventName: string, params?: Record<string, string>) {
   window.gtag("event", eventName, params);
 }
 
-export function trackProviderCtaClick(provider: string) {
-  sendEvent("provider_cta_click", { provider });
+export function trackProviderCtaClick(brandSlug: string) {
+  sendEvent("brand_cta_click", { brand: brandSlug });
 }
 
-export function trackProviderCodeCopy(provider: string) {
-  sendEvent("provider_code_copy", { provider });
+export function trackProviderCodeCopy(brandSlug: string) {
+  sendEvent("brand_code_copy", { brand: brandSlug });
 }
 
-export function trackProviderIosCtaClick(provider: string) {
-  sendEvent("provider_ios_cta_click", { provider });
+export function trackProviderIosCtaClick(brandSlug: string) {
+  sendEvent("brand_ios_cta_click", { brand: brandSlug });
 }
 
-export function trackProviderAndroidCtaClick(provider: string) {
-  sendEvent("provider_android_cta_click", { provider });
+export function trackProviderAndroidCtaClick(brandSlug: string) {
+  sendEvent("brand_android_cta_click", { brand: brandSlug });
 }
 
 export function trackBrandTrustpilotClick(brand: string) {
