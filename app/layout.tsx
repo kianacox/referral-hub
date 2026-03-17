@@ -4,6 +4,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { DisclaimerProvider } from "@/components/context/DisclaimerContext";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { Analytics } from "@vercel/analytics/next"
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -41,6 +43,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} spotlight-bg flex min-h-screen flex-col antialiased`}
       >
         <GoogleAnalytics />
+        <Analytics />
         <DisclaimerProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
