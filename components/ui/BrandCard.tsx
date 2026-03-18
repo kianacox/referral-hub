@@ -27,7 +27,11 @@ function primaryCtaLabel(brand: Brand): string {
 }
 
 export function BrandCard({ brand, showCategory }: BrandCardProps) {
-  const landingHref = `/discounts/${brand.category}/${brand.slug}`;
+  const landingHref =
+    brand.section === "earn"
+      ? `/earn/${brand.slug}`
+      : `/discounts/${brand.category}/${brand.slug}`;
+  const ctaLabel = brand.primaryCtaLabel ?? primaryCtaLabel(brand);
 
   return (
     <article className="rounded-xl border border-[#1F1F1F] bg-[#0A0A0A] p-5 text-[var(--card-foreground)] shadow-md shadow-black/5">
@@ -47,7 +51,7 @@ export function BrandCard({ brand, showCategory }: BrandCardProps) {
               <h2 className="text-lg font-semibold">{brand.name}</h2>
               {showCategory && (
                 <span className="rounded-full bg-[var(--border)] px-2 py-0.5 text-xs capitalize text-[var(--muted)]">
-                  {brand.category}
+                  {brand.section === "earn" ? "Earn" : brand.category}
                 </span>
               )}
             </div>
@@ -59,7 +63,7 @@ export function BrandCard({ brand, showCategory }: BrandCardProps) {
           {brand.referralLink && brand.referralLink.trim() !== "" ? (
             <CtaBlock
               referralLink={brand.referralLink}
-              label={primaryCtaLabel(brand)}
+              label={ctaLabel}
               provider={brand.slug}
             />
           ) : brand.referralCode ? (

@@ -16,7 +16,8 @@ type TrustpilotBadgeProps = {
 export function TrustpilotBadge({ brandName, trustpilot, brand: brandSlug }: TrustpilotBadgeProps) {
   const { url, score } = trustpilot;
   const fullStars = Math.floor(score);
-  const hasHalf = score % 1 >= 0.25 && score % 1 < 0.75;
+  const partialFraction = score % 1;
+  const hasPartial = partialFraction > 0;
 
   const handleClick = () => {
     if (brandSlug) trackBrandTrustpilotClick(brandSlug);
@@ -24,26 +25,34 @@ export function TrustpilotBadge({ brandName, trustpilot, brand: brandSlug }: Tru
 
   return (
     <div
-      className="inline-flex flex-col items-center gap-1.5 rounded-full bg-white/95 px-4 py-2.5 text-center shadow-[0_4px_24px_rgba(0,0,0,0.2),0_0_1px_rgba(255,255,255,0.1)] backdrop-blur-sm"
+      className="inline-flex flex-col items-center gap-1.5 rounded-full bg-white/95 px-4 py-2.5 text-center shadow-[0_4px_24px_rgba(0,0,0,0.2),0_0_1px_rgba(255,255,255,0.1),0_0_28px_rgba(16,185,129,0.45)] backdrop-blur-sm"
       aria-label={`Trustpilot rating: ${score.toFixed(1)} out of 5`}
     >
       <div className="flex items-center gap-0.5">
-        {[1, 2, 3, 4, 5].map((i) => (
-          <span key={i} className="relative inline-block h-[14px] w-[14px] shrink-0">
-            {i <= fullStars ? (
-              <Star size={STAR_SIZE} className="shrink-0 fill-emerald-500 text-emerald-500" aria-hidden />
-            ) : i === fullStars + 1 && hasHalf ? (
-              <>
-                <Star size={STAR_SIZE} className="absolute inset-0 text-slate-200" aria-hidden />
-                <span className="absolute inset-0 w-[70%] overflow-hidden">
-                  <Star size={STAR_SIZE} className="fill-emerald-500 text-emerald-500" aria-hidden />
-                </span>
-              </>
-            ) : (
-              <Star size={STAR_SIZE} className="text-slate-200" aria-hidden />
-            )}
-          </span>
-        ))}
+        {[1, 2, 3, 4, 5].map((i) => {
+          const isFull = i <= fullStars;
+          const isPartialStar = i === fullStars + 1 && hasPartial;
+          const partialWidthPercent = Math.round(partialFraction * 100);
+          return (
+            <span key={i} className="relative inline-block h-[14px] w-[14px] shrink-0">
+              {isFull ? (
+                <Star size={STAR_SIZE} className="shrink-0 fill-emerald-500 text-emerald-500" aria-hidden />
+              ) : isPartialStar ? (
+                <>
+                  <Star size={STAR_SIZE} className="absolute inset-0 text-slate-200" aria-hidden />
+                  <span
+                    className="absolute inset-0 overflow-hidden"
+                    style={{ width: `${partialWidthPercent}%` }}
+                  >
+                    <Star size={STAR_SIZE} className="fill-emerald-500 text-emerald-500" aria-hidden />
+                  </span>
+                </>
+              ) : (
+                <Star size={STAR_SIZE} className="text-slate-200" aria-hidden />
+              )}
+            </span>
+          );
+        })}
       </div>
       <a
         href={url}

@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useMemo, useCallback } from "react";
-import { getVisibleBrands, CATEGORIES, CATEGORY_LABELS } from "@/lib/brands";
+import { getDiscountBrands, CATEGORIES, CATEGORY_LABELS } from "@/lib/brands";
 import type { BrandCategory } from "@/lib/brands";
 import { BrandCard } from "@/components/ui/BrandCard";
 import { DISCOUNTS_INTRO } from "@/constants/copy";
@@ -53,7 +53,7 @@ export function DiscountsPageContent({
   }, [router]);
 
   const brands = useMemo(() => {
-    const visible = getVisibleBrands();
+    const visible = getDiscountBrands();
     if (activeFilters.length === 0) return visible;
     return visible.filter((b) => activeFilters.includes(b.category));
   }, [activeFilters]);

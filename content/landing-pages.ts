@@ -378,12 +378,12 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       "If you use my referral link I receive 2,500 points (worth £25). I’m grateful for your support.",
     trustpilot: {
       url: "https://uk.trustpilot.com/review/ribbonrewards.io",
-      score: 4.8,
+      score: 4.9,
     },
     heroHeadline: "Earn £25 + 1% Cashback on Your Rent Payments",
     heroSubheadline:
       "Stop letting your biggest monthly expense go unrewarded. Join thousands of UK renters earning points on every pound spent on rent.",
-    ctaLabel: "Claim your £25 Sign-up Bonus",
+    ctaLabel: "Get £25 now!",
     trustBadge: {
       partner: "Partnered with Griffin Bank Ltd",
       label: "Fully UK Regulated",
@@ -406,8 +406,7 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       },
       {
         title: "Redeem",
-        description:
-          "Swap points for vouchers at Amazon, ASDA, TUI, and more.",
+        description: "Swap points for vouchers at Amazon, ASDA, TUI, and more.",
       },
     ],
     safetySection: {
@@ -435,8 +434,7 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       },
       {
         question: "What vouchers can I get?",
-        answer:
-          "Amazon, Tesco, M&S, Airbnb, and more.",
+        answer: "Amazon, Tesco, M&S, Airbnb, and more.",
       },
     ],
   },

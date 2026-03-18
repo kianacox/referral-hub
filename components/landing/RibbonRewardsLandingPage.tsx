@@ -6,6 +6,7 @@ import { Shield, HelpCircle, Quote, FileText } from "lucide-react";
 import type { Brand } from "@/lib/brands";
 import type { LandingPageContent } from "@/content/landing-pages";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
+import { TrustpilotBadge } from "@/components/ui/TrustpilotBadge";
 import { trackProviderCtaClick } from "@/lib/analytics";
 
 /* Dark Finance: true black, emerald accents, thin borders */
@@ -33,7 +34,7 @@ export function RibbonRewardsLandingPage({
   const subheadline =
     content.heroSubheadline ??
     "Stop letting your biggest monthly expense go unrewarded. Join thousands of UK renters earning points on every pound spent on rent.";
-  const ctaLabel = content.ctaLabel ?? "Claim your £25 Sign-up Bonus";
+  const ctaLabel = content.ctaLabel ?? "Get £25 now!";
   const steps = content.howItWorksSteps ?? [];
   const safety = content.safetySection;
   const rewardsTable = content.rewardsTable ?? [];
@@ -102,6 +103,16 @@ export function RibbonRewardsLandingPage({
               >
                 {content.trustBadge.label}
               </span>
+            </div>
+          )}
+
+          {content.trustpilot && (
+            <div className="mt-6">
+              <TrustpilotBadge
+                brandName={brand.name}
+                trustpilot={content.trustpilot}
+                brand={brand.slug}
+              />
             </div>
           )}
         </div>
