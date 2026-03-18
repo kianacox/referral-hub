@@ -1,7 +1,7 @@
 /**
  * GA4 event helpers for brand-level tracking (CTA, code copy, app store, Trustpilot).
- * Events: brand_cta_click, brand_code_copy, brand_ios_cta_click, brand_android_cta_click, brand_trustpilot_click.
- * All events send a `brand` parameter (slug) so analytics can segment by brand.
+ * Event names are prefixed by brand slug (e.g. ribbon_rewards_cta_click) so analytics can filter by event name.
+ * All events also send a `brand` parameter (slug) for segmentation.
  */
 
 declare global {
@@ -10,27 +10,32 @@ declare global {
   }
 }
 
+function eventNameForBrand(brandSlug: string, suffix: string): string {
+  const normalized = brandSlug.replace(/-/g, "_");
+  return `${normalized}_${suffix}`;
+}
+
 function sendEvent(eventName: string, params?: Record<string, string>) {
   if (typeof window === "undefined" || !window.gtag) return;
   window.gtag("event", eventName, params);
 }
 
 export function trackProviderCtaClick(brandSlug: string) {
-  sendEvent("brand_cta_click", { brand: brandSlug });
+  sendEvent(eventNameForBrand(brandSlug, "cta_click"), { brand: brandSlug });
 }
 
 export function trackProviderCodeCopy(brandSlug: string) {
-  sendEvent("brand_code_copy", { brand: brandSlug });
+  sendEvent(eventNameForBrand(brandSlug, "code_copy"), { brand: brandSlug });
 }
 
 export function trackProviderIosCtaClick(brandSlug: string) {
-  sendEvent("brand_ios_cta_click", { brand: brandSlug });
+  sendEvent(eventNameForBrand(brandSlug, "ios_cta_click"), { brand: brandSlug });
 }
 
 export function trackProviderAndroidCtaClick(brandSlug: string) {
-  sendEvent("brand_android_cta_click", { brand: brandSlug });
+  sendEvent(eventNameForBrand(brandSlug, "android_cta_click"), { brand: brandSlug });
 }
 
 export function trackBrandTrustpilotClick(brand: string) {
-  sendEvent("brand_trustpilot_click", { brand });
+  sendEvent(eventNameForBrand(brand, "trustpilot_click"), { brand });
 }
