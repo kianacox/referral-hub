@@ -1,10 +1,14 @@
 export type BrandCategory = "health" | "finance" | "bills";
 
+export type BrandSection = "discounts" | "earn";
+
 export type Brand = {
   id: string;
   name: string;
   slug: string;
   category: BrandCategory;
+  /** Determines /discounts vs /earn; earn offers (e.g. rent cashback) live under /earn */
+  section: BrandSection;
   logoPath: string;
   overview: string;
   offerSummary: string;
@@ -17,6 +21,8 @@ export type Brand = {
   brandUrl?: string;
   /** If set, brand is only shown when matching env var is truthy */
   featureFlag?: "gymshark";
+  /** Override for primary CTA button label (e.g. "Get £25 now!" for Ribbon) */
+  primaryCtaLabel?: string;
 };
 
 const SHOW_GYMSHARK = process.env.NEXT_PUBLIC_SHOW_GYMSHARK === "true";
@@ -27,6 +33,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Ribbon Rewards",
     slug: "ribbon-rewards",
     category: "bills",
+    section: "earn",
     logoPath: "/ribbon_rewards_logo.webp",
     overview:
       "Earn cashback on rent. Pay through Ribbon Rewards and collect points on a payment you’re already making.",
@@ -34,12 +41,14 @@ export const ALL_BRANDS: Brand[] = [
     refereeReward: "2,500 points (worth £25)",
     rewardRank: 1,
     referralLink: "https://www.ribbonrewards.io/?ref=KIAN63DB",
+    primaryCtaLabel: "Get £25 now!",
   },
   {
     id: "airtime",
     name: "Airtime",
     slug: "airtime",
     category: "bills",
+    section: "discounts",
     logoPath: "/airtime_logo.png",
     overview:
       "Cashback on everyday spending by linking your accounts. Works in-app and tracks eligible purchases automatically—no need to rely on tracking cookies.",
@@ -54,6 +63,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Exhale Coffee",
     slug: "exhale-coffee",
     category: "health",
+    section: "discounts",
     logoPath: "/exhale_logo.png",
     overview:
       "Healthy coffee subscription delivered to your door. Lower caffeine, fewer jitters and a better taste.",
@@ -67,6 +77,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Emma",
     slug: "emma-budgeting",
     category: "finance",
+    section: "discounts",
     logoPath: "/emma_logo.png",
     overview:
       "Budgeting app that auto-categorises spending, tracks subscriptions and upcoming payments, and gives you a clear view across all your accounts.",
@@ -80,6 +91,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "MyProtein",
     slug: "myprotein",
     category: "health",
+    section: "discounts",
     logoPath: "/my_protein_logo.webp",
     overview:
       "Sports nutrition and protein with strong gluten-free options, including whey isolate that works in porridge and shakes.",
@@ -93,6 +105,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Runna",
     slug: "runna",
     category: "health",
+    section: "discounts",
     logoPath: "/runna_logo.png",
     overview:
       "Running app with structured plans for 5K, 10K, Hyrox and more. Guides you from beginner to regular runner.",
@@ -107,6 +120,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Provocan",
     slug: "provocan",
     category: "health",
+    section: "discounts",
     logoPath: "/provocan_logo.jpg",
     overview:
       "Full-spectrum CBD oils and gummies, independently tested. A more affordable option for quality CBD.",
@@ -120,6 +134,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Gymshark",
     slug: "gymshark",
     category: "health",
+    section: "discounts",
     logoPath: "/gymshark_logo.png",
     overview: "Sportswear and gym wear for training and everyday use.",
     offerSummary: "£10 off when new customers place their first order of £50 or more.",
@@ -137,19 +152,44 @@ export function getVisibleBrands(): Brand[] {
   });
 }
 
+export function getDiscountBrands(): Brand[] {
+  return getVisibleBrands().filter((b) => b.section === "discounts");
+}
+
+export function getEarnBrands(): Brand[] {
+  return getVisibleBrands().filter((b) => b.section === "earn");
+}
+
 export function getBrandsByCategory(category: BrandCategory): Brand[] {
-  return getVisibleBrands().filter((b) => b.category === category);
+  return getDiscountBrands().filter((b) => b.category === category);
 }
 
 export function getBrandBySlug(category: BrandCategory, slug: string): Brand | undefined {
-  const brand = ALL_BRANDS.find((b) => b.category === category && b.slug === slug);
+  const brand = ALL_BRANDS.find((b) => b.section === "discounts" && b.category === category && b.slug === slug);
   if (!brand) return undefined;
   if (brand.featureFlag === "gymshark" && !SHOW_GYMSHARK) return undefined;
   return brand;
 }
 
+export function getEarnBrandBySlug(slug: string): Brand | undefined {
+  const brand = ALL_BRANDS.find((b) => b.section === "earn" && b.slug === slug);
+  if (!brand) return undefined;
+  if (brand.featureFlag === "gymshark" && !SHOW_GYMSHARK) return undefined;
+  return brand;
+}
+
+/** Slugs for /discounts/[category]/[slug] static generation */
+export function getDiscountSlugs(): { category: BrandCategory; slug: string }[] {
+  return getDiscountBrands().map((b) => ({ category: b.category, slug: b.slug }));
+}
+
+/** Slugs for /earn/[slug] static generation */
+export function getEarnSlugs(): string[] {
+  return getEarnBrands().map((b) => b.slug);
+}
+
 export function getAllSlugs(): { category: BrandCategory; slug: string }[] {
-  return getVisibleBrands().map((b) => ({ category: b.category, slug: b.slug }));
+  return getDiscountSlugs();
 }
 
 export const CATEGORIES: BrandCategory[] = ["bills", "health", "finance"];

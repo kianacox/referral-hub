@@ -1,19 +1,18 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getBrandBySlug, getAllSlugs } from "@/lib/brands";
+import { getBrandBySlug, getDiscountSlugs } from "@/lib/brands";
 import type { BrandCategory } from "@/lib/brands";
 import { LANDING_PAGE_CONTENT } from "@/content/landing-pages";
 import { buildFaqJsonLd } from "@/lib/seo";
 import { LandingPageTemplate } from "@/components/landing/LandingPageTemplate";
 import { ExhaleLandingPage } from "@/components/landing/ExhaleLandingPage";
-import { RibbonRewardsLandingPage } from "@/components/landing/RibbonRewardsLandingPage";
 
 type PageProps = {
   params: Promise<{ category: string; slug: string }>;
 };
 
 export function generateStaticParams() {
-  return getAllSlugs().map(({ category, slug }) => ({ category, slug }));
+  return getDiscountSlugs().map(({ category, slug }) => ({ category, slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -42,12 +41,7 @@ export default async function BrandLandingPage({ params }: PageProps) {
   if (!brand || !content) notFound();
 
   const isExhale = slug === "exhale-coffee";
-  const isRibbon = slug === "ribbon-rewards";
-  const PageContent = isRibbon
-    ? RibbonRewardsLandingPage
-    : isExhale
-      ? ExhaleLandingPage
-      : LandingPageTemplate;
+  const PageContent = isExhale ? ExhaleLandingPage : LandingPageTemplate;
 
   const productJsonLd = {
     "@context": "https://schema.org",

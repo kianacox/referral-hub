@@ -3,6 +3,9 @@ export const HOMEPAGE_INTRO = `This is my personal referral hub—a collection o
 export const DISCOUNTS_INTRO =
   "These are the referral codes I have that offer discounts on brands I use. Use the filters below to narrow by category.";
 
+export const EARN_INTRO =
+  "These are referral offers that let you earn (e.g. cashback on rent) rather than discount codes. Use the links below to get started.";
+
 export const LEARN_MORE_LABEL = "Learn more";
 export const GET_OFFER_NOW = "Get offer";
 export const COPY_CODE = "Copy code";

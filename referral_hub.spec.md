@@ -47,7 +47,7 @@ To create a referral hub that hosts "landing pages" designed to drive high inten
 
 - **Home (main site landing page):** /
 - **Discounts home:** /discounts
-- **Earn home:** /earn (no content for this path just yet. Waiting for next trading212 referral offer)
+- **Earn home:** /earn
 
 ## Health
 
@@ -75,8 +75,15 @@ To create a referral hub that hosts "landing pages" designed to drive high inten
 
 **Bill discount brand landing pages:**
 
-- /discounts/bills/ribbon-rewards
 - /discounts/bills/airtime
+
+## Earn
+
+- **Earn home:** /earn — landing page with intro and info cards for earn-style offers (e.g. rent cashback, future trading212 referral).
+
+**Earn brand landing pages:**
+
+- /earn/ribbon-rewards
 
 ---
 
@@ -86,6 +93,7 @@ Each landing page should have it's own dynamicall set SEO title, metadata, keywo
 
 Each page will have a shared navbar. The navbar will have the following option(s)
 
+- earn leading to /earn
 - discounts leading to /discounts
 
 On mobile, the options should be accesible via a burger menu on the right of the topnav. Clicking the menu will open a dropdown with the option(s). When the dropdown is open, it should be dismissable via an x icon which will apear where the burger menu icon was.
@@ -109,9 +117,13 @@ Each card should contain
 
 ---
 
+# Earn home: /earn
+
+This should follow the same style as the homepage, but only contain info cards for referrals that are earn-style offers (e.g. cashback on rent, not discounts). There should be a brief introduction and the ribbon rewards info card (and any future earn offers). The ribbon CTA should be "Get £25 now!" (not "get £25 off now").
+
 # Discounts home: /discounts
 
-This should follow the same style as the homepage, but only contain info cards for the referrals that are discounts (currently all of them)
+This should follow the same style as the homepage, but only contain info cards for the referrals that are discounts (excludes earn offers such as Ribbon Rewards).
 
 There should be a brief introduction in the form of some text stating that these are the referral codes I have that offer discounts on the brands I use.
 
@@ -244,21 +256,6 @@ should be optmised for users searching for cbd products, cbd product discounts, 
 
 # Bills brand landing page content
 
-## /discounts/bills/ribbon-rewards
-
-**Base plan (from Pages and components + Referee reward):**
-
-- SEO optimised title (e.g. drive engagement for rent cashback / Ribbon Rewards).
-- **Why I use it:** Because I'm paying rent anyway so obviously I'm going to jump at the opportunity to get cashback on a massive payment I'm already making. And the way you can spend points are actually valuable - you can spend points on vouchers for air travel, hotels and even amazon (facts check this). My typically play is to hoard points all year to use for christmas.
-
-- **How the offer works:** First time you pay rent, receive 2500 points (worth £25) (referee reward per brand).
-
-- **What do I get (for footer transparency):** 2500 points (worth £25)
-
-- CTA above the fold and in the how the offer works section; referral link: https://www.ribbonrewards.io/?ref=KIAN63DB.
-- Page styling matches overall site; optional Ribbon Rewards branding alignment.
-- SEO: optimise for ribbon rewards, rent cashback, rent payment rewards, referral codes.
-
 ## /discounts/bills/airtime
 
 **Base plan (from Pages and components + Referee reward):**
@@ -273,6 +270,25 @@ should be optmised for users searching for cbd products, cbd product discounts, 
 - CTA above the fold and in the how the offer works section; referral code in copyable container: UKV9QCKE, plus link to brand site/app.
 - Page styling matches overall site; optional Airtime branding alignment.
 - SEO: optimise for airtime, bill payment rewards, airtime referral code / discount.
+
+# Earn brand landing page content
+
+## /earn/ribbon-rewards
+
+**Base plan (from Pages and components + Referee reward):**
+
+- SEO optimised title (e.g. drive engagement for rent cashback / Ribbon Rewards).
+- **Why I use it:** Because I'm paying rent anyway so obviously I'm going to jump at the opportunity to get cashback on a massive payment I'm already making. And the way you can spend points are actually valuable - you can spend points on vouchers for air travel, hotels and even amazon (facts check this). My typically play is to hoard points all year to use for christmas.
+
+- **How the offer works:** First time you pay rent, receive 2500 points (worth £25) (referee reward per brand).
+
+- **What do I get (for footer transparency):** 2500 points (worth £25)
+
+- CTA above the fold and in the how the offer works section: **"Get £25 now!"** (not "get £25 off now"); referral link: https://www.ribbonrewards.io/?ref=KIAN63DB.
+- Page styling matches overall site; optional Ribbon Rewards branding alignment.
+- SEO: optimise for ribbon rewards, rent cashback, rent payment rewards, referral codes.
+
+---
 
 NOTE: Where we find repetition of code designing components we should extract these snippets into a shared component library that can be used throughout the referral hub. We should use reusable components throughout the application and also hardcode text into contants files for easy modification.
 
