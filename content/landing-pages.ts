@@ -48,6 +48,12 @@ export type LandingPageContent = {
   safetySection?: { title: string; bullets: string[] };
   /** Ribbon: rewards table rows (label + value) */
   rewardsTable?: { label: string; value: string }[];
+  /** Ribbon: KYC onboarding checkpoints */
+  onboardingStages?: { title: string; details: string }[];
+  /** Ribbon: explicit referral transparency block */
+  transparencyDisclosure?: { title: string; body: string };
+  /** Ribbon: social proof screenshot gallery */
+  socialProofImages?: { src: string; alt: string; caption?: string }[];
 };
 
 export const LANDING_PAGE_CONTENT: Record<string, LandingPageContent> = {
@@ -360,9 +366,9 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     ],
   },
   "ribbon-rewards": {
-    seoTitle: "Ribbon Rewards: Earn £25 + 1% Cashback on Your Rent Payments",
+    seoTitle: "Ribbon Rewards: £25 bonus + cashback on rent payments",
     seoDescription:
-      "Stop letting your biggest monthly expense go unrewarded. Join thousands of UK renters earning points on every pound spent on rent. Partnered with Griffin Bank Ltd.",
+      "Use Ribbon Rewards to earn cashback on rent you already pay. Get a £25 sign-up bonus with referral code KIAN63DB and earn 1% to 1.5% points on monthly rent.",
     keywords: [
       "ribbon rewards",
       "rent cashback",
@@ -372,69 +378,127 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     ],
     whyIUseIt: `I pay rent anyway, so I was keen to get something back on a payment I’m already making. The rewards are genuinely useful—you can spend points on vouchers for travel, hotels and Amazon. I tend to save mine through the year and use them at Christmas.`,
     howItWorks:
-      "Sign up, get your dedicated rent account from Griffin Bank, pay rent through Ribbon, and earn 1 point per £1 (1.5 for partner properties). Redeem for vouchers.",
+      "Sign up using the referral link, receive your own dedicated UK bank details from Griffin Bank, route rent through that account, and automatically earn points on each payment.",
     whatDoIGet: "2,500 points (worth £25).",
     disclaimer:
-      "If you use my referral link I receive 2,500 points (worth £25). I’m grateful for your support.",
+      "If you use my referral link and receive your referral reward, Ribbon also pays me a matching referral reward at no extra cost to you.",
     trustpilot: {
       url: "https://uk.trustpilot.com/review/ribbonrewards.io",
-      score: 4.9,
+      score: 4.7,
     },
-    heroHeadline: "Earn £25 + 1% Cashback on Your Rent Payments",
+    heroHeadline: "Get £25 and earn cashback every time you pay rent",
     heroSubheadline:
-      "Stop letting your biggest monthly expense go unrewarded. Join thousands of UK renters earning points on every pound spent on rent.",
+      "Ribbon turns your monthly rent transfer into ongoing rewards. Keep paying rent as normal, while earning 1% to 1.5% back in points redeemable for gift cards.",
     ctaLabel: "Get £25 now!",
     trustBadge: {
       partner: "Partnered with Griffin Bank Ltd",
-      label: "Fully UK Regulated",
+      label: "FCA authorised infrastructure (FRN 970920)",
     },
     howItWorksSteps: [
       {
-        title: "Link your account",
+        title: "Create your account",
         description:
-          "Sign up and get your unique dedicated rent account provided by Griffin Bank.",
+          "Complete sign-up and get your own UK sort code and account number in your name.",
       },
       {
-        title: "Pay Rent",
+        title: "Redirect rent payment",
         description:
-          "Transfer your rent to your new Ribbon account; it forwards to your landlord instantly via Faster Payments.",
+          "Update your standing order so rent goes to your Ribbon account first.",
       },
       {
-        title: "Earn Points",
+        title: "Funds forward instantly",
         description:
-          "Get 1 point for every £1 paid (1.5 points for partner properties).",
+          "Griffin forwards the payment to your landlord over Faster Payments with your usual reference.",
       },
       {
-        title: "Redeem",
-        description: "Swap points for vouchers at Amazon, ASDA, TUI, and more.",
+        title: "Earn and redeem points",
+        description: "Receive points after verified payments and redeem for shopping, travel, and food vouchers.",
+      },
+    ],
+    onboardingStages: [
+      {
+        title: "Stage 1 (25%) - Identity",
+        details: "Name, email, date of birth, and phone number.",
+      },
+      {
+        title: "Stage 2 (50%) - Address",
+        details: "UK residential address verification for banking.",
+      },
+      {
+        title: "Stage 3 (75%) - Compliance",
+        details: "Employment, income, and source of funds checks.",
+      },
+      {
+        title: "Stage 4 (100%) - Rent details",
+        details: "Enter rent amount and confirm referral code KIAN63DB is populated.",
       },
     ],
     safetySection: {
-      title: "Is your money safe?",
+      title: "Security and trust",
       bullets: [
-        "Regulated Infrastructure: Accounts are provided by Griffin Bank Ltd, an FCA-authorised UK Bank (FRN: 970920).",
-        "FSCS Protected: Eligible deposits are protected up to £85,000 by the Financial Services Compensation Scheme.",
-        "Instant Forwarding: Your rent doesn't sit in a pot; it's forwarded to your landlord instantly.",
+        "Accounts are provided by Griffin Bank Ltd, regulated by the FCA and PRA (FRN 970920).",
+        "Eligible deposits are protected by FSCS up to £85,000.",
+        "Payments are forwarded over Faster Payments, so landlords receive rent as a normal UK bank transfer.",
+        "No landlord sign-up is required, and you keep your normal payment reference.",
       ],
     },
     rewardsTable: [
-      { label: "Rent £800/mo", value: "£96/year in points" },
-      { label: "Rent £1,500/mo", value: "£180/year in points" },
-      { label: "Sign-up bonus", value: "£25 instant" },
+      { label: "£600 monthly rent", value: "£97 first-year value (£72 cashback + £25 bonus)" },
+      { label: "£1,000 monthly rent", value: "£145 first-year value (£120 cashback + £25 bonus)" },
+      { label: "£1,500 monthly rent", value: "£205 first-year value (£180 cashback + £25 bonus)" },
+      { label: "£2,000 monthly rent", value: "£265 first-year value (£240 cashback + £25 bonus)" },
+    ],
+    transparencyDisclosure: {
+      title: "Full transparency disclosure",
+      body: "Using referral code KIAN63DB gives you a boosted £25 sign-up bonus after your first successful rent payment. Ribbon also pays me a matching referral bonus at no extra cost to you or your landlord. I only benefit when your reward is successfully credited.",
+    },
+    socialProofImages: [
+      {
+        src: "/ribbon_proof_of_use.jpg",
+        alt: "Ribbon activity feed showing successful rent transfer, proof of payment, and bonus points credited",
+        caption: "This is one of my real rent payments showing the transfer, proof of payment, and points landing successfully.",
+      },
+      {
+        src: "/ribbon_shopping_rewards.jpg",
+        alt: "Ribbon shopping rewards screen showing Amazon and Apple voucher redemption point tiers",
+        caption: "These are some of the shopping vouchers I can choose from once points build up.",
+      },
+      {
+        src: "/ribbon_travel_rewards.jpg",
+        alt: "Ribbon travel and delivery rewards screen showing Hotels.com and Deliveroo voucher redemption tiers",
+        caption: "Travel and food options are available too, with clear point amounts for each reward level.",
+      },
     ],
     faq: [
       {
-        question: "Does my landlord need to sign up?",
+        question: "Is Ribbon Rewards safe to use for rent payments?",
         answer:
-          "No, you just pay your rent to your new account instead of their old one.",
+          "Yes. Ribbon gives you a personal account provided by Griffin Bank Ltd, a regulated UK bank infrastructure provider (FRN 970920). Eligible balances are covered by FSCS up to £85,000.",
       },
       {
-        question: "Are there fees?",
-        answer: "No, Ribbon is completely free for tenants.",
+        question: "How do I make sure I get the £25 bonus with code KIAN63DB?",
+        answer:
+          "Sign up through the referral link and verify KIAN63DB is present during the final onboarding stage before submission. The bonus is credited after your first successful rent payment.",
       },
       {
-        question: "What vouchers can I get?",
-        answer: "Amazon, Tesco, M&S, Airbnb, and more.",
+        question: "Will my landlord know I am using Ribbon?",
+        answer:
+          "No. Your landlord receives a normal UK bank transfer with your existing payment reference, and no landlord action is required.",
+      },
+      {
+        question: "How does the 1.5% cashback rate work?",
+        answer:
+          "Standard earn rate is 1 point per £1 of rent. Some partner properties can earn 1.5 points per £1, increasing total annual value.",
+      },
+      {
+        question: "Is there a hard credit check?",
+        answer:
+          "No. Identity checks are performed for AML/KYC compliance, but this is a soft verification process and does not create a hard credit search.",
+      },
+      {
+        question: "Can I use Ribbon with private landlords and housing associations?",
+        answer:
+          "Yes. Ribbon works with private landlords, letting agents, and housing associations as long as your rent recipient accepts UK bank transfer payments.",
       },
     ],
   },

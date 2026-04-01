@@ -2,7 +2,11 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getEarnBrandBySlug, getEarnSlugs } from "@/lib/brands";
 import { LANDING_PAGE_CONTENT } from "@/content/landing-pages";
-import { buildFaqJsonLd } from "@/lib/seo";
+import {
+  buildFaqJsonLd,
+  buildOrganizationJsonLd,
+  buildServiceJsonLd,
+} from "@/lib/seo";
 import { RibbonRewardsLandingPage } from "@/components/landing/RibbonRewardsLandingPage";
 
 type PageProps = {
@@ -49,6 +53,8 @@ export default async function EarnBrandLandingPage({ params }: PageProps) {
         description: brand.offerSummary,
       },
     };
+    const organizationJsonLd = buildOrganizationJsonLd();
+    const serviceJsonLd = buildServiceJsonLd();
     const faqJsonLd = content.faq?.length ? buildFaqJsonLd(content.faq) : null;
 
     return (
@@ -56,6 +62,14 @@ export default async function EarnBrandLandingPage({ params }: PageProps) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
         />
         {faqJsonLd && (
           <script
