@@ -39,3 +39,7 @@ export function trackProviderAndroidCtaClick(brandSlug: string) {
 export function trackBrandTrustpilotClick(brand: string) {
   sendEvent(eventNameForBrand(brand, "trustpilot_click"), { brand });
 }
+
+export function trackRibbonSocialProofClick() {
+  sendEvent("ribbon_social_proof_click", { brand: "ribbon-rewards" });
+}
