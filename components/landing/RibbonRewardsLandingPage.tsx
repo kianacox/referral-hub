@@ -53,12 +53,23 @@ export function RibbonRewardsLandingPage({
   const socialProofImages = content.socialProofImages ?? [];
   const referralCode = getReferralCode(brand);
   const hasLink = brand.referralLink && brand.referralLink.trim() !== "";
+  const hasOnboardingStages = (content.onboardingStages ?? []).length > 0;
+  const hasSafetySection = Boolean(safety && safety.bullets.length > 0);
+  const hasTransparencySection = Boolean(content.transparencyDisclosure);
+  const hasFaqSection = Boolean(content.faq && content.faq.length > 0);
 
   const handleSocialProofClick = () => {
     trackRibbonSocialProofClick();
     const socialProofSection = document.getElementById("ribbon-social-proof");
     socialProofSection?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  const sectionLinks = [
+    { id: "ribbon-how-it-works", label: "How it works", show: steps.length > 0 },
+    { id: "ribbon-earnings", label: "Earnings", show: rewardsTable.length > 0 },
+    { id: "ribbon-social-proof", label: "My rewards", show: socialProofImages.length > 0 },
+    { id: "ribbon-faq", label: "FAQ", show: hasFaqSection },
+  ].filter((section) => section.show);
 
   return (
     <div
@@ -79,6 +90,26 @@ export function RibbonRewardsLandingPage({
           }}
         />
         <div className="mx-auto max-w-[640px] text-center">
+          {sectionLinks.length > 0 && (
+            <nav
+              aria-label="Ribbon page sections"
+              className="mb-6 overflow-x-auto md:overflow-visible"
+            >
+              <div className="flex min-w-max items-center gap-2 pb-1 md:min-w-0 md:justify-center">
+                {sectionLinks.map((section) => (
+                  <a
+                    key={section.id}
+                    href={`#${section.id}`}
+                    className="rounded-full border px-3 py-1.5 text-xs font-medium transition hover:opacity-90"
+                    style={{ borderColor: BORDER, color: TEXT_MUTED }}
+                  >
+                    {section.label}
+                  </a>
+                ))}
+              </div>
+            </nav>
+          )}
+
           <h1
             className="text-3xl font-bold tracking-tight sm:text-4xl"
             style={{ color: TEXT_PRIMARY }}
@@ -175,7 +206,7 @@ export function RibbonRewardsLandingPage({
       </section>
 
       {steps.length > 0 && (
-        <section className="px-4 py-5 sm:px-6">
+        <section id="ribbon-how-it-works" className="px-4 py-5 sm:px-6">
           <div className="mx-auto max-w-[640px]">
             <h2
               className="text-xl font-bold tracking-tight"
@@ -215,7 +246,7 @@ export function RibbonRewardsLandingPage({
         </section>
       )}
 
-      <section className="px-4 py-5 sm:px-6">
+      <section id="ribbon-onboarding" className="px-4 py-5 sm:px-6">
         <div className="mx-auto max-w-[640px]">
           <div className={`${CARD_CLASS}`} style={CARD_STYLE}>
             <h2
@@ -244,7 +275,7 @@ export function RibbonRewardsLandingPage({
       </section>
 
       {safety && safety.bullets.length > 0 && (
-        <section className="px-4 py-5 sm:px-6">
+        <section id="ribbon-safety" className="px-4 py-5 sm:px-6">
           <div className="mx-auto max-w-[640px]">
             <div className={`${CARD_CLASS}`} style={CARD_STYLE}>
               <h2
@@ -302,7 +333,7 @@ export function RibbonRewardsLandingPage({
       </section>
 
       {rewardsTable.length > 0 && (
-        <section className="px-4 py-5 sm:px-6">
+        <section id="ribbon-earnings" className="px-4 py-5 sm:px-6">
           <div className="mx-auto max-w-[640px]">
             <h2
               className="text-xl font-bold tracking-tight"
@@ -387,7 +418,7 @@ export function RibbonRewardsLandingPage({
       )}
 
       {content.transparencyDisclosure && (
-        <section className="px-4 py-5 sm:px-6">
+        <section id="ribbon-transparency" className="px-4 py-5 sm:px-6">
           <div className="mx-auto max-w-[640px]">
             <div className={`${CARD_CLASS}`} style={CARD_STYLE}>
               <h2 className="text-xl font-bold tracking-tight" style={{ color: TEXT_PRIMARY }}>
@@ -425,6 +456,7 @@ export function RibbonRewardsLandingPage({
       {/* FAQ */}
       {content.faq && content.faq.length > 0 && (
         <section
+          id="ribbon-faq"
           className="px-4 py-5 sm:px-6"
           style={{ backgroundColor: "rgba(255,255,255,0.02)" }}
           aria-labelledby="faq-heading"
