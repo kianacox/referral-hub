@@ -366,7 +366,7 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     ],
   },
   "ribbon-rewards": {
-    seoTitle: "Ribbon Rewards: £25 bonus + cashback on rent payments",
+    seoTitle: "Ribbon Rewards Referral Code KIAN63DB: Get £25 + Rent Cashback",
     seoDescription:
       "Use Ribbon Rewards to earn cashback on rent you already pay. Get a £25 sign-up bonus with referral code KIAN63DB and earn 1% to 1.5% points on monthly rent.",
     keywords: [
@@ -386,7 +386,7 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       url: "https://uk.trustpilot.com/review/ribbonrewards.io",
       score: 4.7,
     },
-    heroHeadline: "Get £25 and earn cashback every time you pay rent",
+    heroHeadline: "Ribbon Rewards Referral Code KIAN63DB: Get £25 + 1% Rent Cashback",
     heroSubheadline:
       "Ribbon turns your monthly rent transfer into ongoing rewards. Keep paying rent as normal, while earning 1% to 1.5% back in points redeemable for gift cards.",
     ctaLabel: "Get £25 now!",
