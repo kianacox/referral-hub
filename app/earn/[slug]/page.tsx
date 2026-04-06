@@ -8,6 +8,7 @@ import {
   buildServiceJsonLd,
 } from "@/lib/seo";
 import { RibbonRewardsLandingPage } from "@/components/landing/RibbonRewardsLandingPage";
+import { VirginMediaLandingPage } from "@/components/landing/VirginMediaLandingPage";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -78,6 +79,46 @@ export default async function EarnBrandLandingPage({ params }: PageProps) {
           />
         )}
         <RibbonRewardsLandingPage brand={brand} content={content} />
+      </>
+    );
+  }
+
+  if (slug === "virgin-media") {
+    const productJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: brand.name,
+      description: content.seoDescription,
+      offers: {
+        "@type": "Offer",
+        description: brand.offerSummary,
+      },
+    };
+    const organizationJsonLd = buildOrganizationJsonLd();
+    const serviceJsonLd = buildServiceJsonLd();
+    const faqJsonLd = content.faq?.length ? buildFaqJsonLd(content.faq) : null;
+
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+        />
+        {faqJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          />
+        )}
+        <VirginMediaLandingPage brand={brand} content={content} />
       </>
     );
   }
