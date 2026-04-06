@@ -37,11 +37,28 @@ export const ALL_BRANDS: Brand[] = [
     logoPath: "/ribbon_rewards_logo.webp",
     overview:
       "Earn cashback on rent. Pay through Ribbon Rewards and collect points on a payment you’re already making.",
-    offerSummary: "2,500 points (worth £25) when you pay rent for the first time.",
+    offerSummary:
+      "2,500 points (worth £25) when you pay rent for the first time.",
     refereeReward: "2,500 points (worth £25)",
     rewardRank: 1,
     referralLink: "https://www.ribbonrewards.io/?ref=KIAN63DB",
     primaryCtaLabel: "Get £25 now!",
+  },
+  {
+    id: "virgin-media",
+    name: "Virgin Media",
+    slug: "virgin-media",
+    category: "bills",
+    section: "earn",
+    logoPath: "/virgin_media_logo.png",
+    overview:
+      "Get rewarded when friends sign up to broadband, TV, or mobile. A premium referral journey with clear milestones.",
+    offerSummary:
+      "Get £50 cash when your referred friend places a qualifying order.",
+    refereeReward: "£50 cash reward",
+    rewardRank: 2,
+    brandUrl: "https://www.virginmedia.com/refer-a-friend",
+    primaryCtaLabel: "Claim £50 reward",
   },
   {
     id: "airtime",
@@ -98,7 +115,8 @@ export const ALL_BRANDS: Brand[] = [
     offerSummary: "£15 off any order over £45 with my referral link.",
     refereeReward: "£15 off orders over £45",
     rewardRank: 5,
-    referralLink: "https://www.myprotein.com/referrals.list?applyCode=KIANA-R2B",
+    referralLink:
+      "https://www.myprotein.com/referrals.list?applyCode=KIANA-R2B",
   },
   {
     id: "runna",
@@ -137,7 +155,8 @@ export const ALL_BRANDS: Brand[] = [
     section: "discounts",
     logoPath: "/gymshark_logo.png",
     overview: "Sportswear and gym wear for training and everyday use.",
-    offerSummary: "£10 off when new customers place their first order of £50 or more.",
+    offerSummary:
+      "£10 off when new customers place their first order of £50 or more.",
     refereeReward: "£10 off first order of £50+",
     rewardRank: 8,
     referralLink: "", // pending
@@ -164,8 +183,14 @@ export function getBrandsByCategory(category: BrandCategory): Brand[] {
   return getDiscountBrands().filter((b) => b.category === category);
 }
 
-export function getBrandBySlug(category: BrandCategory, slug: string): Brand | undefined {
-  const brand = ALL_BRANDS.find((b) => b.section === "discounts" && b.category === category && b.slug === slug);
+export function getBrandBySlug(
+  category: BrandCategory,
+  slug: string,
+): Brand | undefined {
+  const brand = ALL_BRANDS.find(
+    (b) =>
+      b.section === "discounts" && b.category === category && b.slug === slug,
+  );
   if (!brand) return undefined;
   if (brand.featureFlag === "gymshark" && !SHOW_GYMSHARK) return undefined;
   return brand;
@@ -179,8 +204,14 @@ export function getEarnBrandBySlug(slug: string): Brand | undefined {
 }
 
 /** Slugs for /discounts/[category]/[slug] static generation */
-export function getDiscountSlugs(): { category: BrandCategory; slug: string }[] {
-  return getDiscountBrands().map((b) => ({ category: b.category, slug: b.slug }));
+export function getDiscountSlugs(): {
+  category: BrandCategory;
+  slug: string;
+}[] {
+  return getDiscountBrands().map((b) => ({
+    category: b.category,
+    slug: b.slug,
+  }));
 }
 
 /** Slugs for /earn/[slug] static generation */

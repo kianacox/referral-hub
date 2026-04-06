@@ -1,9 +1,14 @@
 "use client";
 
 import { useDisclaimer } from "@/components/context/DisclaimerContext";
+import { usePathname } from "next/navigation";
 
 export function Footer() {
+  const pathname = usePathname();
   const disclaimer = useDisclaimer();
+  const hideForStandaloneEarn = pathname === "/earn/virgin-media";
+
+  if (hideForStandaloneEarn) return null;
 
   return (
     <footer

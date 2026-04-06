@@ -502,6 +502,46 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       },
     ],
   },
+  "virgin-media": {
+    seoTitle: "Virgin Media referral: Get £50 cash when a friend joins",
+    seoDescription:
+      "Use my Virgin Media referral page to claim a £50 cash reward when your friend signs up to a qualifying Virgin Media service.",
+    keywords: [
+      "virgin media referral",
+      "virgin media refer a friend",
+      "virgin media £50",
+      "virgin media reward",
+      "virgin media broadband referral",
+    ],
+    whyIUseIt:
+      "Virgin Media gives a clear referral flow and tangible cash reward when someone joins. The process is simple: share the link, your friend chooses their package, and your reward unlocks once the qualifying criteria are met.",
+    howItWorks:
+      "Share your referral link, your friend places a qualifying order, and you receive a £50 cash reward once eligibility checks complete.",
+    whatDoIGet: "£50 cash reward for each successful referral.",
+    disclaimer:
+      "Referral rewards are subject to Virgin Media terms, eligibility criteria, and validation windows. Always review the latest terms on the provider website before referring.",
+    heroHeadline: "Get £50 cash when your friend signs up.",
+    heroSubheadline:
+      "Refer Virgin Media and earn a real cash reward for successful qualifying orders across broadband, TV, and mobile packages.",
+    ctaLabel: "Claim £50 reward",
+    faq: [
+      {
+        question: "How do I get the £50 Virgin Media referral reward?",
+        answer:
+          "Use the referral journey, share your link with a friend, and make sure they place a qualifying order. The £50 reward is paid after the order passes the provider's validation process.",
+      },
+      {
+        question: "Does my friend get a reward too?",
+        answer:
+          "Friend rewards and offer details can vary by campaign. Check the live referral page terms before the order is placed to confirm the current incentive.",
+      },
+      {
+        question: "When is the referral reward paid?",
+        answer:
+          "Rewards are typically paid after eligibility checks and any required cooling-off period. Timing can vary, so review the current terms on the Virgin Media referral page.",
+      },
+    ],
+  },
   airtime: {
     seoTitle: "Airtime referral code: £2 credit when you join",
     seoDescription:

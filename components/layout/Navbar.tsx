@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/earn", label: "Earn" },
@@ -9,7 +10,11 @@ const navLinks = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const hideForStandaloneEarn = pathname === "/earn/virgin-media";
+
+  if (hideForStandaloneEarn) return null;
 
   return (
     <header
