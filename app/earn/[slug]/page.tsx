@@ -118,7 +118,7 @@ export default async function EarnBrandLandingPage({ params }: PageProps) {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
           />
         )}
-        <VirginMediaLandingPage brand={brand} content={content} />
+        <VirginMediaLandingPage content={content} />
       </>
     );
   }

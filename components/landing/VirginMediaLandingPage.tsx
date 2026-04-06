@@ -12,12 +12,10 @@ import {
   Tv,
   Verified,
 } from "lucide-react";
-import type { Brand } from "@/lib/brands";
 import type { LandingPageContent } from "@/content/landing-pages";
-import { trackProviderCtaClick, trackVirginCtaClick } from "@/lib/analytics";
+import { trackVirginCtaClick } from "@/lib/analytics";
 
 type VirginMediaLandingPageProps = {
-  brand: Brand;
   content: LandingPageContent;
 };
 
@@ -95,7 +93,7 @@ const faqItems = [
   },
 ];
 
-export function VirginMediaLandingPage({ brand, content }: VirginMediaLandingPageProps) {
+export function VirginMediaLandingPage({ content }: VirginMediaLandingPageProps) {
   const referralLink = "https://aklam.io/izBRNjvv";
   const broadbandDealsLink = "https://www.virginmedia.com/broadband";
   const currentYear = new Date().getFullYear();
@@ -189,10 +187,7 @@ export function VirginMediaLandingPage({ brand, content }: VirginMediaLandingPag
                   href={referralLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => {
-                    trackProviderCtaClick(brand.slug);
-                    trackVirginCtaClick();
-                  }}
+                  onClick={trackVirginCtaClick}
                   className="rounded-xl px-8 py-5 text-center text-lg font-black text-white shadow-2xl transition hover:scale-[1.02] active:scale-95"
                   style={{
                     background: `linear-gradient(135deg, ${COLORS.primary} 0%, ${COLORS.primaryContainer} 100%)`,
@@ -318,10 +313,7 @@ export function VirginMediaLandingPage({ brand, content }: VirginMediaLandingPag
           href={referralLink}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => {
-            trackProviderCtaClick(brand.slug);
-            trackVirginCtaClick();
-          }}
+          onClick={trackVirginCtaClick}
           className="flex w-full items-center justify-center gap-3 rounded-full py-5 text-sm font-black tracking-[0.16em] text-white uppercase shadow-2xl transition active:scale-95"
           style={{ background: `linear-gradient(135deg, ${COLORS.primary} 0%, ${COLORS.primaryContainer} 100%)` }}
         >
