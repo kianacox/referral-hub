@@ -186,7 +186,7 @@ export function VirginMediaLandingPage({ content }: VirginMediaLandingPageProps)
                 <Link
                   href={referralLink}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                   onClick={trackVirginCtaClick}
                   className="rounded-xl px-8 py-5 text-center text-lg font-black text-white shadow-2xl transition hover:scale-[1.02] active:scale-95"
                   style={{
@@ -312,7 +312,7 @@ export function VirginMediaLandingPage({ content }: VirginMediaLandingPageProps)
         <Link
           href={referralLink}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           onClick={trackVirginCtaClick}
           className="flex w-full items-center justify-center gap-3 rounded-full py-5 text-sm font-black tracking-[0.16em] text-white uppercase shadow-2xl transition active:scale-95"
           style={{ background: `linear-gradient(135deg, ${COLORS.primary} 0%, ${COLORS.primaryContainer} 100%)` }}
