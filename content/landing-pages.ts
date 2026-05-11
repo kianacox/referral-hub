@@ -621,11 +621,6 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
           "The Lloyds Classic Account, Club Lloyds, Club Lloyds Silver, Club Lloyds Platinum and Premier accounts all qualify, as long as you open in your sole name. Under 19s, Smart Start and Student accounts don’t qualify under the refer-a-friend scheme.",
       },
       {
-        question: "What if my referral link expires?",
-        answer:
-          "Each personal referral link is valid for 30 days from when it’s generated. If the one on this page has expired, just message me via the contact link in the footer — I’ll generate a fresh one and update the page (this page is refreshed regularly).",
-      },
-      {
         question: "Is my data safe?",
         answer:
           "Yes. Clicking the referral link takes you directly to Lloyds Bank’s own website, where you fill out the application. I never see your personal or financial information — Lloyds simply notes that you used my referral link so we both get paid. Lloyds is authorised by the PRA and regulated by the FCA and PRA, and deposits are protected up to £85,000 by the FSCS.",

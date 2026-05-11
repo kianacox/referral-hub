@@ -562,6 +562,8 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                     backgroundClip: "text",
                     color: "transparent",
                     fontStyle: "italic",
+                    display: "inline-block",
+                    paddingRight: "0.08em",
                   }}
                 >
                   £50 free
