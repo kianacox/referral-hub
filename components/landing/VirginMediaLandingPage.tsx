@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import type { Brand } from "@/lib/brands";
 import type { LandingPageContent } from "@/content/landing-pages";
-import { trackVirginCtaClick } from "@/lib/analytics";
+import { trackProviderCtaClick } from "@/lib/analytics";
 
 type VirginMediaLandingPageProps = {
   brand: Brand;
@@ -189,7 +189,7 @@ export function VirginMediaLandingPage({ content }: VirginMediaLandingPageProps)
                   href={referralLink}
                   target="_blank"
                   rel="noopener"
-                  onClick={trackVirginCtaClick}
+                  onClick={() => trackProviderCtaClick("virgin-media")}
                   className="rounded-xl px-8 py-5 text-center text-lg font-black text-white shadow-2xl transition hover:scale-[1.02] active:scale-95"
                   style={{
                     background: `linear-gradient(135deg, ${COLORS.primary} 0%, ${COLORS.primaryContainer} 100%)`,
@@ -315,7 +315,7 @@ export function VirginMediaLandingPage({ content }: VirginMediaLandingPageProps)
           href={referralLink}
           target="_blank"
           rel="noopener"
-          onClick={trackVirginCtaClick}
+          onClick={() => trackProviderCtaClick("virgin-media")}
           className="flex w-full items-center justify-center gap-3 rounded-full py-5 text-sm font-black tracking-[0.16em] text-white uppercase shadow-2xl transition active:scale-95"
           style={{ background: `linear-gradient(135deg, ${COLORS.primary} 0%, ${COLORS.primaryContainer} 100%)` }}
         >

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Fraunces } from "next/font/google";
 import type { Brand } from "@/lib/brands";
 import type { LandingPageContent } from "@/content/landing-pages";
-import { trackLloydsCtaClick } from "@/lib/analytics";
+import { trackProviderCtaClick } from "@/lib/analytics";
 
 const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces" });
 
@@ -337,7 +337,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
   const faqItems = content.faq ?? [];
 
   function handleCtaClick() {
-    trackLloydsCtaClick();
+    trackProviderCtaClick("lloyds-bank");
   }
 
   return (

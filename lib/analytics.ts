@@ -44,10 +44,3 @@ export function trackRibbonSocialProofClick() {
   sendEvent("ribbon_social_proof_click", { brand: "ribbon-rewards" });
 }
 
-export function trackVirginCtaClick() {
-  sendEvent("virgin_cta_click", { brand: "virgin-media" });
-}
-
-export function trackLloydsCtaClick() {
-  sendEvent("lloyds_bank_cta_click", { brand: "lloyds-bank" });
-}
