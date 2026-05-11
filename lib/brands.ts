@@ -23,11 +23,31 @@ export type Brand = {
   featureFlag?: "gymshark";
   /** Override for primary CTA button label (e.g. "Get £25 now!" for Ribbon) */
   primaryCtaLabel?: string;
+  /** If true, suppress Navbar and Footer on standalone landing page */
+  standaloneLayout?: boolean;
 };
 
 const SHOW_GYMSHARK = process.env.NEXT_PUBLIC_SHOW_GYMSHARK === "true";
 
 export const ALL_BRANDS: Brand[] = [
+  {
+    id: "lloyds-bank",
+    name: "Lloyds Bank",
+    slug: "lloyds-bank",
+    category: "finance",
+    section: "earn",
+    logoPath: "/lloyds_logo.png",
+    overview:
+      "Get £50 cash paid directly into your new Lloyds current account when you open one using my personal refer-a-friend link. No switching required — just open and keep the account for 7 days.",
+    offerSummary:
+      "£50 cash paid into your new Lloyds current account within 30 working days.",
+    refereeReward: "£50 cash",
+    rewardRank: 1,
+    referralLink:
+      "https://apply.lloydsbank.co.uk/sales-content/cwa/l/onboardpca/index-app.html?from=ob&webDirect=true&redesign=true&token=8kMtnCauQOuTJv7Erekd8QZQyYpdXlfw0yAKZua0puM=#/refer-friend",
+    primaryCtaLabel: "Claim £50 now",
+    standaloneLayout: true,
+  },
   {
     id: "ribbon-rewards",
     name: "Ribbon Rewards",
@@ -40,7 +60,7 @@ export const ALL_BRANDS: Brand[] = [
     offerSummary:
       "2,500 points (worth £25) when you pay rent for the first time.",
     refereeReward: "2,500 points (worth £25)",
-    rewardRank: 1,
+    rewardRank: 2,
     referralLink: "https://www.ribbonrewards.io/?ref=KIAN63DB",
     primaryCtaLabel: "Get £25 now!",
   },
@@ -56,9 +76,10 @@ export const ALL_BRANDS: Brand[] = [
     offerSummary:
       "Get £50 cash when your referred friend places a qualifying order.",
     refereeReward: "£50 cash reward",
-    rewardRank: 2,
+    rewardRank: 3,
     brandUrl: "https://www.virginmedia.com/refer-a-friend",
     primaryCtaLabel: "Claim £50 reward",
+    standaloneLayout: true,
   },
   {
     id: "airtime",
