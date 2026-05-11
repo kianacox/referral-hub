@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { getVisibleBrands } from "@/lib/brands";
 import { BrandCard } from "@/components/ui/BrandCard";
+import { EditorialListHeader } from "@/components/list/EditorialListHeader";
+import { ListPageFrame } from "@/components/list/ListPageFrame";
+import { homeEditorial } from "@/lib/list-page-editorial";
 import { HOMEPAGE_INTRO } from "@/constants/copy";
 
 export const metadata: Metadata = {
@@ -19,20 +22,16 @@ export default function Home() {
   const brands = getVisibleBrands().sort((a, b) => a.rewardRank - b.rewardRank);
 
   return (
-    <div className="mx-auto max-w-[600px] px-4 py-12 sm:py-20">
-      <section className="mb-12">
-        <h1 className="text-2xl font-bold tracking-tight text-[var(--foreground)] sm:text-3xl">
-          Referral Hub
-        </h1>
-        <p className="mt-4 text-[var(--body-text)] leading-[1.6]">
-          {HOMEPAGE_INTRO}
-        </p>
-      </section>
-      <section className="grid gap-8">
+    <ListPageFrame>
+      <EditorialListHeader
+        {...homeEditorial()}
+        supporting={HOMEPAGE_INTRO}
+      />
+      <section className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-x-8 md:gap-y-10">
         {brands.map((brand) => (
           <BrandCard key={brand.id} brand={brand} />
         ))}
       </section>
-    </div>
+    </ListPageFrame>
   );
 }

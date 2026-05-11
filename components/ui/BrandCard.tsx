@@ -34,7 +34,7 @@ export function BrandCard({ brand, showCategory }: BrandCardProps) {
   const ctaLabel = brand.primaryCtaLabel ?? primaryCtaLabel(brand);
 
   return (
-    <article className="rounded-xl border border-[#1F1F1F] bg-[#0A0A0A] p-5 text-[var(--card-foreground)] shadow-md shadow-black/5">
+    <article className="group rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 text-[var(--card-foreground)] shadow-sm shadow-black/[0.06] transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/10">
       <div className="flex flex-col gap-4">
         <div className="flex items-start gap-4">
           <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-white">
@@ -50,7 +50,7 @@ export function BrandCard({ brand, showCategory }: BrandCardProps) {
             <div className="flex flex-wrap items-center gap-2">
               <h2 className="text-lg font-semibold">{brand.name}</h2>
               {showCategory && (
-                <span className="rounded-full bg-[var(--border)] px-2 py-0.5 text-xs capitalize text-[var(--muted)]">
+                <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium capitalize text-green-800">
                   {brand.section === "earn" ? "Earn" : brand.category}
                 </span>
               )}
@@ -58,13 +58,16 @@ export function BrandCard({ brand, showCategory }: BrandCardProps) {
             <p className="mt-1 text-sm text-[var(--muted)]">{brand.overview}</p>
           </div>
         </div>
-        <p className="text-sm font-medium text-[var(--foreground)]">{brand.offerSummary}</p>
+        <p className="text-base text-[var(--foreground)]">
+          <strong className="font-semibold">{brand.offerSummary}</strong>
+        </p>
         <div className="flex flex-wrap items-center gap-3">
           {brand.referralLink && brand.referralLink.trim() !== "" ? (
             <CtaBlock
               referralLink={brand.referralLink}
               label={ctaLabel}
               provider={brand.slug}
+              primaryLinkVariant="listCard"
             />
           ) : brand.referralCode ? (
             <>
@@ -82,6 +85,7 @@ export function BrandCard({ brand, showCategory }: BrandCardProps) {
           ) : null}
           <Link
             href={landingHref}
+            aria-label={`${LEARN_MORE_LABEL} — ${brand.name}`}
             className="inline-flex items-center justify-center rounded-lg border border-[var(--border)] px-4 py-2 text-sm font-medium hover:bg-[var(--border)]"
           >
             {LEARN_MORE_LABEL}

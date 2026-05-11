@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
-/* Premium dark theme: cards charcoal, thin borders, accent for CTAs and section icons */
+/* Light shell: cream page, white chrome, Lloyds-inspired green accents */
 :root {
-  --header-footer-bg: #0a0a0a;
-  --main-bg: #0f0f0f;
-  --foreground: #fafafa;
-  --card: #0a0a0a;
-  --card-foreground: #fafafa;
-  --border: #1f1f1f;
-  --body-text: #a1a1aa;
-  --muted: #71717a;
-  /* Accent for section icons (vibrant) and gradient CTA */
-  --accent: #6366f1;
+  --header-footer-bg: #ffffff;
+  --main-bg: #faf7f2;
+  --foreground: #1a1918;
+  --card: #ffffff;
+  --card-foreground: #1a1918;
+  --border: #e6e2d8;
+  --body-text: #5c5852;
+  --muted: #706b65;
+  /* Accent: primary green for icons, CTAs, nav emphasis */
+  --accent: #006a4d;
   --accent-foreground: #ffffff;
-  --accent-icon: #a78bfa;
-  /* Gradient CTA: indigo → violet */
-  --cta-from: #6366f1;
-  --cta-to: #8b5cf6;
+  --accent-icon: #008f68;
+  /* Gradient CTA: primary → deeper green (hover tone) */
+  --cta-from: #006a4d;
+  --cta-to: #00533c;
 }
 
 @theme inline {
@@ -34,13 +34,17 @@
 
 body {
   background: var(--main-bg);
-  color: var(--foreground);
+  color: var(--body-text);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
-/* Subtle radial spotlight top-center (faint indigo) to break up flat black */
+/* Subtle radial spotlight top-center (faint green) on cream */
 .spotlight-bg {
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.12), transparent 55%),
+    radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      rgba(0, 106, 77, 0.09),
+      transparent 55%
+    ),
     var(--main-bg);
 }

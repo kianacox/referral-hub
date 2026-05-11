@@ -1,4 +1,8 @@
 import type { Metadata } from "next";
+import { EditorialListHeader } from "@/components/list/EditorialListHeader";
+import { ListPageFrame } from "@/components/list/ListPageFrame";
+import { discountsIndexEditorial } from "@/lib/list-page-editorial";
+import { DISCOUNTS_INTRO } from "@/constants/copy";
 import { DiscountsPageContent } from "./DiscountsPageContent";
 
 export const metadata: Metadata = {
@@ -21,9 +25,15 @@ export default async function DiscountsPage({ searchParams }: PageProps) {
   ) as ("health" | "finance" | "bills")[];
 
   return (
-    <DiscountsPageContent
-      initialFilters={validFilters}
-      categoryFromPath={null}
-    />
+    <ListPageFrame>
+      <EditorialListHeader
+        {...discountsIndexEditorial()}
+        supporting={DISCOUNTS_INTRO}
+      />
+      <DiscountsPageContent
+        initialFilters={validFilters}
+        categoryFromPath={null}
+      />
+    </ListPageFrame>
   );
 }

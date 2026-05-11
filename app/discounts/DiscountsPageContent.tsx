@@ -5,7 +5,6 @@ import { useMemo, useCallback } from "react";
 import { getDiscountBrands, CATEGORIES, CATEGORY_LABELS } from "@/lib/brands";
 import type { BrandCategory } from "@/lib/brands";
 import { BrandCard } from "@/components/ui/BrandCard";
-import { DISCOUNTS_INTRO } from "@/constants/copy";
 
 type DiscountsPageContentProps = {
   initialFilters: BrandCategory[];
@@ -64,45 +63,45 @@ export function DiscountsPageContent({
   );
 
   return (
-    <div className="mx-auto max-w-[600px] px-4 py-12 sm:py-20">
-      <section className="mb-10">
-        <h1 className="text-2xl font-bold tracking-tight text-[var(--foreground)] sm:text-3xl">
-          Discounts
-        </h1>
-        <p className="mt-4 text-[var(--body-text)] leading-[1.6]">{DISCOUNTS_INTRO}</p>
-      </section>
-
+    <>
       <section className="mb-10 flex flex-wrap items-center gap-2">
-        {CATEGORIES.map((cat) => (
-          <button
-            key={cat}
-            type="button"
-            onClick={() => toggleFilter(cat)}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-              activeFilters.includes(cat)
-                ? "bg-gradient-to-r from-[var(--cta-from)] to-[var(--cta-to)] text-[var(--accent-foreground)]"
-                : "border border-[#1F1F1F] bg-[#0A0A0A] text-[var(--foreground)] hover:bg-[#1F1F1F]"
-            }`}
-          >
-            {CATEGORY_LABELS[cat]}
-          </button>
-        ))}
+        <div
+          role="group"
+          aria-label="Filter by category"
+          className="flex flex-wrap items-center gap-2"
+        >
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              aria-pressed={activeFilters.includes(cat)}
+              onClick={() => toggleFilter(cat)}
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                activeFilters.includes(cat)
+                  ? "bg-[#006A4D] text-white shadow-sm"
+                  : "border border-[#006A4D] bg-[var(--card)] text-[#006A4D] hover:bg-green-50"
+              }`}
+            >
+              {CATEGORY_LABELS[cat]}
+            </button>
+          ))}
+        </div>
         {activeFilters.length > 1 && (
           <button
             type="button"
             onClick={clearAll}
-            className="rounded-full px-4 py-2 text-sm font-medium text-[var(--body-text)] hover:text-[var(--foreground)]"
+            className="text-sm font-medium text-[#006A4D] underline-offset-4 hover:text-[#00533C] hover:underline"
           >
             Clear all
           </button>
         )}
       </section>
 
-      <section className="grid gap-8">
+      <section className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-x-8 md:gap-y-10">
         {sortedBrands.map((brand) => (
           <BrandCard key={brand.id} brand={brand} showCategory />
         ))}
       </section>
-    </div>
+    </>
   );
 }
