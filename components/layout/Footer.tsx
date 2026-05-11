@@ -2,13 +2,16 @@
 
 import { useDisclaimer } from "@/components/context/DisclaimerContext";
 import { usePathname } from "next/navigation";
+import { getEarnBrandBySlug } from "@/lib/brands";
 
 export function Footer() {
   const pathname = usePathname();
   const disclaimer = useDisclaimer();
-  const hideForStandaloneEarn = pathname === "/earn/virgin-media";
 
-  if (hideForStandaloneEarn) return null;
+  // Extract earn slug and check if brand uses standalone layout
+  const earnSlug = pathname.startsWith("/earn/") ? pathname.split("/")[2] : null;
+  const brand = earnSlug ? getEarnBrandBySlug(earnSlug) : null;
+  if (brand?.standaloneLayout) return null;
 
   return (
     <footer
