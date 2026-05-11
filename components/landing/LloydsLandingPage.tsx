@@ -29,7 +29,7 @@ const COLORS = {
 };
 
 type LloydsLandingPageProps = {
-  brand?: Brand;
+  brand: Brand;
   content: LandingPageContent;
 };
 

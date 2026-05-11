@@ -17,7 +17,7 @@ import type { LandingPageContent } from "@/content/landing-pages";
 import { trackVirginCtaClick } from "@/lib/analytics";
 
 type VirginMediaLandingPageProps = {
-  brand?: Brand;
+  brand: Brand;
   content: LandingPageContent;
 };
 
