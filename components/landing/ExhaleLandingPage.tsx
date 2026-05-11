@@ -19,7 +19,7 @@ import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import { trackProviderCtaClick } from "@/lib/analytics";
 
 const CARD_STYLE =
-  "rounded-xl border border-white/10 bg-white/5 p-5 sm:p-6 backdrop-blur-[10px]";
+  "rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6";
 
 /* Exhale Coffee brand accent: green */
 const EXHALE_ACCENT = "text-emerald-400";
@@ -84,13 +84,10 @@ export function ExhaleLandingPage({ brand, content }: ExhaleLandingPageProps) {
       {/* Hero: gradient dark → roasted brown, CTA + product summary */}
       <section
         className="relative overflow-hidden px-4 pt-10 pb-10 sm:px-6 sm:pt-12 sm:pb-12 lg:px-8"
-        style={{
-          background:
-            "linear-gradient(180deg, #1a1510 0%, #0f0f0f 50%, #0a0a0a 100%)",
-        }}
+        style={{ background: "var(--main-bg)" }}
       >
         <div className="mx-auto max-w-[600px]">
-          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-4xl">
             {brand.name}
           </h1>
           <p className="mt-2 text-lg text-[var(--body-text)]">

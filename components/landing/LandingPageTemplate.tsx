@@ -12,7 +12,7 @@ import { FaqAccordion } from "@/components/ui/FaqAccordion";
 
 const headingIconClass = "size-5 shrink-0 text-[var(--accent-icon)]";
 const cardClass =
-  "rounded-xl border border-[#1F1F1F] bg-[#0A0A0A] p-5 sm:p-6 shadow-md shadow-black/5";
+  "rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6 shadow-sm";
 
 /** Renders "Why I use it" text with optional markdown-style inline links [label](url). */
 function WhyIUseItWithLinks({ text }: { text: string }) {
@@ -99,8 +99,7 @@ export function LandingPageTemplate({ brand, content, children }: LandingPageTem
           </div>
         )}
         <div
-          className="mt-6 flex justify-center rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm"
-          style={{ boxShadow: "0 0 24px rgba(99, 102, 241, 0.08)" }}
+          className="mt-6 flex justify-center rounded-xl border border-[var(--border)] bg-[var(--card)] p-4"
         >
           {hasLink && (
             <CtaBlock
@@ -137,7 +136,7 @@ export function LandingPageTemplate({ brand, content, children }: LandingPageTem
             <p className="mb-3 text-sm font-medium text-[var(--foreground)]">My progress</p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {content.images.map((img) => (
-              <div key={img.src} className="relative aspect-[3/4] overflow-hidden rounded-lg border border-[#1F1F1F] bg-[var(--main-bg)]">
+              <div key={img.src} className="relative aspect-[3/4] overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--main-bg)]">
                 <Image src={img.src} alt={img.alt} fill className="object-contain" sizes="(max-width: 640px) 100vw, 50vw, 33vw" />
               </div>
             ))}
