@@ -1,14 +1,29 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type React from "react";
 import { getEarnBrandBySlug, getEarnSlugs } from "@/lib/brands";
+import type { Brand } from "@/lib/brands";
 import { LANDING_PAGE_CONTENT } from "@/content/landing-pages";
+import type { LandingPageContent } from "@/content/landing-pages";
 import {
   buildFaqJsonLd,
   buildOrganizationJsonLd,
   buildServiceJsonLd,
 } from "@/lib/seo";
+import { LloydsLandingPage } from "@/components/landing/LloydsLandingPage";
 import { RibbonRewardsLandingPage } from "@/components/landing/RibbonRewardsLandingPage";
 import { VirginMediaLandingPage } from "@/components/landing/VirginMediaLandingPage";
+
+type EarnPageComponent = React.ComponentType<{
+  brand: Brand;
+  content: LandingPageContent;
+}>;
+
+const EARN_PAGE_REGISTRY: Record<string, EarnPageComponent> = {
+  "ribbon-rewards": RibbonRewardsLandingPage,
+  "virgin-media": VirginMediaLandingPage,
+  "lloyds-bank": LloydsLandingPage,
+};
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -43,85 +58,44 @@ export default async function EarnBrandLandingPage({ params }: PageProps) {
 
   if (!brand || !content) notFound();
 
-  if (slug === "ribbon-rewards") {
-    const productJsonLd = {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: brand.name,
-      description: content.seoDescription,
-      offers: {
-        "@type": "Offer",
-        description: brand.offerSummary,
-      },
-    };
-    const organizationJsonLd = buildOrganizationJsonLd();
-    const serviceJsonLd = buildServiceJsonLd();
-    const faqJsonLd = content.faq?.length ? buildFaqJsonLd(content.faq) : null;
+  const PageComponent = EARN_PAGE_REGISTRY[slug];
+  if (!PageComponent) notFound();
 
-    return (
-      <>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-        />
-        {faqJsonLd && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-          />
-        )}
-        <RibbonRewardsLandingPage brand={brand} content={content} />
-      </>
-    );
-  }
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: brand.name,
+    description: content.seoDescription,
+    offers: {
+      "@type": "Offer",
+      description: brand.offerSummary,
+    },
+  };
+  const organizationJsonLd = buildOrganizationJsonLd();
+  const serviceJsonLd = buildServiceJsonLd();
+  const faqJsonLd = content.faq?.length ? buildFaqJsonLd(content.faq) : null;
 
-  if (slug === "virgin-media") {
-    const productJsonLd = {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: brand.name,
-      description: content.seoDescription,
-      offers: {
-        "@type": "Offer",
-        description: brand.offerSummary,
-      },
-    };
-    const organizationJsonLd = buildOrganizationJsonLd();
-    const serviceJsonLd = buildServiceJsonLd();
-    const faqJsonLd = content.faq?.length ? buildFaqJsonLd(content.faq) : null;
-
-    return (
-      <>
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
+      {faqJsonLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-        />
-        {faqJsonLd && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-          />
-        )}
-        <VirginMediaLandingPage content={content} />
-      </>
-    );
-  }
-
-  notFound();
+      )}
+      <PageComponent brand={brand} content={content} />
+    </>
+  );
 }

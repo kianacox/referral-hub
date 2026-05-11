@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Fraunces } from "next/font/google";
+import type { Brand } from "@/lib/brands";
 import type { LandingPageContent } from "@/content/landing-pages";
 import { trackLloydsCtaClick } from "@/lib/analytics";
 
@@ -28,6 +29,7 @@ const COLORS = {
 };
 
 type LloydsLandingPageProps = {
+  brand?: Brand;
   content: LandingPageContent;
 };
 

@@ -12,10 +12,12 @@ import {
   Tv,
   Verified,
 } from "lucide-react";
+import type { Brand } from "@/lib/brands";
 import type { LandingPageContent } from "@/content/landing-pages";
 import { trackVirginCtaClick } from "@/lib/analytics";
 
 type VirginMediaLandingPageProps = {
+  brand?: Brand;
   content: LandingPageContent;
 };
 
