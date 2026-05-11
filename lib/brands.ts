@@ -36,7 +36,7 @@ export const ALL_BRANDS: Brand[] = [
     slug: "lloyds-bank",
     category: "finance",
     section: "earn",
-    logoPath: "/lloyds_logo.png",
+    logoPath: "/lloyds_logo.svg",
     overview:
       "Get £50 cash paid directly into your new Lloyds current account when you open one using my personal refer-a-friend link. No switching required — just open and keep the account for 7 days.",
     offerSummary:
