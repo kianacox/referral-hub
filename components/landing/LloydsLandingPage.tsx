@@ -361,15 +361,6 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
           0%, 100% { transform: translateY(0) rotate(-6deg); }
           50%       { transform: translateY(-12px) rotate(6deg); }
         }
-        .lloyds-reveal {
-          opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.7s cubic-bezier(.2,.8,.2,1), transform 0.7s cubic-bezier(.2,.8,.2,1);
-        }
-        .lloyds-reveal.visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
         .lloyds-pulse { animation: pulse 2s infinite; }
         .lloyds-float-1 { animation: float 6s ease-in-out infinite; animation-delay: 0s; }
         .lloyds-float-2 { animation: float 6s ease-in-out infinite; animation-delay: 1.5s; }
@@ -1652,6 +1643,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                   <button
                     type="button"
                     aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${index}`}
                     onClick={() =>
                       setOpenFaqIndex(isOpen ? null : index)
                     }
@@ -1691,6 +1683,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                   </button>
                   {isOpen && (
                     <div
+                      id={`faq-answer-${index}`}
                       style={{
                         paddingBottom: 26,
                         color: COLORS.ink2,
@@ -1760,83 +1753,85 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
             }}
           >
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {[
-                {
-                  text: (
-                    <>
-                      Referral links are valid for <strong>30 days</strong>{" "}
-                      from when they&apos;re generated. After that, a fresh link
-                      is required.
-                    </>
-                  ),
-                },
-                {
-                  text: (
-                    <>
-                      You must keep the new account open for a{" "}
-                      <strong>minimum of 7 days</strong> from the date it&apos;s
-                      opened.
-                    </>
-                  ),
-                },
-                {
-                  text: (
-                    <>
-                      The account must be in your{" "}
-                      <strong>sole name</strong>. Joint accounts don&apos;t
-                      qualify for the £50.
-                    </>
-                  ),
-                },
-                {
-                  text: (
-                    <>
-                      You must be <strong>new to Lloyds</strong> — no current
-                      account, savings, credit card, loan or mortgage held in
-                      the last 12 months.
-                    </>
-                  ),
-                },
-                {
-                  text: (
-                    <>
-                      The referrer&apos;s £50 is paid into their{" "}
-                      <strong>oldest qualifying Lloyds current account</strong>.
-                    </>
-                  ),
-                },
-                {
-                  text: (
-                    <>
-                      Under 19s, Smart Start and Student accounts{" "}
-                      <strong>are excluded</strong> from the refer-a-friend
-                      programme.
-                    </>
-                  ),
-                },
-                {
-                  text: (
-                    <>
-                      Each customer can <strong>only claim once</strong> as a
-                      referee under the Lloyds refer-a-friend programme.
-                    </>
-                  ),
-                },
-                {
-                  text: (
-                    <>
-                      Lloyds may change or withdraw the refer-a-friend offer at
-                      any time. The full T&amp;Cs on the Lloyds website apply.
-                    </>
-                  ),
-                },
-              ].map((term, i) => (
+              {(() => {
+                const terms = [
+                  {
+                    text: (
+                      <>
+                        Referral links are valid for <strong>30 days</strong>{" "}
+                        from when they&apos;re generated. After that, a fresh link
+                        is required.
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        You must keep the new account open for a{" "}
+                        <strong>minimum of 7 days</strong> from the date it&apos;s
+                        opened.
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        The account must be in your{" "}
+                        <strong>sole name</strong>. Joint accounts don&apos;t
+                        qualify for the £50.
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        You must be <strong>new to Lloyds</strong> — no current
+                        account, savings, credit card, loan or mortgage held in
+                        the last 12 months.
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        The referrer&apos;s £50 is paid into their{" "}
+                        <strong>oldest qualifying Lloyds current account</strong>.
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        Under 19s, Smart Start and Student accounts{" "}
+                        <strong>are excluded</strong> from the refer-a-friend
+                        programme.
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        Each customer can <strong>only claim once</strong> as a
+                        referee under the Lloyds refer-a-friend programme.
+                      </>
+                    ),
+                  },
+                  {
+                    text: (
+                      <>
+                        Lloyds may change or withdraw the refer-a-friend offer at
+                        any time. The full T&amp;Cs on the Lloyds website apply.
+                      </>
+                    ),
+                  },
+                ];
+                return terms.map((term, i) => (
                 <li
                   key={i}
                   style={{
                     padding: "14px 0",
                     borderBottom:
-                      i < 7 ? `1px solid ${COLORS.line}` : undefined,
+                      i < terms.length - 1 ? `1px solid ${COLORS.line}` : undefined,
                     fontSize: "0.95rem",
                     color: COLORS.ink2,
                     display: "grid",
@@ -1850,7 +1845,8 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                   </span>
                   <span>{term.text}</span>
                 </li>
-              ))}
+              ));
+              })()}
             </ul>
           </div>
         </div>
@@ -2061,8 +2057,6 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
         </a>
       </div>
 
-      {/* Hidden SEO anchor */}
-      <div className="hidden">{content.seoTitle}</div>
     </div>
   );
 }
