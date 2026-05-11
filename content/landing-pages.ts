@@ -585,4 +585,61 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       },
     ],
   },
+  "lloyds-bank": {
+    seoTitle: "Get £50 free — Lloyds Bank refer-a-friend | Personal Referral Hub",
+    seoDescription:
+      "Use my personal Lloyds Bank refer-a-friend link to open a new current account and earn £50 cash within 30 days. FCA-regulated, takes 10 minutes, no switching required.",
+    keywords: [
+      "lloyds refer a friend",
+      "lloyds £50 bonus",
+      "lloyds current account bonus",
+      "club lloyds referral",
+      "bank account bonus uk",
+      "lloyds referral link",
+    ],
+    whyIUseIt:
+      "Lloyds pay £50 directly into your new current account within 30 working days of opening it. No switching required — just open the account in your sole name and keep it open for 7 days. It takes about 10 minutes online and the money lands automatically.",
+    howItWorks:
+      "Use my referral link to open a qualifying Lloyds current account in your sole name. Keep it open for at least 7 days, and the £50 is credited within 30 working days.",
+    whatDoIGet: "£50 into my existing Lloyds account for each successful referral.",
+    disclaimer:
+      "This is a personal referral page run by an individual Lloyds customer. It is not affiliated with, endorsed by, or operated by Lloyds Bank plc. When you open a qualifying account using my link, both you and I receive £50 under Lloyds’ standard refer-a-friend programme. Terms set by Lloyds and may change.",
+    faq: [
+      {
+        question: "How long does the £50 payment take?",
+        answer:
+          "Lloyds pays the £50 as a cash credit into your new account within 30 working days of you opening it. The clock starts when your account is fully open and you’ve kept it open for the required 7-day minimum.",
+      },
+      {
+        question: "Is the £50 taxable?",
+        answer:
+          "Cash incentives like this are generally not classed as taxable income for most UK personal customers. That said, tax treatment depends on your personal circumstances and HMRC rules can change. If you’re unsure — particularly if you’re self-employed or a higher-rate taxpayer — check HMRC guidance or speak to a tax adviser. I can’t give tax advice.",
+      },
+      {
+        question: "Which account types qualify?",
+        answer:
+          "The Lloyds Classic Account, Club Lloyds, Club Lloyds Silver, Club Lloyds Platinum and Premier accounts all qualify, as long as you open in your sole name. Under 19s, Smart Start and Student accounts don’t qualify under the refer-a-friend scheme.",
+      },
+      {
+        question: "What if my referral link expires?",
+        answer:
+          "Each personal referral link is valid for 30 days from when it’s generated. If the one on this page has expired, just message me via the contact link in the footer — I’ll generate a fresh one and update the page (this page is refreshed regularly).",
+      },
+      {
+        question: "Is my data safe?",
+        answer:
+          "Yes. Clicking the referral link takes you directly to Lloyds Bank’s own website, where you fill out the application. I never see your personal or financial information — Lloyds simply notes that you used my referral link so we both get paid. Lloyds is authorised by the PRA and regulated by the FCA and PRA, and deposits are protected up to £85,000 by the FSCS.",
+      },
+      {
+        question: "Do I need to switch my old bank account to qualify?",
+        answer:
+          "No — no switching required. The refer-a-friend bonus is paid simply for opening a qualifying new Lloyds account in your sole name and keeping it open for 7 days. You don’t need to move direct debits, change your salary, or close your existing account. You can keep your current bank exactly as it is.",
+      },
+      {
+        question: "Are there any other Lloyds bonuses currently available?",
+        answer:
+          "Lloyds’ last public switching bonus ended on 30 April 2026, so the refer-a-friend route on this page is currently the most reliable way to earn money for opening a new Lloyds account. New switch offers may launch at any time — if one does, I’ll update this page so you can decide which works best for you. Bookmark it and check back.",
+      },
+    ],
+  },
 };
