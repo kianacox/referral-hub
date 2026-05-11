@@ -47,3 +47,7 @@ export function trackRibbonSocialProofClick() {
 export function trackVirginCtaClick() {
   sendEvent("virgin_cta_click", { brand: "virgin-media" });
 }
+
+export function trackLloydsCtaClick() {
+  sendEvent("lloyds_bank_cta_click", { brand: "lloyds-bank" });
+}
