@@ -71,11 +71,43 @@ export function RibbonRewardsLandingPage({
     { id: "ribbon-faq", label: "FAQ", show: hasFaqSection },
   ].filter((section) => section.show);
 
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Ribbon Rewards",
+    url: "https://www.ribbonrewards.io",
+    sameAs: ["https://www.trustpilot.com/review/ribbonrewards.io"],
+    description:
+      "Ribbon Rewards helps UK renters earn points on rent payments routed through regulated UK banking infrastructure.",
+  };
+
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Ribbon Rewards Rent Cashback",
+    serviceType: "Rent payment rewards",
+    provider: { "@type": "Organization", name: "Ribbon Rewards", url: "https://www.ribbonrewards.io" },
+    areaServed: { "@type": "Country", name: "United Kingdom" },
+    offers: {
+      "@type": "Offer",
+      description: "£25 sign-up bonus plus ongoing points on rent payments.",
+      price: "0",
+      priceCurrency: "GBP",
+    },
+    additionalProperty: [
+      { "@type": "PropertyValue", name: "Regulated Banking Infrastructure", value: "Griffin Bank Ltd (FCA FRN 970920)" },
+      { "@type": "PropertyValue", name: "Typical Cashback Rate", value: "1% to 1.5%" },
+    ],
+  };
+
   return (
-    <div
-      className="min-h-screen"
-      style={{ backgroundColor: BG_BLACK }}
-    >
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }} />
+      <div
+        className="min-h-screen"
+        style={{ backgroundColor: BG_BLACK }}
+      >
       <section
         className="relative overflow-hidden px-4 pt-12 pb-7 sm:px-6 sm:pt-16 sm:pb-9 lg:px-8"
         style={{
@@ -505,5 +537,6 @@ export function RibbonRewardsLandingPage({
         </section>
       )}
     </div>
+    </>
   );
 }
