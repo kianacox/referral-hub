@@ -473,7 +473,11 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
                       </svg>
                     </div>
                     <h4 style={{ fontFamily: "var(--font-playfair)", fontWeight: 500, fontSize: 20, color: PAPER, marginBottom: 8, letterSpacing: "-0.01em" }}>{title}</h4>
-                    <p style={{ fontSize: 14, color: "rgba(244,241,234,0.65)", lineHeight: 1.55 }}>{safetyBullets[i]}</p>
+                    <p style={{ fontSize: 14, color: "rgba(244,241,234,0.65)", lineHeight: 1.55 }}>
+                      {i === 3
+                        ? "Ribbon earns a small fee from partner brands when you redeem points — similar to how credit-card cashback works. You never pay a penny, ever. The brands cover it."
+                        : safetyBullets[i]}
+                    </p>
                   </div>
                 ))}
               </div>
