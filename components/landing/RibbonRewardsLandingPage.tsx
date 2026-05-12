@@ -3,17 +3,18 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Fraunces, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Playfair_Display, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import { trackProviderCtaClick, trackRibbonSocialProofClick } from "@/lib/analytics";
 import type { Brand } from "@/lib/brands";
 import type { LandingPageContent } from "@/content/landing-pages";
 
 // ── Fonts (module-level, statically analysed by Next.js) ──────────────────
-const fraunces = Fraunces({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  axes: ["opsz", "SOFT", "WONK"],
-  variable: "--font-fraunces",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -33,7 +34,6 @@ const jetbrainsMono = JetBrains_Mono({
 
 // ── Design tokens ──────────────────────────────────────────────────────────
 const E = "#0F6B47";
-const E_DARK = "#0A4E33";
 const E_SOFT = "#DCE9DE";
 const PLUM = "#4A2A5C";
 const GOLD = "#B8862C";
@@ -62,9 +62,6 @@ function getReferralCode(brand: Brand): string {
     return "KIAN63DB";
   }
 }
-
-const serif = (opsz = 144, soft = 0, wonk = 0) =>
-  `'opsz' ${opsz}, 'SOFT' ${soft}, 'WONK' ${wonk}`;
 
 // ── Sub-components ─────────────────────────────────────────────────────────
 
@@ -99,16 +96,16 @@ export function OfferCard({ referralCode, referralLink, onCtaClick }: OfferCardP
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 18, marginBottom: 28 }}>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 16, borderBottom: `1px dashed ${RULE}`, paddingBottom: 16 }}>
-            <div style={{ fontFamily: "var(--font-fraunces)", fontVariationSettings: serif(144, 0, 1), fontWeight: 500, fontSize: 44, lineHeight: 1, color: E, letterSpacing: "-0.02em", fontStyle: "italic", flexShrink: 0 }}>£25</div>
-            <div style={{ flex: 1, fontSize: 14, color: MUTED, lineHeight: 1.4 }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16, borderBottom: `1px dashed ${RULE}`, paddingBottom: 16 }}>
+            <div style={{ fontFamily: "var(--font-playfair)", fontStyle: "italic", fontWeight: 500, fontSize: 44, lineHeight: 1, color: E, letterSpacing: "-0.02em", flexShrink: 0 }}>£25</div>
+            <div style={{ flex: 1, fontSize: 14, color: MUTED, lineHeight: 1.4, paddingTop: 6 }}>
               <strong style={{ color: INK, fontWeight: 500 }}>Welcome bonus</strong><br />
               Paid in points after your first verified rent payment lands.
             </div>
           </div>
-          <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
-            <div style={{ fontFamily: "var(--font-fraunces)", fontVariationSettings: serif(144, 0, 1), fontWeight: 500, fontSize: 44, lineHeight: 1, color: E, letterSpacing: "-0.02em", fontStyle: "italic", flexShrink: 0 }}>1%</div>
-            <div style={{ flex: 1, fontSize: 14, color: MUTED, lineHeight: 1.4 }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
+            <div style={{ fontFamily: "var(--font-playfair)", fontStyle: "italic", fontWeight: 500, fontSize: 44, lineHeight: 1, color: E, letterSpacing: "-0.02em", flexShrink: 0 }}>1%</div>
+            <div style={{ flex: 1, fontSize: 14, color: MUTED, lineHeight: 1.4, paddingTop: 6 }}>
               <strong style={{ color: INK, fontWeight: 500 }}>Rent cashback, forever</strong><br />
               £12/month on £1,200 rent — that&apos;s £144 a year, every year.
             </div>
@@ -128,7 +125,7 @@ export function OfferCard({ referralCode, referralLink, onCtaClick }: OfferCardP
             <button
               type="button"
               onClick={handleCopy}
-              style={{ fontFamily: "var(--font-jb-mono)", fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", background: copied ? E_DARK : E, color: PAPER, padding: "6px 10px", borderRadius: 2, cursor: "pointer", border: "none", transition: "background 0.2s", flexShrink: 0 }}
+              style={{ fontFamily: "var(--font-jb-mono)", fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", background: E, color: PAPER, padding: "6px 10px", borderRadius: 2, cursor: "pointer", border: "none", flexShrink: 0 }}
             >
               {copied ? "Copied ✓" : "Copy"}
             </button>
@@ -200,10 +197,10 @@ export function EarningsLedger() {
           className="rb-ledger-row"
           style={{ borderBottom: `1px solid ${RULE_SOFT}`, alignItems: "center", background: row.isAvg ? `linear-gradient(90deg, ${E_SOFT} 0%, transparent 100%)` : undefined }}
         >
-          <div style={{ fontFamily: "var(--font-fraunces)", fontVariationSettings: serif(144), fontSize: 24, fontWeight: 500, color: INK, letterSpacing: "-0.01em" }}>{row.rent}</div>
+          <div style={{ fontFamily: "var(--font-playfair)", fontSize: 24, fontWeight: 500, color: INK, letterSpacing: "-0.01em" }}>{row.rent}</div>
           <div className="rb-ledger-hide-mid" style={{ fontFamily: "var(--font-jb-mono)", fontSize: 16, color: INK_SOFT }}>{row.cashback}</div>
           <div className="rb-ledger-hide-mid" style={{ fontFamily: "var(--font-jb-mono)", fontSize: 16, color: INK_SOFT }}>{row.bonus}</div>
-          <div style={{ fontFamily: "var(--font-fraunces)", fontVariationSettings: serif(144), fontSize: 28, fontWeight: 500, color: E, letterSpacing: "-0.01em", display: "flex", alignItems: "baseline", gap: 8 }}>
+          <div style={{ fontFamily: "var(--font-playfair)", fontSize: 28, fontWeight: 500, color: E, letterSpacing: "-0.01em", display: "flex", alignItems: "baseline", gap: 8 }}>
             {row.total}
             {row.isAvg && (
               <span style={{ fontFamily: "var(--font-jb-mono)", fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", background: E, color: PAPER, padding: "3px 8px", borderRadius: 2, fontWeight: 500 }}>
@@ -241,7 +238,7 @@ export function OnboardingStages({ stages }: { stages: OnboardingStage[] }) {
               <span style={{ fontFamily: "var(--font-jb-mono)", fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: MUTED }}>Stage {i + 1}</span>
               <span style={{ fontFamily: "var(--font-jb-mono)", fontSize: 11, color: E, fontWeight: 600 }}>{pct}%</span>
             </div>
-            <h4 style={{ fontFamily: "var(--font-fraunces)", fontVariationSettings: serif(72), fontWeight: 500, fontSize: 18, color: INK, marginBottom: 6, letterSpacing: "-0.01em" }}>
+            <h4 style={{ fontFamily: "var(--font-playfair)", fontWeight: 500, fontSize: 18, color: INK, marginBottom: 6, letterSpacing: "-0.01em" }}>
               {label}
             </h4>
             <p style={{ fontSize: 13, color: MUTED, lineHeight: 1.5 }}>{stage.details}</p>
@@ -324,13 +321,12 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
         .rb-offer-grid { display: grid; grid-template-columns: 1.4fr 1fr; }
         .rb-steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-left: 1px solid ${RULE}; }
         .rb-onboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-        .rb-personal-grid { display: grid; grid-template-columns: 200px 1fr; gap: 60px; align-items: start; }
         .rb-security-head { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; margin-bottom: 64px; align-items: end; }
         .rb-security-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(244,241,234,0.1); border: 1px solid rgba(244,241,234,0.1); }
         .rb-activity-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: center; }
         .rb-ledger-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1.4fr; padding: 18px 32px; }
         .rb-ledger-row:not(:first-child) { padding: 24px 32px; }
-        .rb-section-head { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid ${RULE}; padding-bottom: 24px; margin-bottom: 56px; }
+        .rb-section-head { border-bottom: 1px solid ${RULE}; padding-bottom: 24px; margin-bottom: 56px; }
         @keyframes rb-pulse { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.8); opacity: 0; } }
         .rb-pulse-ring { animation: rb-pulse 2s ease-in-out infinite; }
         @media (max-width: 900px) {
@@ -341,19 +337,16 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
           .rb-offer-divider { display: none; }
           .rb-steps-grid { grid-template-columns: repeat(2, 1fr); border-top: 1px solid ${RULE}; }
           .rb-onboard-grid { grid-template-columns: repeat(2, 1fr); }
-          .rb-personal-grid { grid-template-columns: 1fr; gap: 24px; }
-          .rb-personal-quote::before { display: none; }
           .rb-security-head { grid-template-columns: 1fr; gap: 24px; }
           .rb-security-grid { grid-template-columns: 1fr; }
           .rb-activity-grid { grid-template-columns: 1fr; gap: 32px; }
-          .rb-section-head { flex-direction: column; align-items: flex-start; gap: 12px; }
           .rb-ledger-row { grid-template-columns: 1fr 1fr; }
           .rb-ledger-hide-mid { display: none; }
           .rb-proof-img { transform: none !important; }
         }
       `}</style>
 
-      <div className={`rb-root ${fraunces.variable} ${interTight.variable} ${jetbrainsMono.variable}`}>
+      <div className={`rb-root ${playfair.variable} ${interTight.variable} ${jetbrainsMono.variable}`}>
         {/* Grain overlay */}
         <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 1, opacity: 0.4, backgroundImage: GRAIN_BG }} aria-hidden />
 
@@ -372,9 +365,9 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
             </div>
 
             {/* Headline */}
-            <h1 style={{ fontFamily: "var(--font-fraunces)", fontWeight: 400, fontVariationSettings: serif(144, 30), fontSize: "clamp(48px, 7vw, 92px)", lineHeight: 0.96, letterSpacing: "-0.03em", color: INK, maxWidth: 900, marginBottom: 32 }}>
+            <h1 style={{ fontFamily: "var(--font-playfair)", fontWeight: 400, fontSize: "clamp(48px, 7vw, 92px)", lineHeight: 0.96, letterSpacing: "-0.03em", color: INK, maxWidth: 900, marginBottom: 32 }}>
               The easiest{" "}
-              <em style={{ fontStyle: "italic", fontVariationSettings: serif(144, 100, 1), color: E }}>£300+</em>
+              <em style={{ fontStyle: "italic", color: E }}>£300+</em>
               {" "}a year I make,{" "}
               <br />
               just for{" "}
@@ -382,7 +375,7 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
             </h1>
 
             {/* Lede */}
-            <p style={{ fontFamily: "var(--font-fraunces)", fontWeight: 300, fontVariationSettings: serif(72), fontSize: "clamp(20px, 2vw, 24px)", lineHeight: 1.45, color: INK_SOFT, maxWidth: 640, marginBottom: 56 }}>
+            <p style={{ fontFamily: "var(--font-playfair)", fontWeight: 400, fontSize: "clamp(20px, 2vw, 24px)", lineHeight: 1.45, color: INK_SOFT, maxWidth: 640, marginBottom: 56 }}>
               Ribbon turns your monthly rent payment into points you can spend at Amazon, Eurostar, Deliveroo and more. I&apos;ve been using it for 14 months — and you get £25 just for signing up with my code.
             </p>
 
@@ -391,48 +384,23 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
           </div>
         </section>
 
-        {/* ── PERSONAL QUOTE ───────────────────────────────────────────── */}
-        <section style={{ position: "relative", zIndex: 2, margin: "100px 0" }}>
-          <div className="rb-wrap">
-            <div className="rb-personal-grid">
-              <div style={{ fontFamily: "var(--font-jb-mono)", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: MUTED, display: "flex", alignItems: "center", gap: 10, paddingTop: 6 }}>
-                <span style={{ fontFamily: "var(--font-fraunces)", fontVariationSettings: serif(144, 0, 1), fontStyle: "italic", fontSize: 32, color: E, lineHeight: 1 }}>i.</span>
-                <span>Why I use it</span>
-              </div>
-              <div style={{ maxWidth: 720 }}>
-                <blockquote className="rb-personal-quote" style={{ fontFamily: "var(--font-fraunces)", fontWeight: 400, fontVariationSettings: serif(144), fontSize: "clamp(26px, 3vw, 36px)", lineHeight: 1.3, letterSpacing: "-0.02em", color: INK, marginBottom: 28, paddingLeft: 60, position: "relative" }}>
-                  <span style={{ fontFamily: "var(--font-fraunces)", fontStyle: "italic", fontVariationSettings: serif(144, 0, 1), fontSize: 80, color: E, position: "absolute", left: 0, top: -10, lineHeight: 1, opacity: 0.5 }}>&ldquo;</span>
-                  I pay rent anyway, so I was keen to get{" "}
-                  <em style={{ fontStyle: "italic", fontVariationSettings: serif(144, 0, 1), color: E }}>something back</em>
-                  {" "}on a payment I&apos;m already making. The rewards are genuinely useful — I save mine through the year and spend them at Christmas on Amazon vouchers.
-                </blockquote>
-                <div style={{ display: "flex", alignItems: "center", gap: 14, fontFamily: "var(--font-jb-mono)", fontSize: 12, letterSpacing: "0.05em", color: MUTED }}>
-                  <span style={{ width: 32, height: 1, background: RULE, display: "inline-block" }} />
-                  <span>— <strong style={{ color: INK, fontWeight: 500 }}>Kian</strong> · Ribbon user since Feb 2025</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* ── HOW IT WORKS ─────────────────────────────────────────────── */}
         {steps.length > 0 && (
           <section style={{ position: "relative", zIndex: 2, margin: "100px 0" }}>
             <div className="rb-wrap">
               <div className="rb-section-head">
-                <h2 style={{ fontFamily: "var(--font-fraunces)", fontWeight: 400, fontVariationSettings: serif(144), fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK, maxWidth: 700 }}>
-                  How it <em style={{ fontStyle: "italic", fontVariationSettings: serif(144, 0, 1), color: E }}>works</em>.<br />Four steps, two minutes.
+                <h2 style={{ fontFamily: "var(--font-playfair)", fontWeight: 400, fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK, maxWidth: 700 }}>
+                  How it <em style={{ fontStyle: "italic", color: E }}>works</em>. Four steps, two minutes.
                 </h2>
-                <div style={{ fontFamily: "var(--font-jb-mono)", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: MUTED, whiteSpace: "nowrap" }}>§ ii · Mechanics</div>
               </div>
 
               <div className="rb-steps-grid">
                 {steps.map((step, i) => (
                   <div key={step.title} style={{ padding: "32px 28px", borderRight: `1px solid ${RULE}`, position: "relative" }}>
-                    <div style={{ fontFamily: "var(--font-fraunces)", fontVariationSettings: serif(144, 0, 1), fontWeight: 300, fontStyle: "italic", fontSize: 56, lineHeight: 1, color: RULE, marginBottom: 36 }}>
+                    <div style={{ fontFamily: "var(--font-playfair)", fontStyle: "italic", fontWeight: 400, fontSize: 56, lineHeight: 1, color: RULE, marginBottom: 36 }}>
                       {String(i + 1).padStart(2, "0")}
                     </div>
-                    <h3 style={{ fontFamily: "var(--font-fraunces)", fontWeight: 500, fontVariationSettings: serif(72), fontSize: 22, lineHeight: 1.2, color: INK, marginBottom: 12, letterSpacing: "-0.01em" }}>
+                    <h3 style={{ fontFamily: "var(--font-playfair)", fontWeight: 500, fontSize: 22, lineHeight: 1.2, color: INK, marginBottom: 12, letterSpacing: "-0.01em" }}>
                       {step.title}
                     </h3>
                     <p style={{ fontSize: 14, color: MUTED, lineHeight: 1.55 }}>{step.description}</p>
@@ -450,10 +418,9 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
         <section style={{ position: "relative", zIndex: 2, margin: "100px 0" }}>
           <div className="rb-wrap">
             <div className="rb-section-head">
-              <h2 style={{ fontFamily: "var(--font-fraunces)", fontWeight: 400, fontVariationSettings: serif(144), fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK }}>
-                What you could <em style={{ fontStyle: "italic", fontVariationSettings: serif(144, 0, 1), color: E }}>actually</em> earn.
+              <h2 style={{ fontFamily: "var(--font-playfair)", fontWeight: 400, fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK }}>
+                What you could <em style={{ fontStyle: "italic", color: E }}>actually</em> earn.
               </h2>
-              <div style={{ fontFamily: "var(--font-jb-mono)", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: MUTED, whiteSpace: "nowrap" }}>§ iii · Numbers</div>
             </div>
             <EarningsLedger />
           </div>
@@ -464,10 +431,9 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
           <section style={{ position: "relative", zIndex: 2, margin: "100px 0" }}>
             <div className="rb-wrap">
               <div className="rb-section-head">
-                <h2 style={{ fontFamily: "var(--font-fraunces)", fontWeight: 400, fontVariationSettings: serif(144), fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK }}>
-                  The full sign-up,<br />in <em style={{ fontStyle: "italic", fontVariationSettings: serif(144, 0, 1), color: E }}>four</em> stages.
+                <h2 style={{ fontFamily: "var(--font-playfair)", fontWeight: 400, fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK }}>
+                  The full sign-up, in <em style={{ fontStyle: "italic", color: E }}>four</em> stages.
                 </h2>
-                <div style={{ fontFamily: "var(--font-jb-mono)", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: MUTED, whiteSpace: "nowrap" }}>§ iv · Onboarding</div>
               </div>
               <OnboardingStages stages={stages} />
             </div>
@@ -483,14 +449,14 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
                 <div>
                   <div style={{ fontFamily: "var(--font-jb-mono)", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: E, marginBottom: 18, display: "flex", alignItems: "center", gap: 10 }}>
                     <span style={{ width: 24, height: 1, background: E, display: "inline-block" }} />
-                    § v · Trust
+                    Security &amp; trust
                   </div>
-                  <h2 style={{ fontFamily: "var(--font-fraunces)", fontWeight: 400, fontVariationSettings: serif(144), fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.025em", color: PAPER }}>
+                  <h2 style={{ fontFamily: "var(--font-playfair)", fontWeight: 400, fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.025em", color: PAPER }}>
                     &ldquo;Sounds too good<br />to be true.&rdquo;<br />
-                    <em style={{ fontStyle: "italic", fontVariationSettings: serif(144, 0, 1), color: E_SOFT }}>So how is it real?</em>
+                    <em style={{ fontStyle: "italic", color: E_SOFT }}>So how is it real?</em>
                   </h2>
                 </div>
-                <p style={{ fontFamily: "var(--font-fraunces)", fontWeight: 300, fontVariationSettings: serif(72), fontSize: 20, lineHeight: 1.5, color: "rgba(244,241,234,0.7)" }}>
+                <p style={{ fontFamily: "var(--font-playfair)", fontWeight: 400, fontSize: 20, lineHeight: 1.5, color: "rgba(244,241,234,0.7)" }}>
                   Ribbon isn&apos;t a fintech holding your money in some unregulated wallet. Your funds sit at Griffin Bank, a fully licensed UK bank — same protections as your high-street account.
                 </p>
               </div>
@@ -506,7 +472,7 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
                         {i === 3 && <><circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.2" /><path d="M7 4V7L9 9" stroke="currentColor" strokeWidth="1.2" /></>}
                       </svg>
                     </div>
-                    <h4 style={{ fontFamily: "var(--font-fraunces)", fontWeight: 500, fontVariationSettings: serif(72), fontSize: 20, color: PAPER, marginBottom: 8, letterSpacing: "-0.01em" }}>{title}</h4>
+                    <h4 style={{ fontFamily: "var(--font-playfair)", fontWeight: 500, fontSize: 20, color: PAPER, marginBottom: 8, letterSpacing: "-0.01em" }}>{title}</h4>
                     <p style={{ fontSize: 14, color: "rgba(244,241,234,0.65)", lineHeight: 1.55 }}>{safetyBullets[i]}</p>
                   </div>
                 ))}
@@ -526,16 +492,15 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
           <section style={{ position: "relative", zIndex: 2, margin: "100px 0" }}>
             <div className="rb-wrap">
               <div className="rb-section-head">
-                <h2 style={{ fontFamily: "var(--font-fraunces)", fontWeight: 400, fontVariationSettings: serif(144), fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK }}>
-                  My actual <em style={{ fontStyle: "italic", fontVariationSettings: serif(144, 0, 1), color: E }}>account</em>.
+                <h2 style={{ fontFamily: "var(--font-playfair)", fontWeight: 400, fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK }}>
+                  My actual <em style={{ fontStyle: "italic", color: E }}>account</em>.
                 </h2>
-                <div style={{ fontFamily: "var(--font-jb-mono)", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: MUTED, whiteSpace: "nowrap" }}>§ vi · Proof</div>
               </div>
 
               <div className="rb-activity-grid">
                 {/* Left: text */}
                 <div>
-                  <h3 style={{ fontFamily: "var(--font-fraunces)", fontWeight: 400, fontVariationSettings: serif(144), fontSize: "clamp(32px, 3.5vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.02em", color: INK, marginBottom: 24 }}>
+                  <h3 style={{ fontFamily: "var(--font-playfair)", fontWeight: 400, fontSize: "clamp(32px, 3.5vw, 44px)", lineHeight: 1.05, letterSpacing: "-0.02em", color: INK, marginBottom: 24 }}>
                     This is from my real Ribbon account last month.
                   </h3>
                   <p style={{ fontSize: 16, color: INK_SOFT, lineHeight: 1.6, marginBottom: 16 }}>
@@ -558,17 +523,6 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
                       </li>
                     ))}
                   </ul>
-
-                  {/* Shopping + travel images */}
-                  {proofImages.length >= 3 && (
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginTop: 32 }}>
-                      {[proofImages[1], proofImages[2]].map((img) => (
-                        <figure key={img.src} style={{ margin: 0, position: "relative", aspectRatio: "9/16", borderRadius: 8, overflow: "hidden", border: `1px solid ${RULE}` }}>
-                          <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(max-width: 900px) 50vw, 260px" />
-                        </figure>
-                      ))}
-                    </div>
-                  )}
                 </div>
 
                 {/* Right: main proof image */}
@@ -589,10 +543,9 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
           <section style={{ position: "relative", zIndex: 2, margin: "100px 0" }} aria-labelledby="ribbon-faq-heading">
             <div className="rb-wrap">
               <div className="rb-section-head">
-                <h2 id="ribbon-faq-heading" style={{ fontFamily: "var(--font-fraunces)", fontWeight: 400, fontVariationSettings: serif(144), fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK }}>
-                  The <em style={{ fontStyle: "italic", fontVariationSettings: serif(144, 0, 1), color: E }}>actual</em> questions you&apos;ll have.
+                <h2 id="ribbon-faq-heading" style={{ fontFamily: "var(--font-playfair)", fontWeight: 400, fontSize: "clamp(36px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK }}>
+                  The <em style={{ fontStyle: "italic", color: E }}>actual</em> questions you&apos;ll have.
                 </h2>
-                <div style={{ fontFamily: "var(--font-jb-mono)", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: MUTED, whiteSpace: "nowrap" }}>§ vii · FAQ</div>
               </div>
               <FaqAccordion items={faqItems} />
             </div>
@@ -604,8 +557,8 @@ export function RibbonRewardsLandingPage({ brand, content }: RibbonRewardsLandin
           <div className="rb-wrap">
             <div style={{ textAlign: "center", padding: "80px 32px", background: PAPER_CARD, border: `1px solid ${RULE}`, borderRadius: 4, position: "relative", overflow: "hidden" }}>
               <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg, ${E} 0%, ${E} 40%, ${PLUM} 40%, ${PLUM} 70%, ${GOLD} 70%, ${GOLD} 100%)` }} />
-              <h2 style={{ fontFamily: "var(--font-fraunces)", fontWeight: 400, fontVariationSettings: serif(144), fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK, marginBottom: 24, maxWidth: 700, marginLeft: "auto", marginRight: "auto" }}>
-                Stop leaving <em style={{ fontStyle: "italic", fontVariationSettings: serif(144, 0, 1), color: E }}>money</em> on the table.
+              <h2 style={{ fontFamily: "var(--font-playfair)", fontWeight: 400, fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1, letterSpacing: "-0.025em", color: INK, marginBottom: 24, maxWidth: 700, marginLeft: "auto", marginRight: "auto" }}>
+                Stop leaving <em style={{ fontStyle: "italic", color: E }}>money</em> on the table.
               </h2>
               <p style={{ fontSize: 18, color: MUTED, marginBottom: 36, maxWidth: 540, marginLeft: "auto", marginRight: "auto" }}>
                 Takes about 4 minutes. Costs nothing. Earns you £25 + whatever 1% of your annual rent is — every year you keep using it.

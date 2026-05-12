@@ -38,7 +38,7 @@ vi.mock("next/link", () => ({
 
 // next/font/google returns objects with variable/className; mock at module level
 vi.mock("next/font/google", () => ({
-  Fraunces: () => ({ variable: "--font-fraunces", className: "fraunces" }),
+  Playfair_Display: () => ({ variable: "--font-playfair", className: "playfair" }),
   Inter_Tight: () => ({ variable: "--font-inter-tight", className: "inter-tight" }),
   JetBrains_Mono: () => ({ variable: "--font-jb-mono", className: "jb-mono" }),
 }));
