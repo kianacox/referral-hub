@@ -1047,6 +1047,7 @@ export function FaqAccordion({ items }: { items: Array<FaqItem> }) {
             <button
               type="button"
               onClick={() => toggle(i)}
+              aria-expanded={isOpen}
               style={{
                 width: "100%",
                 padding: "24px 0",
@@ -1119,7 +1120,7 @@ export function FaqAccordion({ items }: { items: Array<FaqItem> }) {
                 transition: "max-height 0.4s ease",
               }}
             >
-              <div
+              <p
                 style={{
                   paddingBottom: 28,
                   color: "var(--ink-soft)",
@@ -1127,8 +1128,9 @@ export function FaqAccordion({ items }: { items: Array<FaqItem> }) {
                   maxWidth: 760,
                   fontSize: 15,
                 }}
-                dangerouslySetInnerHTML={{ __html: item.answer }}
-              />
+              >
+                {item.answer}
+              </p>
             </div>
           </div>
         );
@@ -1370,12 +1372,7 @@ export function VirginMediaLandingPage({ brand: _brand, content }: VirginMediaLa
         </section>
 
         {/* ── WHY VIRGIN (full-bleed) ────────────────────────────────────── */}
-        <div
-          className="vm-wrap"
-          style={{ maxWidth: 1180, margin: "0 auto", padding: "0 32px" }}
-        >
-          <WhyVirginSection />
-        </div>
+        <WhyVirginSection />
 
         {/* ── PACKAGES LEDGER ───────────────────────────────────────────── */}
         <section style={{ margin: "100px 0" }}>
