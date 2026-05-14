@@ -79,7 +79,6 @@ export const ALL_BRANDS: Brand[] = [
     rewardRank: 3,
     brandUrl: "https://www.virginmedia.com/refer-a-friend",
     primaryCtaLabel: "Claim £50 reward",
-    standaloneLayout: true,
   },
   {
     id: "airtime",

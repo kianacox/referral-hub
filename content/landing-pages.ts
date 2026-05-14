@@ -526,19 +526,39 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     ctaLabel: "Claim £50 reward",
     faq: [
       {
-        question: "How do I get the £50 Virgin Media referral reward?",
+        question: "How and when do I get the £50?",
         answer:
-          "Use the referral journey, share your link with a friend, and make sure they place a qualifying order. The £50 reward is paid after the order passes the provider's validation process.",
+          "Once your service has been installed and you're past Virgin's 14-day cooling-off period, Aklamio confirms the reward — usually 60 days after install. You then log into your Aklamio account and withdraw the £50 to your bank account via BACS or to PayPal. Most people see the money in their account within five working days of requesting withdrawal. In some cases Aklamio can take up to 9 weeks if there are extra checks.",
       },
       {
-        question: "Does my friend get a reward too?",
+        question: "Is this legitimate? Sounds suspicious.",
         answer:
-          "Friend rewards and offer details can vary by campaign. Check the live referral page terms before the order is placed to confirm the current incentive.",
+          "Yes — Aklamio is Virgin Media's official refer-a-friend partner, listed on Virgin's own help pages. The link sends you straight to Aklamio's portal, which forwards to Virgin's real checkout. You're never asked for payment by anyone except Virgin Media, and the cashback is paid by Aklamio after Virgin confirms your service is live.",
       },
       {
-        question: "When is the referral reward paid?",
+        question: "Can I stack this with Virgin's switching offer?",
         answer:
-          "Rewards are typically paid after eligibility checks and any required cooling-off period. Timing can vary, so review the current terms on the Virgin Media referral page.",
+          "Yes — the £50 Aklamio cashback usually stacks with Virgin's standard new-customer promotions, including the up to £250 switching credit for early termination fees from your previous provider. So you can potentially pocket £50 cash from Aklamio and up to £250 bill credit from Virgin. Read Virgin's offer terms before ordering to confirm.",
+      },
+      {
+        question: "What if I cancel during the 14-day cooling-off?",
+        answer:
+          "The £50 doesn't pay out. Aklamio waits until your 14-day customer satisfaction guarantee period has expired before confirming the reward, so you need to stay with Virgin past that window. After 14 days you're free to do whatever — keep the service, switch later — and the £50 still pays out at the 60-day mark.",
+      },
+      {
+        question: "Which packages qualify?",
+        answer:
+          "All of Virgin's main consumer packages: superfast fibre broadband (M125 through Gig1), digital TV bundles, home phone, and Volt bundles when paired with O2. Mobile-only Virgin Mobile referrals pay £25, not £50. Excluded: Mates Rates, My Rates, Tribe, Partner Rates, 30-day rolling contracts, Essential broadband social tariffs, and any upgrade or extension to an existing Virgin contract.",
+      },
+      {
+        question: "Do I need to do anything during sign-up?",
+        answer:
+          "Just start your application via the red button on this page. The Aklamio link tracks your referral automatically — you enter your email so Aklamio can match the eventual payout to you, then you're forwarded to Virgin's normal checkout. If you'd rather order over the phone, Virgin's telesales accept the referral code RQWFQWKO at the point of sale.",
+      },
+      {
+        question: "What's Volt and is it worth it?",
+        answer:
+          "Volt is the bundle you get when your household has both Virgin Media broadband and an O2 Pay Monthly mobile plan. At no extra cost you get: a free broadband speed boost to the next tier (up to 1Gbps), double mobile data on every eligible O2 plan in the household, a WiFi guarantee with up to 3 free WiFi pods if needed, and free roaming in 75 countries via O2 Travel Inclusive Zone. If you (or anyone in your home) is already on O2 Pay Monthly, Volt is the no-brainer pick.",
       },
     ],
   },
