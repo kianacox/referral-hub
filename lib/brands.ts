@@ -1,5 +1,7 @@
 export type BrandCategory = "health" | "finance" | "bills";
 
+export type BrandSection = "discounts" | "earn";
+
 export type TrustpilotData = { url: string; score: number };
 
 export type Brand = {
@@ -7,6 +9,8 @@ export type Brand = {
   name: string;
   slug: string;
   category: BrandCategory;
+  /** Determines landing page route: /discounts/[category]/[slug] vs /earn/[slug] */
+  section: BrandSection;
   logoPath: string;
   overview: string;
   offerSummary: string;
@@ -24,6 +28,8 @@ export type Brand = {
   primaryCtaLabel?: string;
   /** Trustpilot page URL and star score (e.g. 4.4) */
   trustpilot?: TrustpilotData;
+  /** If true, suppress Navbar and Footer on standalone landing page */
+  standaloneLayout?: boolean;
 };
 
 const SHOW_GYMSHARK = process.env.NEXT_PUBLIC_SHOW_GYMSHARK === "true";
@@ -34,6 +40,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Lloyds Bank",
     slug: "lloyds-bank",
     category: "finance",
+    section: "earn",
     logoPath: "/lloyds_logo.svg",
     overview:
       "Open a Lloyds current account with my refer-a-friend link, keep it open for 7 days, and the £30 lands within 30 working days. FSCS-protected UK bank.",
@@ -41,15 +48,18 @@ export const ALL_BRANDS: Brand[] = [
       "£30 paid into your new current account — no switching needed.",
     refereeReward: "£30 cash",
     rewardRank: 1,
+    // UPDATE EVERY 30 DAYS — Lloyds referral links expire after 30 days
     referralLink:
       "https://apply.lloydsbank.co.uk/sales-content/cwa/l/onboardpca/index-app.html?from=ob&webDirect=true&redesign=true&token=8kMtnCauQOuTJv7Erekd8SYVDBQRccq+vMEqUuZAxwk=#/refer-friend",
     primaryCtaLabel: "Claim your £30",
+    standaloneLayout: true,
   },
   {
     id: "ribbon-rewards",
     name: "Ribbon Rewards",
     slug: "ribbon-rewards",
     category: "bills",
+    section: "earn",
     logoPath: "/ribbon_rewards_logo.webp",
     overview:
       "You're paying rent anyway — route it through Ribbon Rewards and collect points on every payment. First payment earns 2,500 points, worth £25.",
@@ -68,6 +78,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Virgin Media",
     slug: "virgin-media",
     category: "bills",
+    section: "earn",
     logoPath: "/virgin_media_logo.png",
     overview:
       "Virgin's refer-a-friend pays £50 once your qualifying order goes through — a clear, milestone-based journey from order to payout.",
@@ -83,6 +94,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Airtime",
     slug: "airtime",
     category: "bills",
+    section: "discounts",
     logoPath: "/airtime_logo.png",
     overview:
       "Link your accounts and Airtime tracks eligible purchases automatically — cashback on everyday spending without relying on tracking cookies.",
@@ -101,6 +113,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Exhale Coffee",
     slug: "exhale-coffee",
     category: "health",
+    section: "discounts",
     logoPath: "/exhale_logo.png",
     overview:
       "Coffee grown for health — lower caffeine, fewer jitters, better taste, delivered to your door on a flexible subscription.",
@@ -119,6 +132,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Emma",
     slug: "emma-budgeting",
     category: "finance",
+    section: "discounts",
     logoPath: "/emma_logo.png",
     overview:
       "Emma auto-categorises your spending, flags forgotten subscriptions and upcoming payments, and gives you one clear view across every account.",
@@ -138,6 +152,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "MyProtein",
     slug: "myprotein",
     category: "health",
+    section: "discounts",
     logoPath: "/my_protein_logo.webp",
     overview:
       "Sports nutrition with strong gluten-free options, including whey isolate that works in porridge and shakes.",
@@ -157,6 +172,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Runna",
     slug: "runna",
     category: "health",
+    section: "discounts",
     logoPath: "/runna_logo.png",
     overview:
       "Structured running plans for 5K, 10K, Hyrox and more — Runna guides you from your first run to race day.",
@@ -175,6 +191,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Provocan",
     slug: "provocan",
     category: "health",
+    section: "discounts",
     logoPath: "/provocan_logo.jpg",
     overview:
       "Full-spectrum CBD oils and gummies, independently tested — a more affordable route to quality CBD.",
@@ -193,6 +210,7 @@ export const ALL_BRANDS: Brand[] = [
     name: "Gymshark",
     slug: "gymshark",
     category: "health",
+    section: "discounts",
     logoPath: "/gymshark_logo.png",
     overview: "Sportswear and gym wear for training and everyday use.",
     offerSummary:
@@ -223,6 +241,57 @@ export function getBrandsByCategory(category: BrandCategory): Brand[] {
   return getVisibleBrands()
     .filter((b) => b.category === category)
     .sort((a, b) => a.rewardRank - b.rewardRank);
+}
+
+export function getDiscountBrands(): Brand[] {
+  return getVisibleBrands().filter((b) => b.section === "discounts");
+}
+
+export function getEarnBrands(): Brand[] {
+  return getVisibleBrands().filter((b) => b.section === "earn");
+}
+
+export function getBrandBySlug(
+  category: BrandCategory,
+  slug: string,
+): Brand | undefined {
+  const brand = ALL_BRANDS.find(
+    (b) =>
+      b.section === "discounts" && b.category === category && b.slug === slug,
+  );
+  if (!brand) return undefined;
+  if (brand.featureFlag === "gymshark" && !SHOW_GYMSHARK) return undefined;
+  return brand;
+}
+
+export function getEarnBrandBySlug(slug: string): Brand | undefined {
+  const brand = ALL_BRANDS.find((b) => b.section === "earn" && b.slug === slug);
+  if (!brand) return undefined;
+  if (brand.featureFlag === "gymshark" && !SHOW_GYMSHARK) return undefined;
+  return brand;
+}
+
+/** Slugs for /discounts/[category]/[slug] static generation */
+export function getDiscountSlugs(): {
+  category: BrandCategory;
+  slug: string;
+}[] {
+  return getDiscountBrands().map((b) => ({
+    category: b.category,
+    slug: b.slug,
+  }));
+}
+
+/** Slugs for /earn/[slug] static generation */
+export function getEarnSlugs(): string[] {
+  return getEarnBrands().map((b) => b.slug);
+}
+
+/** Landing page URL for a brand */
+export function getBrandLandingHref(brand: Brand): string {
+  return brand.section === "earn"
+    ? `/earn/${brand.slug}`
+    : `/discounts/${brand.category}/${brand.slug}`;
 }
 
 export type HomeSection = {

@@ -2,12 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   async redirects() {
-    // Old /discounts and /earn routes are consolidated into the homepage.
+    // List pages are consolidated into the homepage; brand landing pages remain.
     return [
       { source: "/discounts", destination: "/", permanent: true },
-      { source: "/discounts/:path*", destination: "/", permanent: true },
+      {
+        source: "/discounts/:category(bills|health|finance)",
+        destination: "/#:category",
+        permanent: true,
+      },
       { source: "/earn", destination: "/", permanent: true },
-      { source: "/earn/:path*", destination: "/", permanent: true },
     ];
   },
 };

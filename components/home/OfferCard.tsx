@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useState } from "react";
-import type { Brand } from "@/lib/brands";
+import { getBrandLandingHref, type Brand } from "@/lib/brands";
 import { COPIED, COPY_CODE } from "@/constants/copy";
 import {
   trackBrandTrustpilotClick,
@@ -121,17 +122,25 @@ export function OfferCard({ brand }: OfferCardProps) {
           <p className="text-[13.5px] leading-relaxed text-[var(--body-text)]">
             {brand.overview}
           </p>
-          {brand.trustpilot && (
-            <a
-              href={brand.trustpilot.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackBrandTrustpilotClick(brand.slug)}
-              className="text-[13px] text-[var(--muted)] underline underline-offset-[3px] transition-colors hover:text-[var(--accent)]"
+          <div className="flex flex-wrap items-center gap-3.5">
+            <Link
+              href={getBrandLandingHref(brand)}
+              className="text-[13px] font-medium text-[var(--accent)] underline underline-offset-[3px]"
             >
-              Read Trustpilot reviews ↗
-            </a>
-          )}
+              Learn more about this offer
+            </Link>
+            {brand.trustpilot && (
+              <a
+                href={brand.trustpilot.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackBrandTrustpilotClick(brand.slug)}
+                className="text-[13px] text-[var(--muted)] underline underline-offset-[3px] transition-colors hover:text-[var(--accent)]"
+              >
+                Read Trustpilot reviews ↗
+              </a>
+            )}
+          </div>
         </div>
       )}
     </article>
