@@ -8,10 +8,6 @@ import { trackProviderCtaClick } from "@/lib/analytics";
 
 const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces" });
 
-// UPDATE EVERY 30 DAYS — Lloyds referral links expire after 30 days
-const REFERRAL_LINK =
-  "https://apply.lloydsbank.co.uk/sales-content/cwa/l/onboardpca/index-app.html?from=ob&webDirect=true&redesign=true&token=8kMtnCauQOuTJv7Erekd8QZQyYpdXlfw0yAKZua0puM=#/refer-friend";
-
 const COLORS = {
   green900: "#003827",
   green800: "#00533C",
@@ -330,7 +326,8 @@ function useReveal() {
 }
 
 // ---- Main component ----
-export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
+export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
+  const REFERRAL_LINK = brand.referralLink ?? "";
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const revealRef = useReveal();
 
@@ -450,7 +447,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                 flexShrink: 0,
               }}
             />
-            <span>The £50 Hub</span>
+            <span>The £30 Hub</span>
           </div>
           <a
             href="#claim"
@@ -467,7 +464,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
               transition: "all 0.2s ease",
             }}
           >
-            Claim £50 →
+            Claim £30 →
           </a>
         </div>
       </nav>
@@ -566,7 +563,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                     paddingRight: "0.08em",
                   }}
                 >
-                  £50 free
+                  £30 free
                 </span>{" "}
                 when you open a Lloyds current account
               </h1>
@@ -581,7 +578,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                 }}
               >
                 Use my personal Lloyds refer-a-friend link to open a new
-                account and we both pocket £50. Paid as cash into your new
+                account and we both pocket £30. Paid as cash into your new
                 account within 30 working days — no switching, no strings.
               </p>
 
@@ -614,7 +611,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                     cursor: "pointer",
                   }}
                 >
-                  Claim Your £50 Bonus →
+                  Claim Your £30 Bonus →
                 </a>
               </div>
 
@@ -695,7 +692,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                   style={{ fontSize: "0.86rem", color: COLORS.ink2, lineHeight: 1.4 }}
                 >
                   <strong style={{ color: COLORS.ink }}>Thousands</strong> have
-                  claimed their £50 through Lloyds&apos; refer-a-friend.
+                  claimed their £30 through Lloyds&apos; refer-a-friend.
                 </div>
               </div>
             </div>
@@ -921,7 +918,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
             {[
               {
                 icon: <DollarIcon />,
-                text: "£50 cash bonus",
+                text: "£30 cash bonus",
               },
               {
                 icon: <VideoIcon />,
@@ -1004,7 +1001,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                 fontSize: "clamp(1.9rem, 3.6vw, 2.8rem)",
               }}
             >
-              More than just £50
+              More than just £30
             </h2>
             <p
               style={{
@@ -1015,7 +1012,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
             >
               Open a qualifying account and you&apos;ll get access to Club
               Lloyds — a current account packed with lifestyle perks, better
-              mortgage rates and savings rewards. Plus £50 just for joining.
+              mortgage rates and savings rewards. Plus £30 just for joining.
             </p>
           </div>
 
@@ -1172,13 +1169,13 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                 fontSize: "clamp(1.9rem, 3.6vw, 2.8rem)",
               }}
             >
-              Claim your £50 in four steps
+              Claim your £30 in four steps
             </h2>
             <p
               style={{ fontSize: "1.1rem", marginTop: 16, color: COLORS.ink2 }}
             >
               The whole process takes around 10 minutes online. You&apos;ll
-              have the £50 in your new account within 30 working days.
+              have the £30 in your new account within 30 working days.
             </p>
           </div>
 
@@ -1205,8 +1202,8 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
               },
               {
                 num: "04",
-                title: "Receive £50",
-                body: "Lloyds pays £50 as a cash credit into your new account within 30 working days of opening it.",
+                title: "Receive £30",
+                body: "Lloyds pays £30 as a cash credit into your new account within 30 working days of opening it.",
               },
             ].map(({ num, title, body }) => (
               <div
@@ -1283,7 +1280,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                 fontSize: "clamp(1.9rem, 3.6vw, 2.8rem)",
               }}
             >
-              Who qualifies for the £50?
+              Who qualifies for the £30?
             </h2>
             <p style={{ fontSize: "1.1rem", marginTop: 16, color: COLORS.ink2 }}>
               The bonus is for people brand new to Lloyds. Quick check below —
@@ -1525,7 +1522,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
           >
             Ready to grab your{" "}
             <span style={{ color: COLORS.accent, fontStyle: "italic" }}>
-              £50?
+              £30?
             </span>
           </h2>
 
@@ -1540,7 +1537,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
             }}
           >
             Click below to open Lloyds&apos; application page through my
-            personal referral link. It takes about 10 minutes, and the £50
+            personal referral link. It takes about 10 minutes, and the £30
             lands in your new account within 30 working days.
           </p>
 
@@ -1566,7 +1563,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
               cursor: "pointer",
             }}
           >
-            Claim Your £50 Bonus Now →
+            Claim Your £30 Bonus Now →
           </a>
 
           {/* Trust row */}
@@ -1782,7 +1779,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                       <>
                         The account must be in your{" "}
                         <strong>sole name</strong>. Joint accounts don&apos;t
-                        qualify for the £50.
+                        qualify for the £30.
                       </>
                     ),
                   },
@@ -1798,7 +1795,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                   {
                     text: (
                       <>
-                        The referrer&apos;s £50 is paid into their{" "}
+                        The referrer&apos;s £30 is paid into their{" "}
                         <strong>oldest qualifying Lloyds current account</strong>.
                       </>
                     ),
@@ -1887,7 +1884,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
                   marginBottom: 16,
                 }}
               >
-                The £50 Hub
+                The £30 Hub
               </div>
               <p style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.7 }}>
                 A personal referral page sharing my Lloyds Bank refer-a-friend
@@ -1924,7 +1921,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {[
                   { label: "Why Lloyds", href: "#benefits" },
-                  { label: "Claim £50", href: "#claim" },
+                  { label: "Claim £30", href: "#claim" },
                 ].map(({ label, href }) => (
                   <li key={label} style={{ padding: "6px 0" }}>
                     <a
@@ -2013,7 +2010,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
               product information shown is for illustrative purposes; please
               check Lloyds&apos; official website for the full, current product
               terms before applying. When you click my referral link and
-              successfully open a qualifying account, both you and I receive £50
+              successfully open a qualifying account, both you and I receive £30
               each under Lloyds&apos; standard refer-a-friend programme. The
               terms of the bonus are set entirely by Lloyds and may be changed
               or withdrawn at any time.
@@ -2057,7 +2054,7 @@ export function LloydsLandingPage({ content }: LloydsLandingPageProps) {
             cursor: "pointer",
           }}
         >
-          Claim Your £50 Bonus →
+          Claim Your £30 Bonus →
         </a>
       </div>
 

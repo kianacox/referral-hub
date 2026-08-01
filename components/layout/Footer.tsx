@@ -8,15 +8,15 @@ export function Footer() {
   const pathname = usePathname();
   const disclaimer = useDisclaimer();
 
-  // Extract earn slug and check if brand uses standalone layout
+  // Suppress chrome on standalone earn landing pages (e.g. Lloyds)
   const earnSlug = pathname.startsWith("/earn/") ? pathname.split("/")[2] : null;
   const brand = earnSlug ? getEarnBrandBySlug(earnSlug) : null;
   if (brand?.standaloneLayout) return null;
 
   return (
     <footer className="mt-auto border-t border-[var(--border)] bg-[var(--header-footer-bg)]">
-      <div className="mx-auto max-w-6xl px-4 py-8">
-        <p className="text-center text-sm text-[var(--muted)]">
+      <div className="mx-auto max-w-6xl px-4 py-7">
+        <p className="text-center text-[13px] text-[var(--muted)]">
           © 2026 referral hub. All rights reserved.
         </p>
         {disclaimer && (

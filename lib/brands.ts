@@ -2,18 +2,21 @@ export type BrandCategory = "health" | "finance" | "bills";
 
 export type BrandSection = "discounts" | "earn";
 
+export type TrustpilotData = { url: string; score: number };
+
 export type Brand = {
   id: string;
   name: string;
   slug: string;
   category: BrandCategory;
-  /** Determines /discounts vs /earn; earn offers (e.g. rent cashback) live under /earn */
+  /** Determines landing page route: /discounts/[category]/[slug] vs /earn/[slug] */
   section: BrandSection;
   logoPath: string;
   overview: string;
   offerSummary: string;
+  /** Short reward chip shown on offer cards (e.g. "£30 cash") */
   refereeReward: string;
-  /** Lower = better ROI, shown first on homepage */
+  /** Lower = shown first within its homepage section */
   rewardRank: number;
   referralLink?: string;
   referralCode?: string;
@@ -21,8 +24,10 @@ export type Brand = {
   brandUrl?: string;
   /** If set, brand is only shown when matching env var is truthy */
   featureFlag?: "gymshark";
-  /** Override for primary CTA button label (e.g. "Get £25 now!" for Ribbon) */
+  /** Primary CTA button label (e.g. "Get £25 now" for Ribbon) */
   primaryCtaLabel?: string;
+  /** Trustpilot page URL and star score (e.g. 4.4) */
+  trustpilot?: TrustpilotData;
   /** If true, suppress Navbar and Footer on standalone landing page */
   standaloneLayout?: boolean;
 };
@@ -38,14 +43,15 @@ export const ALL_BRANDS: Brand[] = [
     section: "earn",
     logoPath: "/lloyds_logo.svg",
     overview:
-      "Get £50 cash paid directly into your new Lloyds current account when you open one using my personal refer-a-friend link. No switching required — just open and keep the account for 7 days.",
+      "Open a Lloyds current account with my refer-a-friend link, keep it open for 7 days, and the £30 lands within 30 working days. FSCS-protected UK bank.",
     offerSummary:
-      "£50 cash paid into your new Lloyds current account within 30 working days.",
-    refereeReward: "£50 cash",
+      "£30 paid into your new current account — no switching needed.",
+    refereeReward: "£30 cash",
     rewardRank: 1,
+    // UPDATE EVERY 14 DAYS — referral links expire after 14 days
     referralLink:
-      "https://apply.lloydsbank.co.uk/sales-content/cwa/l/onboardpca/index-app.html?from=ob&webDirect=true&redesign=true&token=8kMtnCauQOuTJv7Erekd8QZQyYpdXlfw0yAKZua0puM=#/refer-friend",
-    primaryCtaLabel: "Claim £50 now",
+      "https://apply.lloydsbank.co.uk/sales-content/cwa/l/onboardpca/index-app.html?from=ob&webDirect=true&redesign=true&token=8kMtnCauQOuTJv7Erekd8SYVDBQRccq+vMEqUuZAxwk=#/refer-friend",
+    primaryCtaLabel: "Claim your £30",
     standaloneLayout: true,
   },
   {
@@ -56,13 +62,16 @@ export const ALL_BRANDS: Brand[] = [
     section: "earn",
     logoPath: "/ribbon_rewards_logo.webp",
     overview:
-      "Earn cashback on rent. Pay through Ribbon Rewards and collect points on a payment you’re already making.",
-    offerSummary:
-      "2,500 points (worth £25) when you pay rent for the first time.",
-    refereeReward: "2,500 points (worth £25)",
+      "You're paying rent anyway — route it through Ribbon Rewards and collect points on every payment. First payment earns 2,500 points, worth £25.",
+    offerSummary: "£25 in points the first time you pay rent through Ribbon.",
+    refereeReward: "£25 back",
     rewardRank: 2,
     referralLink: "https://www.ribbonrewards.io/?ref=KIAN63DB",
-    primaryCtaLabel: "Get £25 now!",
+    primaryCtaLabel: "Get £25 now",
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/ribbonrewards.io",
+      score: 4.7,
+    },
   },
   {
     id: "virgin-media",
@@ -72,13 +81,13 @@ export const ALL_BRANDS: Brand[] = [
     section: "earn",
     logoPath: "/virgin_media_logo.png",
     overview:
-      "Get rewarded when friends sign up to broadband, TV, or mobile. A premium referral journey with clear milestones.",
+      "Virgin's refer-a-friend pays £50 once your qualifying order goes through — a clear, milestone-based journey from order to payout.",
     offerSummary:
-      "Get £50 cash when your referred friend places a qualifying order.",
-    refereeReward: "£50 cash reward",
+      "£50 cash when you sign up to broadband, TV or mobile through a referral.",
+    refereeReward: "£50 cash",
     rewardRank: 3,
     brandUrl: "https://www.virginmedia.com/refer-a-friend",
-    primaryCtaLabel: "Claim £50 reward",
+    primaryCtaLabel: "See how to claim £50",
   },
   {
     id: "airtime",
@@ -88,12 +97,16 @@ export const ALL_BRANDS: Brand[] = [
     section: "discounts",
     logoPath: "/airtime_logo.png",
     overview:
-      "Cashback on everyday spending by linking your accounts. Works in-app and tracks eligible purchases automatically—no need to rely on tracking cookies.",
+      "Link your accounts and Airtime tracks eligible purchases automatically — cashback on everyday spending without relying on tracking cookies.",
     offerSummary: "£2 credit after spending £5 in your first 7 days.",
-    refereeReward: "£2 credit after £5 spend in first 7 days",
-    rewardRank: 2,
+    refereeReward: "£2 credit",
+    rewardRank: 4,
     referralCode: "UKV9QCKE",
     brandUrl: "https://airtime.app",
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/airtimerewards.co.uk",
+      score: 3.6,
+    },
   },
   {
     id: "exhale-coffee",
@@ -103,11 +116,16 @@ export const ALL_BRANDS: Brand[] = [
     section: "discounts",
     logoPath: "/exhale_logo.png",
     overview:
-      "Healthy coffee subscription delivered to your door. Lower caffeine, fewer jitters and a better taste.",
-    offerSummary: "50% off your first subscription order.",
-    refereeReward: "50% off first order",
-    rewardRank: 3,
+      "Coffee grown for health — lower caffeine, fewer jitters, better taste, delivered to your door on a flexible subscription.",
+    offerSummary: "Half price on your first subscription order of healthy coffee.",
+    refereeReward: "50% off",
+    rewardRank: 5,
     referralLink: "https://rc-refer.com/kiana-2esl05",
+    primaryCtaLabel: "Get 50% off",
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/exhalecoffee.com",
+      score: 4.8,
+    },
   },
   {
     id: "emma-budgeting",
@@ -117,11 +135,17 @@ export const ALL_BRANDS: Brand[] = [
     section: "discounts",
     logoPath: "/emma_logo.png",
     overview:
-      "Budgeting app that auto-categorises spending, tracks subscriptions and upcoming payments, and gives you a clear view across all your accounts.",
-    offerSummary: "30-day free trial when you sign up via my link.",
-    refereeReward: "30-day free trial",
-    rewardRank: 4,
+      "Emma auto-categorises your spending, flags forgotten subscriptions and upcoming payments, and gives you one clear view across every account.",
+    offerSummary:
+      "30 days of Emma free — see all your accounts and subscriptions in one place.",
+    refereeReward: "Free month",
+    rewardRank: 6,
     referralLink: "https://emma.to/kianacox",
+    primaryCtaLabel: "Start free trial",
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/emma-app.com",
+      score: 4.4,
+    },
   },
   {
     id: "myprotein",
@@ -131,12 +155,17 @@ export const ALL_BRANDS: Brand[] = [
     section: "discounts",
     logoPath: "/my_protein_logo.webp",
     overview:
-      "Sports nutrition and protein with strong gluten-free options, including whey isolate that works in porridge and shakes.",
+      "Sports nutrition with strong gluten-free options, including whey isolate that works in porridge and shakes.",
     offerSummary: "£15 off any order over £45 with my referral link.",
-    refereeReward: "£15 off orders over £45",
-    rewardRank: 5,
+    refereeReward: "£15 off",
+    rewardRank: 7,
     referralLink:
       "https://www.myprotein.com/referrals.list?applyCode=KIANA-R2B",
+    primaryCtaLabel: "Get £15 off",
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/myprotein.com",
+      score: 4.4,
+    },
   },
   {
     id: "runna",
@@ -146,12 +175,16 @@ export const ALL_BRANDS: Brand[] = [
     section: "discounts",
     logoPath: "/runna_logo.png",
     overview:
-      "Running app with structured plans for 5K, 10K, Hyrox and more. Guides you from beginner to regular runner.",
-    offerSummary: "2 weeks of Runna Premium free with my referral code.",
-    refereeReward: "2 weeks free premium",
-    rewardRank: 6,
+      "Structured running plans for 5K, 10K, Hyrox and more — Runna guides you from your first run to race day.",
+    offerSummary: "Two weeks of Runna Premium free with my code.",
+    refereeReward: "2 wks free",
+    rewardRank: 8,
     referralCode: "RUNNA1WGGS6T",
     brandUrl: "https://www.runna.com",
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/runna.com",
+      score: 4.0,
+    },
   },
   {
     id: "provocan",
@@ -161,11 +194,16 @@ export const ALL_BRANDS: Brand[] = [
     section: "discounts",
     logoPath: "/provocan_logo.jpg",
     overview:
-      "Full-spectrum CBD oils and gummies, independently tested. A more affordable option for quality CBD.",
+      "Full-spectrum CBD oils and gummies, independently tested — a more affordable route to quality CBD.",
     offerSummary: "£10 off when you spend £45 or more.",
-    refereeReward: "£10 off when you spend £45+",
-    rewardRank: 7,
+    refereeReward: "£10 off",
+    rewardRank: 9,
     referralLink: "https://prz.io/4groamaSO",
+    primaryCtaLabel: "Get £10 off",
+    trustpilot: {
+      url: "https://uk.trustpilot.com/review/provacan.co.uk",
+      score: 4.6,
+    },
   },
   {
     id: "gymshark",
@@ -177,12 +215,14 @@ export const ALL_BRANDS: Brand[] = [
     overview: "Sportswear and gym wear for training and everyday use.",
     offerSummary:
       "£10 off when new customers place their first order of £50 or more.",
-    refereeReward: "£10 off first order of £50+",
-    rewardRank: 8,
+    refereeReward: "£10 off",
+    rewardRank: 10,
     referralLink: "", // pending
     featureFlag: "gymshark",
   },
 ];
+
+export const FEATURED_BRAND_SLUG = "lloyds-bank";
 
 export function getVisibleBrands(): Brand[] {
   return ALL_BRANDS.filter((b) => {
@@ -191,16 +231,24 @@ export function getVisibleBrands(): Brand[] {
   });
 }
 
+export function getFeaturedBrand(): Brand {
+  const brand = ALL_BRANDS.find((b) => b.slug === FEATURED_BRAND_SLUG);
+  if (!brand) throw new Error(`Featured brand ${FEATURED_BRAND_SLUG} missing`);
+  return brand;
+}
+
+export function getBrandsByCategory(category: BrandCategory): Brand[] {
+  return getVisibleBrands()
+    .filter((b) => b.category === category)
+    .sort((a, b) => a.rewardRank - b.rewardRank);
+}
+
 export function getDiscountBrands(): Brand[] {
   return getVisibleBrands().filter((b) => b.section === "discounts");
 }
 
 export function getEarnBrands(): Brand[] {
   return getVisibleBrands().filter((b) => b.section === "earn");
-}
-
-export function getBrandsByCategory(category: BrandCategory): Brand[] {
-  return getDiscountBrands().filter((b) => b.category === category);
 }
 
 export function getBrandBySlug(
@@ -239,14 +287,44 @@ export function getEarnSlugs(): string[] {
   return getEarnBrands().map((b) => b.slug);
 }
 
-export function getAllSlugs(): { category: BrandCategory; slug: string }[] {
-  return getDiscountSlugs();
+/** Landing page URL for a brand */
+export function getBrandLandingHref(brand: Brand): string {
+  return brand.section === "earn"
+    ? `/earn/${brand.slug}`
+    : `/discounts/${brand.category}/${brand.slug}`;
 }
+
+export type HomeSection = {
+  id: BrandCategory;
+  title: string;
+  blurb: string;
+};
+
+/** Homepage section order and copy */
+export const HOME_SECTIONS: HomeSection[] = [
+  {
+    id: "bills",
+    title: "Bills & home",
+    blurb:
+      "Money back on payments you're already making — rent, broadband and everyday spending.",
+  },
+  {
+    id: "health",
+    title: "Health & fitness",
+    blurb: "Discounts on the coffee, protein and training apps I actually use.",
+  },
+  {
+    id: "finance",
+    title: "Money & banking",
+    blurb:
+      "Cash for opening an account, and a clearer view of where your money goes.",
+  },
+];
 
 export const CATEGORIES: BrandCategory[] = ["bills", "health", "finance"];
 
 export const CATEGORY_LABELS: Record<BrandCategory, string> = {
-  bills: "Bills",
-  health: "Health",
-  finance: "Finance",
+  bills: "Bills & home",
+  health: "Health & fitness",
+  finance: "Money & banking",
 };

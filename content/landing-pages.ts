@@ -606,32 +606,32 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     ],
   },
   "lloyds-bank": {
-    seoTitle: "Get £50 free — Lloyds Bank refer-a-friend | Personal Referral Hub",
+    seoTitle: "Get £30 free — Lloyds Bank refer-a-friend | Personal Referral Hub",
     seoDescription:
-      "Use my personal Lloyds Bank refer-a-friend link to open a new current account and earn £50 cash within 30 days. FCA-regulated, takes 10 minutes, no switching required.",
+      "Use my personal Lloyds Bank refer-a-friend link to open a new current account and earn £30 cash within 30 days. FCA-regulated, takes 10 minutes, no switching required.",
     keywords: [
       "lloyds refer a friend",
-      "lloyds £50 bonus",
+      "lloyds £30 bonus",
       "lloyds current account bonus",
       "club lloyds referral",
       "bank account bonus uk",
       "lloyds referral link",
     ],
     whyIUseIt:
-      "Lloyds pay £50 directly into your new current account within 30 working days of opening it. No switching required — just open the account in your sole name and keep it open for 7 days. It takes about 10 minutes online and the money lands automatically.",
+      "Lloyds pay £30 directly into your new current account within 30 working days of opening it. No switching required — just open the account in your sole name and keep it open for 7 days. It takes about 10 minutes online and the money lands automatically.",
     howItWorks:
-      "Use my referral link to open a qualifying Lloyds current account in your sole name. Keep it open for at least 7 days, and the £50 is credited within 30 working days.",
-    whatDoIGet: "£50 into my existing Lloyds account for each successful referral.",
+      "Use my referral link to open a qualifying Lloyds current account in your sole name. Keep it open for at least 7 days, and the £30 is credited within 30 working days.",
+    whatDoIGet: "£30 into my existing Lloyds account for each successful referral.",
     disclaimer:
-      "This is a personal referral page run by an individual Lloyds customer. It is not affiliated with, endorsed by, or operated by Lloyds Bank plc. When you open a qualifying account using my link, both you and I receive £50 under Lloyds’ standard refer-a-friend programme. Terms set by Lloyds and may change.",
+      "This is a personal referral page run by an individual Lloyds customer. It is not affiliated with, endorsed by, or operated by Lloyds Bank plc. When you open a qualifying account using my link, both you and I receive £30 under Lloyds’ standard refer-a-friend programme. Terms set by Lloyds and may change.",
     faq: [
       {
-        question: "How long does the £50 payment take?",
+        question: "How long does the £30 payment take?",
         answer:
-          "Lloyds pays the £50 as a cash credit into your new account within 30 working days of you opening it. The clock starts when your account is fully open and you’ve kept it open for the required 7-day minimum.",
+          "Lloyds pays the £30 as a cash credit into your new account within 30 working days of you opening it. The clock starts when your account is fully open and you’ve kept it open for the required 7-day minimum.",
       },
       {
-        question: "Is the £50 taxable?",
+        question: "Is the £30 taxable?",
         answer:
           "Cash incentives like this are generally not classed as taxable income for most UK personal customers. That said, tax treatment depends on your personal circumstances and HMRC rules can change. If you’re unsure — particularly if you’re self-employed or a higher-rate taxpayer — check HMRC guidance or speak to a tax adviser. I can’t give tax advice.",
       },
