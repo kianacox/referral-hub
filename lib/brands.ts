@@ -48,7 +48,7 @@ export const ALL_BRANDS: Brand[] = [
       "£30 paid into your new current account — no switching needed.",
     refereeReward: "£30 cash",
     rewardRank: 1,
-    // UPDATE EVERY 30 DAYS — Lloyds referral links expire after 30 days
+    // UPDATE EVERY 14 DAYS — referral links expire after 14 days
     referralLink:
       "https://apply.lloydsbank.co.uk/sales-content/cwa/l/onboardpca/index-app.html?from=ob&webDirect=true&redesign=true&token=8kMtnCauQOuTJv7Erekd8SYVDBQRccq+vMEqUuZAxwk=#/refer-friend",
     primaryCtaLabel: "Claim your £30",
