@@ -40,6 +40,22 @@ export function trackBrandTrustpilotClick(brand: string) {
   sendEvent(eventNameForBrand(brand, "trustpilot_click"), { brand });
 }
 
+/** Where on a landing page the "more offers" prompt was clicked. */
+export type MoreOffersPlacement = "nav" | "sticky_bar";
+
+/**
+ * Cross-sell interest on brand landing pages.
+ * Deliberately not brand-prefixed: the question is how many readers want more offers
+ * across the whole site, so one event name keeps the total in a single GA4 report.
+ * Segment by the `brand` and `placement` params.
+ */
+export function trackMoreOffersClick(
+  brandSlug: string,
+  placement: MoreOffersPlacement,
+) {
+  sendEvent("more_offers_click", { brand: brandSlug, placement });
+}
+
 export function trackRibbonSocialProofClick() {
   sendEvent("ribbon_social_proof_click", { brand: "ribbon-rewards" });
 }

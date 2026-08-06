@@ -2,33 +2,81 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getEarnBrandBySlug, HOME_SECTIONS } from "@/lib/brands";
+import {
+  countOtherOffers,
+  getBrandByPathname,
+  HOME_SECTIONS,
+} from "@/lib/brands";
+import { trackMoreOffersClick } from "@/lib/analytics";
 import { SITE_TAGLINE } from "@/constants/copy";
+import { MoreOffersBar } from "@/components/layout/MoreOffersBar";
 
 const chips = [
   { label: "All offers", href: "/#top" },
   ...HOME_SECTIONS.map((s) => ({ label: s.title, href: `/#${s.id}` })),
 ];
 
+const headerClass =
+  "sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--header-footer-bg)]";
+const navClass = "mx-auto flex h-[52px] max-w-6xl items-center justify-between px-4";
+
+function Wordmark() {
+  return (
+    <Link href="/#top" className="flex items-center gap-2.5 no-underline">
+      <span
+        aria-hidden
+        className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--accent)] font-[family-name:var(--font-serif)] text-base text-white"
+      >
+        R
+      </span>
+      <span className="text-[15px] font-semibold text-[var(--foreground)]">
+        Referral Hub
+      </span>
+    </Link>
+  );
+}
+
 export function Navbar() {
   const pathname = usePathname();
+  const landingBrand = getBrandByPathname(pathname);
 
-  // Suppress chrome on standalone earn landing pages (e.g. Lloyds)
-  const earnSlug = pathname.startsWith("/earn/") ? pathname.split("/")[2] : null;
-  const brand = earnSlug ? getEarnBrandBySlug(earnSlug) : null;
-  if (brand?.standaloneLayout) return null;
+  // Brand landing pages get the quiet single-row nav plus a sticky offers bar
+  // (design 1c) — nothing competes with the offer above the fold.
+  if (landingBrand) {
+    const offersBar = (
+      <MoreOffersBar
+        brandSlug={landingBrand.slug}
+        otherOfferCount={countOtherOffers(landingBrand.slug)}
+      />
+    );
+
+    // Standalone pages ship their own sticky header — a second one would collide,
+    // so they get the cross-sell bar only.
+    if (landingBrand.standaloneLayout) return offersBar;
+
+    return (
+      <>
+        <header className={headerClass}>
+          <nav className={navClass}>
+            <Wordmark />
+            <Link
+              href="/#top"
+              onClick={() => trackMoreOffersClick(landingBrand.slug, "nav")}
+              className="text-[13px] font-medium text-[var(--muted)] no-underline transition-colors hover:text-[var(--accent)]"
+            >
+              All offers →
+            </Link>
+          </nav>
+        </header>
+        {offersBar}
+      </>
+    );
+  }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--header-footer-bg)]">
-      <nav className="mx-auto flex h-[52px] max-w-6xl items-center justify-between px-4">
-        <Link href="/#top" className="flex items-center gap-2.5 no-underline">
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--accent)] font-[family-name:var(--font-serif)] text-base text-white">
-            R
-          </span>
-          <span className="text-[15px] font-semibold text-[var(--foreground)]">
-            Referral Hub
-          </span>
-        </Link>
+    <header className={headerClass}>
+      <nav className={navClass}>
+        <Wordmark />
         <span className="hidden text-xs text-[var(--muted)] sm:inline">
           {SITE_TAGLINE}
         </span>

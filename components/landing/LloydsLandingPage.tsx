@@ -387,6 +387,8 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
         .lloyds-nav-cta {
           display: none;
         }
+        /* Lift the more-offers bar above this page's mobile sticky CTA */
+        :root { --more-offers-bar-offset: 80px; }
         @media (min-width: 720px) {
           .lloyds-nav-cta { display: inline-block; }
         }
@@ -400,6 +402,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
           .lloyds-elig-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .lloyds-footer-grid { grid-template-columns: 2fr 1fr 1fr !important; }
           .lloyds-sticky-cta { display: none !important; }
+          :root { --more-offers-bar-offset: 0px; }
           .lloyds-footer { padding-bottom: 64px !important; }
         }
         @media (min-width: 1000px) {

@@ -42,6 +42,38 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
+/* Sticky "more offers" bar on brand landing pages (design 1c).
+   Pages with their own mobile sticky CTA raise --more-offers-bar-offset so the
+   two bars stack instead of overlapping. */
+/* Reserve room so the bar never covers the end of the page. Only applies while
+   the bar is mounted, and grows the page rather than moving content. */
+body:has(.more-offers-bar) {
+  padding-bottom: 68px;
+}
+
+.more-offers-bar {
+  bottom: var(--more-offers-bar-offset, 0px);
+  box-shadow: 0 -8px 24px -12px rgba(0, 0, 0, 0.18);
+  animation: more-offers-bar-in 220ms ease-out;
+}
+
+@keyframes more-offers-bar-in {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .more-offers-bar {
+    animation: none;
+  }
+}
+
 /* Subtle radial spotlight top-center (faint green) on cream */
 .spotlight-bg {
   background:

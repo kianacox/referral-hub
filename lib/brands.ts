@@ -287,6 +287,27 @@ export function getEarnSlugs(): string[] {
   return getEarnBrands().map((b) => b.slug);
 }
 
+/**
+ * Resolves the brand whose landing page a pathname points at.
+ * Returns undefined for every other route (homepage, unknown slug, mismatched category).
+ */
+export function getBrandByPathname(pathname: string): Brand | undefined {
+  const segments = pathname.split("/").filter(Boolean);
+
+  if (segments[0] === "earn" && segments.length === 2) {
+    return getEarnBrandBySlug(segments[1]);
+  }
+  if (segments[0] === "discounts" && segments.length === 3) {
+    return getBrandBySlug(segments[1] as BrandCategory, segments[2]);
+  }
+  return undefined;
+}
+
+/** How many visible offers exist besides the one being viewed. Never hardcode this. */
+export function countOtherOffers(currentSlug?: string): number {
+  return getVisibleBrands().filter((b) => b.slug !== currentSlug).length;
+}
+
 /** Landing page URL for a brand */
 export function getBrandLandingHref(brand: Brand): string {
   return brand.section === "earn"
