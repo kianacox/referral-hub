@@ -384,12 +384,8 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
           background: ${COLORS.green50} !important;
           border-color: ${COLORS.green100} !important;
         }
-        .lloyds-nav-cta {
-          display: none;
-        }
-        @media (min-width: 720px) {
-          .lloyds-nav-cta { display: inline-block; }
-        }
+        /* Lift the more-offers bar above this page's mobile sticky CTA */
+        :root { --more-offers-bar-offset: 80px; }
         @media (min-width: 960px) {
           .lloyds-hero-grid { grid-template-columns: 1.1fr 0.9fr !important; gap: 80px !important; }
         }
@@ -400,6 +396,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
           .lloyds-elig-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .lloyds-footer-grid { grid-template-columns: 2fr 1fr 1fr !important; }
           .lloyds-sticky-cta { display: none !important; }
+          :root { --more-offers-bar-offset: 0px; }
           .lloyds-footer { padding-bottom: 64px !important; }
         }
         @media (min-width: 1000px) {
@@ -409,65 +406,6 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
         .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(.2,.8,.2,1), transform 0.7s cubic-bezier(.2,.8,.2,1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
       `}</style>
-
-      {/* ======== NAV ======== */}
-      <nav
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 50,
-          background: "rgba(250, 247, 242, 0.85)",
-          backdropFilter: "saturate(140%) blur(12px)",
-          WebkitBackdropFilter: "saturate(140%) blur(12px)",
-          borderBottom: `1px solid rgba(230, 226, 216, 0.6)`,
-        }}
-      >
-        <div
-          className="flex items-center justify-between"
-          style={{ padding: "16px 24px", maxWidth: 1180, margin: "0 auto" }}
-        >
-          <div
-            className="flex items-center"
-            style={{
-              fontFamily: "var(--font-fraunces), Georgia, serif",
-              fontWeight: 600,
-              fontSize: "1.15rem",
-              color: COLORS.green800,
-              gap: 10,
-            }}
-          >
-            <span
-              style={{
-                width: 10,
-                height: 10,
-                borderRadius: "50%",
-                background: COLORS.green700,
-                boxShadow: `0 0 0 4px ${COLORS.green100}`,
-                display: "inline-block",
-                flexShrink: 0,
-              }}
-            />
-            <span>The £30 Hub</span>
-          </div>
-          <a
-            href="#claim"
-            className="lloyds-nav-cta"
-            onClick={handleCtaClick}
-            style={{
-              background: COLORS.green700,
-              color: "white",
-              padding: "10px 20px",
-              borderRadius: 999,
-              fontWeight: 600,
-              fontSize: "0.92rem",
-              textDecoration: "none",
-              transition: "all 0.2s ease",
-            }}
-          >
-            Claim £30 →
-          </a>
-        </div>
-      </nav>
 
       {/* ======== HERO ======== */}
       <header
@@ -876,7 +814,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                   >
                     £
                   </span>
-                  50
+                  30
                 </div>
 
                 {/* Bottom row */}

@@ -1596,10 +1596,12 @@ export function VirginMediaLandingPage({ brand: _brand, content }: VirginMediaLa
         <div className="sr-only">{content.seoTitle}</div>
       </div>
 
-      {/* Hide mobile sticky CTA on md+ */}
+      {/* Hide mobile sticky CTA on md+; below that, lift the more-offers bar above it */}
       <style>{`
+        :root { --more-offers-bar-offset: 84px; }
         @media (min-width: 768px) {
           .vm-sticky-cta { display: none !important; }
+          :root { --more-offers-bar-offset: 0px; }
         }
       `}</style>
     </>

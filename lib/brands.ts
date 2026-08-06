@@ -28,7 +28,7 @@ export type Brand = {
   primaryCtaLabel?: string;
   /** Trustpilot page URL and star score (e.g. 4.4) */
   trustpilot?: TrustpilotData;
-  /** If true, suppress Navbar and Footer on standalone landing page */
+  /** If true, the page ships its own footer, so the shared Footer is suppressed */
   standaloneLayout?: boolean;
 };
 
@@ -285,6 +285,27 @@ export function getDiscountSlugs(): {
 /** Slugs for /earn/[slug] static generation */
 export function getEarnSlugs(): string[] {
   return getEarnBrands().map((b) => b.slug);
+}
+
+/**
+ * Resolves the brand whose landing page a pathname points at.
+ * Returns undefined for every other route (homepage, unknown slug, mismatched category).
+ */
+export function getBrandByPathname(pathname: string): Brand | undefined {
+  const segments = pathname.split("/").filter(Boolean);
+
+  if (segments[0] === "earn" && segments.length === 2) {
+    return getEarnBrandBySlug(segments[1]);
+  }
+  if (segments[0] === "discounts" && segments.length === 3) {
+    return getBrandBySlug(segments[1] as BrandCategory, segments[2]);
+  }
+  return undefined;
+}
+
+/** How many visible offers exist besides the one being viewed. Never hardcode this. */
+export function countOtherOffers(currentSlug?: string): number {
+  return getVisibleBrands().filter((b) => b.slug !== currentSlug).length;
 }
 
 /** Landing page URL for a brand */
