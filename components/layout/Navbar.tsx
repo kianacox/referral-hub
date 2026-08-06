@@ -43,17 +43,6 @@ export function Navbar() {
   // Brand landing pages get the quiet single-row nav plus a sticky offers bar
   // (design 1c) — nothing competes with the offer above the fold.
   if (landingBrand) {
-    const offersBar = (
-      <MoreOffersBar
-        brandSlug={landingBrand.slug}
-        otherOfferCount={countOtherOffers(landingBrand.slug)}
-      />
-    );
-
-    // Standalone pages ship their own sticky header — a second one would collide,
-    // so they get the cross-sell bar only.
-    if (landingBrand.standaloneLayout) return offersBar;
-
     return (
       <>
         <header className={headerClass}>
@@ -68,7 +57,10 @@ export function Navbar() {
             </Link>
           </nav>
         </header>
-        {offersBar}
+        <MoreOffersBar
+          brandSlug={landingBrand.slug}
+          otherOfferCount={countOtherOffers(landingBrand.slug)}
+        />
       </>
     );
   }

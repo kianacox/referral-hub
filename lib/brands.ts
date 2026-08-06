@@ -28,7 +28,7 @@ export type Brand = {
   primaryCtaLabel?: string;
   /** Trustpilot page URL and star score (e.g. 4.4) */
   trustpilot?: TrustpilotData;
-  /** If true, suppress Navbar and Footer on standalone landing page */
+  /** If true, the page ships its own footer, so the shared Footer is suppressed */
   standaloneLayout?: boolean;
 };
 

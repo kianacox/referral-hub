@@ -83,11 +83,10 @@ describe("Navbar on a brand landing page", () => {
     expect(trackMoreOffersClick).toHaveBeenCalledWith("ribbon-rewards", "nav");
   });
 
-  it("gives standalone pages the offers bar without a second header", () => {
+  it("renders on pages that ship their own footer", () => {
     mockPathname.mockReturnValue("/earn/lloyds-bank");
     render(<Navbar />);
-    expect(screen.queryByRole("banner")).toBeNull();
-    expect(screen.queryByRole("link", { name: /All offers/ })).toBeNull();
+    expect(screen.getByRole("link", { name: /All offers/ })).toBeInTheDocument();
 
     window.scrollY = 401;
     fireEvent.scroll(window);
