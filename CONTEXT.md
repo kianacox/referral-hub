@@ -1,6 +1,12 @@
-# Ubiquitous Language
+# Context: referral-hub
 
-Shared vocabulary for this repo. Developers and LLMs should use these terms precisely.
+Domain context and ubiquitous language for this repo. Developers and LLMs should use these terms precisely.
+
+## Purpose
+
+`referral-hub` publishes curated referral offers and SEO landing pages for partner brands, split into two flows: `earn` (ongoing cashback/points) and `discounts` (one-time sign-up offers).
+
+## Glossary
 
 ---
 
