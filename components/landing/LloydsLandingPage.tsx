@@ -879,7 +879,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                   >
                     £
                   </span>
-                  50
+                  30
                 </div>
 
                 {/* Bottom row */}
