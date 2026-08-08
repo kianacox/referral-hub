@@ -86,8 +86,9 @@ export const ALL_BRANDS: Brand[] = [
       "£50 cash when you sign up to broadband, TV or mobile through a referral.",
     refereeReward: "£50 cash",
     rewardRank: 3,
-    brandUrl: "https://www.virginmedia.com/refer-a-friend",
-    primaryCtaLabel: "See how to claim £50",
+    referralLink: "https://aklam.io/izBRNjvv",
+    brandUrl: "https://www.virginmedia.com/help/refer-a-friend",
+    primaryCtaLabel: "Claim £50 now",
   },
   {
     id: "airtime",
