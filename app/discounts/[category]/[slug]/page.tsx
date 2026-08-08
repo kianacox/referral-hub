@@ -1,11 +1,25 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type React from "react";
 import { getBrandBySlug, getDiscountSlugs } from "@/lib/brands";
-import type { BrandCategory } from "@/lib/brands";
+import type { Brand, BrandCategory } from "@/lib/brands";
 import { LANDING_PAGE_CONTENT } from "@/content/landing-pages";
+import type { LandingPageContent } from "@/content/landing-pages";
 import { buildFaqJsonLd } from "@/lib/seo";
 import { LandingPageTemplate } from "@/components/landing/LandingPageTemplate";
 import { ExhaleLandingPage } from "@/components/landing/ExhaleLandingPage";
+import { AirtimeLandingPage } from "@/components/landing/AirtimeLandingPage";
+
+type DiscountPageComponent = React.ComponentType<{
+  brand: Brand;
+  content: LandingPageContent;
+}>;
+
+/** Brands with a bespoke page; everything else falls back to LandingPageTemplate. */
+const DISCOUNT_PAGE_REGISTRY: Record<string, DiscountPageComponent> = {
+  "exhale-coffee": ExhaleLandingPage,
+  airtime: AirtimeLandingPage,
+};
 
 type PageProps = {
   params: Promise<{ category: string; slug: string }>;
@@ -40,8 +54,7 @@ export default async function BrandLandingPage({ params }: PageProps) {
 
   if (!brand || !content) notFound();
 
-  const isExhale = slug === "exhale-coffee";
-  const PageContent = isExhale ? ExhaleLandingPage : LandingPageTemplate;
+  const PageContent = DISCOUNT_PAGE_REGISTRY[slug] ?? LandingPageTemplate;
 
   const productJsonLd = {
     "@context": "https://schema.org",
