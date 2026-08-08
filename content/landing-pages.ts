@@ -589,19 +589,29 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     },
     faq: [
       {
-        question: "How do I get £2 credit with Airtime?",
+        question: "Does it cost anything?",
         answer:
-          "Sign up to Airtime using the referral code on this page. Once you spend £5 within your first 7 days you receive £2 credit on your Airtime account.",
+          "No. Airtime is free — link up to 10 Visa or Mastercard debit or credit cards and cashback tracks automatically when you shop at partner retailers.",
       },
       {
-        question: "What is Airtime?",
+        question: "How do I actually get the money?",
         answer:
-          "Airtime is a cashback app that links to your spending accounts and automatically applies cashback to eligible purchases. You can also buy vouchers (e.g. for retailers) through Airtime for extra cashback. Balance can be used towards your phone bill.",
+          "Once your cleared balance reaches £10, redeem it in the app and it's applied as credit against your next mobile bill — works with Pay Monthly and Pay As You Go. (The optional Airtime Up tier, ~£1.99/month, lowers the minimum to £5 and clears cashback in a day.)",
       },
       {
-        question: "How does Airtime cashback work?",
+        question: "How long does cashback take to appear?",
         answer:
-          "You link your bank or payment accounts to Airtime. When you make eligible purchases, Airtime tracks them and adds cashback to your account. Unlike some cashback sites, it works in-app and does not rely on clicking through from a specific link or cookie tracking.",
+          "Purchases show up as 'tracked' within a couple of days, then move to 'cleared' once the retailer confirms — typically up to 90 days.",
+      },
+      {
+        question: "Can I stack it with other cashback?",
+        answer:
+          "Yes. Airtime is card-linked, so it works alongside store loyalty schemes and click-through cashback sites like TopCashback or Quidco on the same purchase.",
+      },
+      {
+        question: "How does the £2 bonus work?",
+        answer:
+          "Sign up with code UKV9QCKE, then spend £5 at any partner retailer within your first 7 days. The £2 bonus credit is added to your balance automatically.",
       },
     ],
   },
