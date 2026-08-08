@@ -4,7 +4,9 @@
 
 Production URL: `https://referral-hub.app`
 
-Tests run under Vitest via `npm test` (there is no watch script). `npm run lint` invokes `eslint` with no arguments.
+Tests run under Vitest via `npm test` (there is no watch script). `npm run lint` runs `eslint --max-warnings=0`; `npm run typecheck` runs `tsc --noEmit`.
+
+Husky hooks enforce both: `pre-commit` runs lint then typecheck, and `commit-msg` runs commitlint. Every commit message must follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) — `type(optional-scope): subject`, types limited to build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test.
 
 ## Working agreements
 
