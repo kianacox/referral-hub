@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Geist, Geist_Mono, Instrument_Serif, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Geist, Geist_Mono, Instrument_Serif, Inter_Tight, JetBrains_Mono, Poppins } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { DisclaimerProvider } from "@/components/context/DisclaimerContext";
@@ -36,6 +36,12 @@ const fraunces = Fraunces({
   weight: ["400", "500", "600"],
 });
 
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["500", "600"],
+});
+
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono-jb",
   subsets: ["latin"],
@@ -64,7 +70,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable} ${fraunces.variable} spotlight-bg flex min-h-screen flex-col antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${poppins.variable} spotlight-bg flex min-h-screen flex-col antialiased`}
       >
         <GoogleAnalytics />
         <Analytics />
