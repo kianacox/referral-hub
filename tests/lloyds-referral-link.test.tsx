@@ -14,9 +14,9 @@ vi.mock("next/font/google", () => ({
   Fraunces: () => ({ variable: "--font-fraunces", className: "fraunces" }),
 }));
 
-// Rotated 2026-09-07. UPDATE EVERY 14 DAYS — referral links expire after 14 days.
+// Rotated 2026-10-30. UPDATE EVERY 14 DAYS — referral links expire after 14 days.
 const LLOYDS_REFERRAL_LINK =
-  "https://apply.lloydsbank.co.uk/sales-content/cwa/l/onboardpca/index-app.html?from=ob&webDirect=true&redesign=true&token=8kMtnCauQOuTJv7Erekd8QWuBd9PXFJKz+tT2/Ag5NE=#/refer-friend";
+  "https://apply.lloydsbank.co.uk/sales-content/cwa/l/onboardpca/index-app.html?from=ob&webDirect=true&redesign=true&token=8kMtnCauQOuTJv7Erekd8YDDERWEBxPhLs8VgGf2FBw=#/refer-friend";
 
 // jsdom has no IntersectionObserver; the page uses one for scroll reveals
 vi.stubGlobal(
@@ -50,7 +50,7 @@ describe("Lloyds referral link", () => {
     expect(url.hash).toBe("#/refer-friend");
     // '+' and '/' are literal token characters, so read the raw query string
     expect(url.search).toContain(
-      "token=8kMtnCauQOuTJv7Erekd8QWuBd9PXFJKz+tT2/Ag5NE=",
+      "token=8kMtnCauQOuTJv7Erekd8YDDERWEBxPhLs8VgGf2FBw=",
     );
   });
 
