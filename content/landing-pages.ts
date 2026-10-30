@@ -667,4 +667,52 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       },
     ],
   },
+  klarna: {
+    seoTitle: "Klarna referral link UK: get up to £40 in cashback",
+    seoDescription:
+      "Use my Klarna invite link to join a Klarna membership and get up to £40 in cashback points: £6 on Everywhere, £13 on Plus, £25 on Premium or £40 on Max.",
+    keywords: [
+      "klarna referral link",
+      "klarna referral link uk",
+      "klarna invite link",
+      "klarna referral code",
+      "klarna membership referral",
+      "klarna sign up bonus",
+      "klarna cashback",
+    ],
+    // Not shown on the Klarna page; add a personal note if the page ever uses it.
+    whyIUseIt: "",
+    howItWorks:
+      "Open my invite link, choose a Klarna membership in the app and complete the steps shown in your invite. The reward is paid as Klarna cashback points.",
+    whatDoIGet: "Klarna may reward me when you join through my invite link.",
+    disclaimer:
+      "Referral Hub is a personal site and isn’t affiliated with or endorsed by Klarna. Klarna Financial Services UK Limited is authorised and regulated by the Financial Conduct Authority. Membership fees apply; reward terms are set by Klarna and can change.",
+    faq: [
+      {
+        question: "How much is the Klarna referral reward?",
+        answer:
+          "It depends on the membership you choose: £6 for Everywhere, £13 for Plus, £25 for Premium and £40 for Max. Klarna sets the reward terms and can change them.",
+      },
+      {
+        question: "How is the reward paid?",
+        answer:
+          "As Klarna cashback points. You need a Klarna balance to redeem them, and you can follow the reward’s status in the Klarna app.",
+      },
+      {
+        question: "Can I cancel my membership?",
+        answer:
+          "Yes, any time in the Klarna app or through Klarna customer service. Your benefits stay active until the end of the billing cycle. Premium and Max include a metal card, and a fee applies if you cancel those within the first six months.",
+      },
+      {
+        question: "Who can sign up?",
+        answer:
+          "Anyone 18 or over who lives where Klarna membership is available, such as the UK, and has a valid payment method.",
+      },
+      {
+        question: "Is this an official Klarna page?",
+        answer:
+          "No. It’s my personal referral page on Referral Hub. Klarna runs the sign-up and sets the reward terms.",
+      },
+    ],
+  },
 };

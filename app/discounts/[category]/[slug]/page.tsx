@@ -9,6 +9,7 @@ import { buildFaqJsonLd } from "@/lib/seo";
 import { LandingPageTemplate } from "@/components/landing/LandingPageTemplate";
 import { ExhaleLandingPage } from "@/components/landing/ExhaleLandingPage";
 import { AirtimeLandingPage } from "@/components/landing/AirtimeLandingPage";
+import { KlarnaLandingPage } from "@/components/landing/KlarnaLandingPage";
 
 type DiscountPageComponent = React.ComponentType<{
   brand: Brand;
@@ -19,6 +20,7 @@ type DiscountPageComponent = React.ComponentType<{
 const DISCOUNT_PAGE_REGISTRY: Record<string, DiscountPageComponent> = {
   "exhale-coffee": ExhaleLandingPage,
   airtime: AirtimeLandingPage,
+  klarna: KlarnaLandingPage,
 };
 
 type PageProps = {

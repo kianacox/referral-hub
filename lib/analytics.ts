@@ -20,8 +20,36 @@ function sendEvent(eventName: string, params?: Record<string, string>) {
   window.gtag("event", eventName, params);
 }
 
-export function trackProviderCtaClick(brandSlug: string) {
-  sendEvent(eventNameForBrand(brandSlug, "cta_click"), { brand: brandSlug });
+/** Which copy of a repeated CTA was used, for pages that show the same CTA more than once. */
+export type CtaPlacement = "hero" | "repeat_cta";
+
+export function trackProviderCtaClick(
+  brandSlug: string,
+  placement?: CtaPlacement,
+) {
+  sendEvent(eventNameForBrand(brandSlug, "cta_click"), {
+    brand: brandSlug,
+    ...(placement && { placement }),
+  });
+}
+
+/** The reader copied the referral link itself (as opposed to a code). */
+export function trackProviderLinkCopy(
+  brandSlug: string,
+  placement: CtaPlacement,
+) {
+  sendEvent(eventNameForBrand(brandSlug, "link_copy"), {
+    brand: brandSlug,
+    placement,
+  });
+}
+
+/** An FAQ answer was opened; shows which questions readers need answered before signing up. */
+export function trackProviderFaqOpen(brandSlug: string, question: string) {
+  sendEvent(eventNameForBrand(brandSlug, "faq_open"), {
+    brand: brandSlug,
+    question,
+  });
 }
 
 export function trackProviderCodeCopy(brandSlug: string) {

@@ -129,6 +129,22 @@ export const ALL_BRANDS: Brand[] = [
     },
   },
   {
+    id: "klarna",
+    name: "Klarna",
+    slug: "klarna",
+    category: "finance",
+    section: "discounts",
+    logoPath: "/klarna_logo.svg",
+    overview:
+      "Join a Klarna membership through my invite link and get a reward paid as Klarna cashback points — £6 on Everywhere up to £40 on Max.",
+    offerSummary:
+      "Up to £40 in cashback points when you join a Klarna membership.",
+    refereeReward: "Up to £40",
+    rewardRank: 6,
+    referralLink: "https://l.klarna.com/22XC/invite_WWkVC66J0KPFJS3Y",
+    primaryCtaLabel: "Get up to £40",
+  },
+  {
     id: "emma-budgeting",
     name: "Emma",
     slug: "emma-budgeting",
@@ -140,7 +156,7 @@ export const ALL_BRANDS: Brand[] = [
     offerSummary:
       "30 days of Emma free — see all your accounts and subscriptions in one place.",
     refereeReward: "Free month",
-    rewardRank: 6,
+    rewardRank: 7,
     referralLink: "https://emma.to/kianacox",
     primaryCtaLabel: "Start free trial",
     trustpilot: {
@@ -159,7 +175,7 @@ export const ALL_BRANDS: Brand[] = [
       "Sports nutrition with strong gluten-free options, including whey isolate that works in porridge and shakes.",
     offerSummary: "£15 off any order over £45 with my referral link.",
     refereeReward: "£15 off",
-    rewardRank: 7,
+    rewardRank: 8,
     referralLink:
       "https://www.myprotein.com/referrals.list?applyCode=KIANA-R2B",
     primaryCtaLabel: "Get £15 off",
@@ -179,7 +195,7 @@ export const ALL_BRANDS: Brand[] = [
       "Structured running plans for 5K, 10K, Hyrox and more — Runna guides you from your first run to race day.",
     offerSummary: "Two weeks of Runna Premium free with my code.",
     refereeReward: "2 wks free",
-    rewardRank: 8,
+    rewardRank: 9,
     referralCode: "RUNNA1WGGS6T",
     brandUrl: "https://www.runna.com",
     trustpilot: {
@@ -198,7 +214,7 @@ export const ALL_BRANDS: Brand[] = [
       "Full-spectrum CBD oils and gummies, independently tested — a more affordable route to quality CBD.",
     offerSummary: "£10 off when you spend £45 or more.",
     refereeReward: "£10 off",
-    rewardRank: 9,
+    rewardRank: 10,
     referralLink: "https://prz.io/4groamaSO",
     primaryCtaLabel: "Get £10 off",
     trustpilot: {
@@ -217,7 +233,7 @@ export const ALL_BRANDS: Brand[] = [
     offerSummary:
       "£10 off when new customers place their first order of £50 or more.",
     refereeReward: "£10 off",
-    rewardRank: 10,
+    rewardRank: 11,
     referralLink: "", // pending
     featureFlag: "gymshark",
   },
@@ -339,7 +355,7 @@ export const HOME_SECTIONS: HomeSection[] = [
     id: "finance",
     title: "Money & banking",
     blurb:
-      "Cash for opening an account, and a clearer view of where your money goes.",
+      "Cash for opening an account or joining a membership, and a clearer view of where your money goes.",
   },
 ];
 
