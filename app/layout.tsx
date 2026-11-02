@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Geist, Geist_Mono, Instrument_Serif, Inter_Tight, JetBrains_Mono, Poppins } from "next/font/google";
+import localFont from "next/font/local";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { DisclaimerProvider } from "@/components/context/DisclaimerContext";
@@ -8,44 +8,48 @@ import { Analytics } from "@vercel/analytics/next"
 
 import "./globals.css";
 
-const geistSans = Geist({
+const geistSans = localFont({
+  src: "./fonts/Geist-Variable.woff2",
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  weight: "100 900",
 });
 
-const geistMono = Geist_Mono({
+const geistMono = localFont({
+  src: "./fonts/GeistMono-Variable.woff2",
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "100 900",
 });
 
-const instrumentSerif = Instrument_Serif({
+const instrumentSerif = localFont({
+  src: "./fonts/InstrumentSerif-Regular.woff2",
   variable: "--font-serif",
-  subsets: ["latin"],
   weight: "400",
 });
 
-const interTight = Inter_Tight({
+const interTight = localFont({
+  src: "./fonts/InterTight-Variable.woff2",
   variable: "--font-sans-tight",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: "300 700",
 });
 
-const fraunces = Fraunces({
+const fraunces = localFont({
+  src: "./fonts/Fraunces-Variable.woff2",
   variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: "400 600",
 });
 
-const poppins = Poppins({
+const poppins = localFont({
+  src: [
+    { path: "./fonts/Poppins-Medium.woff2", weight: "500" },
+    { path: "./fonts/Poppins-SemiBold.woff2", weight: "600" },
+  ],
   variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["500", "600"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const jetbrainsMono = localFont({
+  src: "./fonts/JetBrainsMono-Variable.woff2",
   variable: "--font-mono-jb",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: "400 600",
 });
 
 export const metadata: Metadata = {

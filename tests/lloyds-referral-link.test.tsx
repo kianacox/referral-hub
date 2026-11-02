@@ -9,9 +9,9 @@ vi.mock("@/lib/analytics", () => ({
   trackProviderCtaClick: vi.fn(),
 }));
 
-// next/font/google returns objects with variable/className; mock at module level
-vi.mock("next/font/google", () => ({
-  Fraunces: () => ({ variable: "--font-fraunces", className: "fraunces" }),
+// next/font/local is a compile-time transform; return a stub at module level
+vi.mock("next/font/local", () => ({
+  default: () => ({ variable: "--font-local", className: "font-local" }),
 }));
 
 // Rotated 2026-10-30. UPDATE EVERY 14 DAYS — referral links expire after 14 days.
