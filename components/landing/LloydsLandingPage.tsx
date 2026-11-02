@@ -1,12 +1,16 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Fraunces } from "next/font/google";
+import localFont from "next/font/local";
 import type { Brand } from "@/lib/brands";
 import type { LandingPageContent } from "@/content/landing-pages";
 import { trackProviderCtaClick } from "@/lib/analytics";
 
-const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-fraunces" });
+const fraunces = localFont({
+  src: "../../app/fonts/Fraunces-Variable.woff2",
+  variable: "--font-fraunces",
+  weight: "100 900",
+});
 
 const COLORS = {
   green900: "#003827",

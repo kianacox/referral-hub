@@ -3,31 +3,32 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Playfair_Display, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { FaqAccordion } from "@/components/ui/FaqAccordion";
 import { trackProviderCtaClick, trackRibbonSocialProofClick } from "@/lib/analytics";
 import type { Brand } from "@/lib/brands";
 import type { LandingPageContent } from "@/content/landing-pages";
 
 // ── Fonts (module-level, statically analysed by Next.js) ──────────────────
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+const playfair = localFont({
+  src: [
+    { path: "../../app/fonts/PlayfairDisplay-Variable.woff2", weight: "400 700", style: "normal" },
+    { path: "../../app/fonts/PlayfairDisplay-Italic-Variable.woff2", weight: "400 700", style: "italic" },
+  ],
   variable: "--font-playfair",
   display: "swap",
 });
 
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+const interTight = localFont({
+  src: "../../app/fonts/InterTight-Variable.woff2",
+  weight: "300 700",
   variable: "--font-inter-tight",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+const jetbrainsMono = localFont({
+  src: "../../app/fonts/JetBrainsMono-Variable.woff2",
+  weight: "400 600",
   variable: "--font-jb-mono",
   display: "swap",
 });
