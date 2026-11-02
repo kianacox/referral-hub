@@ -46,6 +46,14 @@ const poppins = localFont({
   variable: "--font-poppins",
 });
 
+const barlowCondensed = localFont({
+  src: [
+    { path: "./fonts/BarlowCondensed-SemiBold.woff2", weight: "600" },
+    { path: "./fonts/BarlowCondensed-ExtraBold.woff2", weight: "800" },
+  ],
+  variable: "--font-barlow-condensed",
+});
+
 const jetbrainsMono = localFont({
   src: "./fonts/JetBrainsMono-Variable.woff2",
   variable: "--font-mono-jb",
@@ -74,7 +82,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${poppins.variable} spotlight-bg flex min-h-screen flex-col antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${poppins.variable} ${barlowCondensed.variable} spotlight-bg flex min-h-screen flex-col antialiased`}
       >
         <GoogleAnalytics />
         <Analytics />
