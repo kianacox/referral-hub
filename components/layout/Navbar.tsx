@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -23,12 +24,14 @@ const navClass = "mx-auto flex h-[52px] max-w-6xl items-center justify-between p
 function Wordmark() {
   return (
     <Link href="/#top" className="flex items-center gap-2.5 no-underline">
-      <span
-        aria-hidden
-        className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--accent)] font-[family-name:var(--font-serif)] text-base text-white"
-      >
-        R
-      </span>
+      <Image
+        src="/referral-hub-logo.png"
+        alt=""
+        width={28}
+        height={28}
+        priority
+        className="h-7 w-7"
+      />
       <span className="text-[15px] font-semibold text-[var(--foreground)]">
         Referral Hub
       </span>
