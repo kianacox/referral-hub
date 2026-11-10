@@ -50,7 +50,7 @@ export const ALL_BRANDS: Brand[] = [
     rewardRank: 1,
     // UPDATE EVERY 14 DAYS — referral links expire after 14 days
     referralLink:
-      "https://apply.lloydsbank.co.uk/sales-content/cwa/l/onboardpca/index-app.html?from=ob&webDirect=true&redesign=true&token=8kMtnCauQOuTJv7Erekd8YDDERWEBxPhLs8VgGf2FBw=#/refer-friend",
+      "https://apply.lloydsbank.co.uk/pca/onboard/lloyds/index-app.html?from=ob&channel=referrals&journeyType=raf&referralToken=8kMtnCauQOuTJv7Erekd8Xce2oCa9pBctvdQSozXGkU=",
     primaryCtaLabel: "Claim your £30",
     standaloneLayout: true,
   },

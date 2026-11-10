@@ -16,7 +16,7 @@ vi.mock("next/font/local", () => ({
 
 // Rotated 2026-10-30. UPDATE EVERY 14 DAYS — referral links expire after 14 days.
 const LLOYDS_REFERRAL_LINK =
-  "https://apply.lloydsbank.co.uk/sales-content/cwa/l/onboardpca/index-app.html?from=ob&webDirect=true&redesign=true&token=8kMtnCauQOuTJv7Erekd8YDDERWEBxPhLs8VgGf2FBw=#/refer-friend";
+  "https://apply.lloydsbank.co.uk/pca/onboard/lloyds/index-app.html?from=ob&channel=referrals&journeyType=raf&referralToken=8kMtnCauQOuTJv7Erekd8Xce2oCa9pBctvdQSozXGkU=";
 
 // jsdom has no IntersectionObserver; the page uses one for scroll reveals
 vi.stubGlobal(
@@ -47,10 +47,10 @@ describe("Lloyds referral link", () => {
   it("carries the token the refer-a-friend flow needs", () => {
     const url = new URL(brand!.referralLink!);
     expect(url.hostname).toBe("apply.lloydsbank.co.uk");
-    expect(url.hash).toBe("#/refer-friend");
+    expect(url.searchParams.get("journeyType")).toBe("raf");
     // '+' and '/' are literal token characters, so read the raw query string
     expect(url.search).toContain(
-      "token=8kMtnCauQOuTJv7Erekd8YDDERWEBxPhLs8VgGf2FBw=",
+      "referralToken=8kMtnCauQOuTJv7Erekd8Xce2oCa9pBctvdQSozXGkU=",
     );
   });
 
