@@ -335,6 +335,8 @@ export function getBrandLandingHref(brand: Brand): string {
 export type HomeSection = {
   id: BrandCategory;
   title: string;
+  /** One-word label for the mobile category tabs */
+  shortTitle: string;
   blurb: string;
 };
 
@@ -343,17 +345,20 @@ export const HOME_SECTIONS: HomeSection[] = [
   {
     id: "bills",
     title: "Bills & home",
+    shortTitle: "Bills",
     blurb:
       "Money back on payments you're already making — rent, broadband and everyday spending.",
   },
   {
     id: "health",
     title: "Health & fitness",
+    shortTitle: "Health",
     blurb: "Discounts on the coffee, protein and training apps I actually use.",
   },
   {
     id: "finance",
     title: "Money & banking",
+    shortTitle: "Money",
     blurb:
       "Cash for opening an account or joining a membership, and a clearer view of where your money goes.",
   },
@@ -366,3 +371,10 @@ export const CATEGORY_LABELS: Record<BrandCategory, string> = {
   health: "Health & fitness",
   finance: "Money & banking",
 };
+
+/** Reads a `?category=` value; anything unknown means "all offers". */
+export function toBrandCategory(
+  value: string | null | undefined,
+): BrandCategory | undefined {
+  return CATEGORIES.find((c) => c === value);
+}
