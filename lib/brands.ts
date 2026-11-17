@@ -145,6 +145,22 @@ export const ALL_BRANDS: Brand[] = [
     primaryCtaLabel: "Get up to £40",
   },
   {
+    id: "starling-bank",
+    name: "Starling Bank",
+    slug: "starling-bank",
+    category: "finance",
+    section: "discounts",
+    logoPath: "/starling_logo.svg",
+    overview:
+      "There's no referral link: enter my code during your Starling account application, then complete the reward conditions shown in the app (these could include setting up a Direct Debit).",
+    offerSummary:
+      "£25 when you open a Starling account with my code and meet the reward conditions.",
+    refereeReward: "£25 cash",
+    rewardRank: 7,
+    referralCode: "VVDCRGY",
+    brandUrl: "https://www.starlingbank.com/",
+  },
+  {
     id: "myprotein",
     name: "MyProtein",
     slug: "myprotein",

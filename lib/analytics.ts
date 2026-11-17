@@ -56,6 +56,19 @@ export function trackProviderCodeCopy(brandSlug: string) {
   sendEvent(eventNameForBrand(brandSlug, "code_copy"), { brand: brandSlug });
 }
 
+/** Non-signup outbound links on a landing page (terms, cited sources), kept out of cta_click. */
+export type OutboundTarget = "terms" | "dd_source";
+
+export function trackProviderOutboundClick(
+  brandSlug: string,
+  target: OutboundTarget,
+) {
+  sendEvent(eventNameForBrand(brandSlug, "outbound_click"), {
+    brand: brandSlug,
+    target,
+  });
+}
+
 export function trackProviderIosCtaClick(brandSlug: string) {
   sendEvent(eventNameForBrand(brandSlug, "ios_cta_click"), { brand: brandSlug });
 }
