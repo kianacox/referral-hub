@@ -1,0 +1,132 @@
+"use client";
+
+import Image from "next/image";
+import { ArrowUpRight, ChevronDown, ShieldCheck, Wallet, PiggyBank } from "lucide-react";
+import type { Brand } from "@/lib/brands";
+import type { LandingPageContent } from "@/content/landing-pages";
+import { TrackedCtaLink } from "@/components/landing/TrackedCtaLink";
+import { trackProviderOutboundClick } from "@/lib/analytics";
+import { CodeTicket } from "./CodeTicket";
+import {
+  DD_SOURCE_URL,
+  DIRECT_DEBITS,
+  DOES_NOT_COUNT,
+  ELIGIBILITY,
+  STEPS,
+  TERMS_URL,
+  WHY_STARLING,
+} from "./offer";
+
+const WHY_ICONS = [Wallet, PiggyBank, ShieldCheck];
+const linkClass = "font-medium text-[var(--accent-icon)] hover:text-[var(--accent)] hover:underline";
+
+/** Option A, "Express lane": everything a ready-to-go visitor needs above the fold; detail folded below. */
+export function StarlingOptionA({ brand, content }: { brand: Brand; content: LandingPageContent }) {
+  const code = brand.referralCode!;
+
+  return (
+    <div className="spotlight-bg">
+      <div className="mx-auto max-w-5xl px-4 pb-16 pt-10 sm:pt-16">
+        {/* Hero: offer left, action right */}
+        <section className="grid items-center gap-8 md:grid-cols-[1.1fr_1fr] md:gap-12">
+          <div>
+            <Image src={brand.logoPath} alt={`${brand.name} logo`} width={126} height={25} className="mb-6 h-6 w-auto" />
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent-icon)]">Starling referral code</p>
+            <h1 className="mt-2 text-4xl font-extrabold leading-[1.05] tracking-tight text-[var(--foreground)] sm:text-6xl">
+              Get <span className="text-[var(--accent)]">£25</span> for opening a Starling account
+            </h1>
+            <p className="mt-4 max-w-md text-lg text-[var(--body-text)]">
+              Free account, no switch needed. Enter the code when you apply and meet the conditions in the app.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-[var(--border)] bg-white p-5 shadow-[0_20px_50px_-20px_rgba(0,83,60,0.25)] sm:p-7">
+            <CodeTicket code={code} provider={brand.slug} />
+            <TrackedCtaLink
+              href={brand.brandUrl!}
+              provider={brand.slug}
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-[var(--cta-from)] to-[var(--cta-to)] px-6 py-4 text-lg font-semibold text-white shadow-md transition hover:brightness-110"
+            >
+              Open Starling <span className="sr-only">(starlingbank.com)</span>
+              <ArrowUpRight className="size-5" aria-hidden />
+            </TrackedCtaLink>
+            <p className="mt-3 text-center text-xs text-[var(--muted)]">There&apos;s no referral link. The code is the only way to claim.</p>
+          </div>
+        </section>
+
+        {/* Steps */}
+        <ol className="mt-14 grid gap-4 sm:grid-cols-3">
+          {STEPS.map((s, i) => (
+            <li key={s.title} className="relative rounded-2xl border border-[var(--border)] bg-white p-5">
+              <span className="text-5xl font-black text-[var(--accent)]/15">{i + 1}</span>
+              <h2 className="mt-1 font-bold text-[var(--foreground)]">{s.title}</h2>
+              <p className="mt-1 text-sm text-[var(--body-text)]">{s.body}</p>
+            </li>
+          ))}
+        </ol>
+
+        {/* Still deciding */}
+        <section className="mt-14 rounded-3xl bg-[#321E37] px-6 py-8 text-white sm:px-10">
+          <h2 className="text-2xl font-bold tracking-tight">Still deciding?</h2>
+          <p className="mt-1 text-white/75">You keep your current bank. Starling just sits alongside it.</p>
+          <ul className="mt-6 grid gap-5 sm:grid-cols-3">
+            {WHY_STARLING.map((w, i) => {
+              const Icon = WHY_ICONS[i];
+              return (
+                <li key={w.title}>
+                  <Icon className="size-6 text-[#9be3c5]" aria-hidden />
+                  <h3 className="mt-2 font-semibold">{w.title}</h3>
+                  <p className="text-sm text-white/75">{w.body}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+
+        {/* Fine print, folded */}
+        <section className="mx-auto mt-14 max-w-2xl">
+          <h2 className="text-xl font-bold text-[var(--foreground)]">The fine print</h2>
+          <div className="mt-4 divide-y divide-[var(--border)] rounded-2xl border border-[var(--border)] bg-white">
+            <Fold title="Who can use the code">
+              <ul className="list-disc space-y-1 pl-5">{ELIGIBILITY.map((e) => <li key={e}>{e}</li>)}</ul>
+            </Fold>
+            <Fold title="What doesn't count towards the conditions">{DOES_NOT_COUNT}</Fold>
+            <Fold title="Cheap Direct Debits, if you need one">
+              <ul className="space-y-1">
+                {DIRECT_DEBITS.map((d) => (
+                  <li key={d.name}>
+                    <span className="font-semibold text-[var(--foreground)]">{d.name}</span> · {d.detail}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2 text-sm">
+                Source:{" "}
+                <a href={DD_SOURCE_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackProviderOutboundClick(brand.slug, "dd_source")} className={linkClass}>
+                  beermoneyuk.co.uk bank-switching guide ↗
+                </a>
+              </p>
+            </Fold>
+            <Fold title="What I get">{content.whatDoIGet}</Fold>
+          </div>
+          <p className="mt-4 text-sm">
+            <a href={TERMS_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackProviderOutboundClick(brand.slug, "terms")} className={linkClass}>
+              Read the full Refer a Friend T&amp;Cs ↗
+            </a>
+          </p>
+        </section>
+      </div>
+    </div>
+  );
+}
+
+function Fold({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <details className="group px-5 [&_summary::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer items-center justify-between py-4 font-semibold text-[var(--foreground)]">
+        {title}
+        <ChevronDown className="size-5 text-[var(--muted)] transition group-open:rotate-180" aria-hidden />
+      </summary>
+      <div className="pb-4 text-[var(--body-text)]">{children}</div>
+    </details>
+  );
+}
