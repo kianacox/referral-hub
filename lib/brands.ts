@@ -145,26 +145,6 @@ export const ALL_BRANDS: Brand[] = [
     primaryCtaLabel: "Get up to £40",
   },
   {
-    id: "emma-budgeting",
-    name: "Emma",
-    slug: "emma-budgeting",
-    category: "finance",
-    section: "discounts",
-    logoPath: "/emma_logo.png",
-    overview:
-      "Emma auto-categorises your spending, flags forgotten subscriptions and upcoming payments, and gives you one clear view across every account.",
-    offerSummary:
-      "30 days of Emma free — see all your accounts and subscriptions in one place.",
-    refereeReward: "Free month",
-    rewardRank: 7,
-    referralLink: "https://emma.to/kianacox",
-    primaryCtaLabel: "Start free trial",
-    trustpilot: {
-      url: "https://uk.trustpilot.com/review/emma-app.com",
-      score: 4.4,
-    },
-  },
-  {
     id: "myprotein",
     name: "MyProtein",
     slug: "myprotein",
@@ -201,25 +181,6 @@ export const ALL_BRANDS: Brand[] = [
     trustpilot: {
       url: "https://uk.trustpilot.com/review/runna.com",
       score: 4.0,
-    },
-  },
-  {
-    id: "provocan",
-    name: "Provocan",
-    slug: "provocan",
-    category: "health",
-    section: "discounts",
-    logoPath: "/provocan_logo.jpg",
-    overview:
-      "Full-spectrum CBD oils and gummies, independently tested — a more affordable route to quality CBD.",
-    offerSummary: "£10 off when you spend £45 or more.",
-    refereeReward: "£10 off",
-    rewardRank: 10,
-    referralLink: "https://prz.io/4groamaSO",
-    primaryCtaLabel: "Get £10 off",
-    trustpilot: {
-      url: "https://uk.trustpilot.com/review/provacan.co.uk",
-      score: 4.6,
     },
   },
   {
