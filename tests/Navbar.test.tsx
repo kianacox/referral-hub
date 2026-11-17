@@ -4,10 +4,12 @@ import { Navbar } from "@/components/layout/Navbar";
 import { getVisibleBrands } from "@/lib/brands";
 
 const mockPathname = vi.fn();
+const mockSearchParams = vi.fn(() => new URLSearchParams());
 const trackMoreOffersClick = vi.fn();
 
 vi.mock("next/navigation", () => ({
   usePathname: () => mockPathname(),
+  useSearchParams: () => mockSearchParams(),
 }));
 
 vi.mock("@/lib/analytics", () => ({
@@ -41,6 +43,49 @@ describe("Navbar on the homepage", () => {
     expect(
       screen.getByRole("link", { name: "Bills & home" }),
     ).toBeInTheDocument();
+  });
+
+  it("shows a mobile icon tab for every category", () => {
+    render(<Navbar />);
+    for (const name of ["All", "Bills", "Health", "Money"]) {
+      expect(screen.getByRole("link", { name })).toBeInTheDocument();
+    }
+  });
+
+  it("links each category to its filtered view", () => {
+    render(<Navbar />);
+    expect(screen.getByRole("link", { name: "Health" })).toHaveAttribute(
+      "href",
+      "/?category=health#health",
+    );
+  });
+
+  it("marks All offers as selected when no category is set", () => {
+    render(<Navbar />);
+    expect(screen.getByRole("link", { name: "All" })).toHaveAttribute(
+      "aria-current",
+      "true",
+    );
+    expect(screen.getByRole("link", { name: "Health" })).not.toHaveAttribute(
+      "aria-current",
+    );
+  });
+
+  it("marks the category from the URL as selected", () => {
+    mockSearchParams.mockReturnValueOnce(
+      new URLSearchParams("category=finance"),
+    );
+    render(<Navbar />);
+    expect(screen.getByRole("link", { name: "Money" })).toHaveAttribute(
+      "aria-current",
+      "true",
+    );
+    expect(
+      screen.getByRole("link", { name: "Money & banking" }),
+    ).toHaveAttribute("aria-current", "true");
+    expect(screen.getByRole("link", { name: "All" })).not.toHaveAttribute(
+      "aria-current",
+    );
   });
 
   it("does not render the landing page offers link", () => {

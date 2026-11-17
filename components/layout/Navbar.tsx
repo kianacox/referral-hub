@@ -3,19 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  countOtherOffers,
-  getBrandByPathname,
-  HOME_SECTIONS,
-} from "@/lib/brands";
+import { Suspense } from "react";
+import { countOtherOffers, getBrandByPathname } from "@/lib/brands";
 import { trackMoreOffersClick } from "@/lib/analytics";
 import { SITE_TAGLINE } from "@/constants/copy";
 import { MoreOffersBar } from "@/components/layout/MoreOffersBar";
-
-const chips = [
-  { label: "All offers", href: "/#top" },
-  ...HOME_SECTIONS.map((s) => ({ label: s.title, href: `/#${s.id}` })),
-];
+import {
+  CategoryNav,
+  CategoryNavFromUrl,
+} from "@/components/layout/CategoryNav";
 
 const headerClass =
   "sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--header-footer-bg)]";
@@ -77,17 +73,11 @@ export function Navbar() {
         </span>
       </nav>
       <div className="border-t border-[#f1ede4] bg-[var(--header-footer-bg)]">
-        <div className="mx-auto flex max-w-6xl gap-2 overflow-x-auto px-4 py-2 [scrollbar-width:none]">
-          {chips.map((chip) => (
-            <Link
-              key={chip.href}
-              href={chip.href}
-              className="shrink-0 whitespace-nowrap rounded-full border border-[#dcd7cb] bg-[var(--main-bg)] px-3.5 py-1.5 text-[13px] font-medium text-[var(--foreground)] no-underline transition-colors hover:border-[var(--accent)] hover:bg-white hover:text-[var(--accent)]"
-            >
-              {chip.label}
-            </Link>
-          ))}
-        </div>
+        {/* useSearchParams needs a Suspense boundary; the fallback keeps the
+            nav in the static HTML with "All offers" selected. */}
+        <Suspense fallback={<CategoryNav />}>
+          <CategoryNavFromUrl />
+        </Suspense>
       </div>
     </header>
   );

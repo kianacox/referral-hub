@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import {
   getBrandsByCategory,
   getFeaturedBrand,
   HOME_SECTIONS,
 } from "@/lib/brands";
 import { FeaturedOfferHero } from "@/components/home/FeaturedOfferHero";
-import { OfferCard } from "@/components/home/OfferCard";
+import {
+  OfferSectionList,
+  OfferSections,
+} from "@/components/home/OfferSections";
 import { HOMEPAGE_DISCLOSURE } from "@/constants/copy";
 
 export const metadata: Metadata = {
@@ -37,6 +41,10 @@ const HOW_IT_WORKS_STEPS = [
 
 export default function Home() {
   const featured = getFeaturedBrand();
+  const sections = HOME_SECTIONS.map((section) => ({
+    section,
+    brands: getBrandsByCategory(section.id),
+  })).filter(({ brands }) => brands.length > 0);
 
   return (
     <div id="top" className="mx-auto w-full max-w-6xl px-4 pb-14 pt-7">
@@ -67,34 +75,11 @@ export default function Home() {
         ))}
       </section>
 
-      {HOME_SECTIONS.map((section) => {
-        const brands = getBrandsByCategory(section.id);
-        if (brands.length === 0) return null;
-        return (
-          <section
-            key={section.id}
-            id={section.id}
-            className="mt-11 scroll-mt-[110px]"
-          >
-            <div className="mb-1.5 flex items-baseline gap-3">
-              <h2 className="font-[family-name:var(--font-serif)] text-[26px] font-medium tracking-[-0.01em] text-[var(--foreground)]">
-                {section.title}
-              </h2>
-              <span className="text-[13px] text-[var(--muted)]">
-                {brands.length} {brands.length === 1 ? "offer" : "offers"}
-              </span>
-            </div>
-            <p className="mb-[18px] max-w-[560px] text-sm text-[var(--muted)]">
-              {section.blurb}
-            </p>
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,330px),1fr))] gap-4">
-              {brands.map((brand) => (
-                <OfferCard key={brand.id} brand={brand} />
-              ))}
-            </div>
-          </section>
-        );
-      })}
+      {/* useSearchParams needs a Suspense boundary; the fallback renders
+          every section so all offers stay in the static HTML. */}
+      <Suspense fallback={<OfferSectionList sections={sections} />}>
+        <OfferSections sections={sections} />
+      </Suspense>
 
       <p className="mx-auto mt-10 max-w-[640px] text-center text-[13px] leading-relaxed text-[var(--muted)]">
         {HOMEPAGE_DISCLOSURE}
