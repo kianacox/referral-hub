@@ -634,4 +634,23 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
       },
     ],
   },
+  "starling-bank": {
+    seoTitle: "Starling Bank referral code VVDCRGY: £25 when you open an account",
+    seoDescription:
+      "Enter Starling referral code VVDCRGY during your account application and complete the reward conditions shown in the app to get £25. No referral link needed.",
+    keywords: [
+      "starling bank referral code",
+      "starling refer a friend",
+      "starling £25",
+      "starling bank sign up bonus",
+    ],
+    // Not rendered on the Starling page; left empty until there's a first-hand story to tell.
+    whyIUseIt: "",
+    howItWorks:
+      "Enter my code during your Starling account application, then complete the reward conditions shown in the app.",
+    whatDoIGet:
+      "Starling pays the same £25 to me as the person who referred you. It doesn’t reduce your reward or cost you anything.",
+    disclaimer:
+      "If you open a Starling account with my code and meet the reward conditions, Starling pays us both £25.",
+  },
 };

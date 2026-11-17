@@ -128,6 +128,7 @@ describe("Klarna homepage placement", () => {
     expect(getBrandsByCategory("finance").map((b) => b.slug)).toEqual([
       "lloyds-bank",
       "klarna",
+      "starling-bank",
     ]);
   });
 });
