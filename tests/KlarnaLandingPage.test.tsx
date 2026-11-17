@@ -124,11 +124,10 @@ describe("KlarnaLandingPage FAQ", () => {
 });
 
 describe("Klarna homepage placement", () => {
-  it("sits in Money & banking after Lloyds and before Emma", () => {
+  it("sits in Money & banking after Lloyds", () => {
     expect(getBrandsByCategory("finance").map((b) => b.slug)).toEqual([
       "lloyds-bank",
       "klarna",
-      "emma-budgeting",
     ]);
   });
 });
