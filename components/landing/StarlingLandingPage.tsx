@@ -1,201 +1,132 @@
 "use client";
 
 import Image from "next/image";
-import { Gift, ListOrdered, Info, Landmark } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ShieldCheck, Wallet, PiggyBank } from "lucide-react";
 import type { Brand } from "@/lib/brands";
 import type { LandingPageContent } from "@/content/landing-pages";
-import { CopyableCode } from "@/components/ui/CopyableCode";
 import { TrackedCtaLink } from "@/components/landing/TrackedCtaLink";
 import { trackProviderOutboundClick } from "@/lib/analytics";
+import { CodeTicket } from "@/components/landing/starling/CodeTicket";
+import {
+  DD_SOURCE_URL,
+  DIRECT_DEBITS,
+  DOES_NOT_COUNT,
+  ELIGIBILITY,
+  STEPS,
+  TERMS_URL,
+  WHY_STARLING,
+} from "@/components/landing/starling/offer";
 
-const TERMS_URL =
-  "https://www.starlingbank.com/legal/terms/starling-referral-terms/";
-const DD_SOURCE_URL = "https://www.beermoneyuk.co.uk/bank-switching";
+const WHY_ICONS = [Wallet, PiggyBank, ShieldCheck];
+const linkClass = "font-medium text-[var(--accent-icon)] hover:text-[var(--accent)] hover:underline";
 
-/** Offer facts, all taken from the Starling Refer a Friend T&Cs (effective 24 Aug 2026). */
-const OFFER_FACTS = [
-  {
-    label: "Reward",
-    value:
-      "£25, paid into a Space in your account within 30 days of meeting the reward conditions.",
-  },
-  {
-    label: "Condition",
-    value:
-      "Complete the reward conditions shown in the app. These could include setting up one or more Direct Debits, or making payments from the account.",
-  },
-  {
-    label: "Who can use it",
-    value:
-      "You're 18 or over, have never had a Starling account, and are opening a personal current account (not joint, teen, Under 16s or student).",
-  },
-  {
-    label: "Doesn't count",
-    value:
-      "Standing orders, transfers to other bank accounts (including Starling ones), refunded or cancelled payments.",
-  },
-];
-
-const STEPS = [
-  {
-    title: "Start a Starling application",
-    body: "Apply for a Starling personal current account.",
-  },
-  {
-    title: "Enter the code during your application",
-    body: "Type VVDCRGY when asked for a referral code. You can only enter one code.",
-  },
-  {
-    title: "Meet the conditions in the app",
-    body: "Starling tells you in the app when you've earned the £25.",
-  },
-];
-
-/** Cheap Direct Debits listed on beermoneyuk.co.uk's bank-switching guide. */
-const DIRECT_DEBITS = [
-  { name: "A charity donation", detail: "£1 a month (e.g. Cancer Research, Mind)" },
-  { name: "Wealthify", detail: "£1 a month into savings" },
-  { name: "Plum", detail: "£1 a month into savings" },
-  { name: "Moneybox", detail: "Round-ups paid by Direct Debit" },
-];
-
-const headingIconClass = "size-5 shrink-0 text-[var(--accent-icon)]";
-const cardClass =
-  "rounded-xl border border-[var(--border)] bg-[var(--card)] p-5 sm:p-6 shadow-sm";
-const textLinkClass =
-  "text-[var(--accent-icon)] hover:text-[var(--accent)] hover:underline";
-
-function SectionHeading({
-  icon: Icon,
-  children,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
-  children: React.ReactNode;
-}) {
-  return (
-    <h2 className="flex items-center gap-2 text-xl font-bold tracking-tight text-[var(--foreground)]">
-      <Icon className={headingIconClass} aria-hidden />
-      {children}
-    </h2>
-  );
-}
-
-type StarlingLandingPageProps = {
-  brand: Brand;
-  content: LandingPageContent;
-};
-
-export function StarlingLandingPage({ brand, content }: StarlingLandingPageProps) {
+/** Code-first for ready-to-go visitors, a short pitch for the undecided, fine print folded away. */
+export function StarlingLandingPage({ brand, content }: { brand: Brand; content: LandingPageContent }) {
   const code = brand.referralCode!;
 
   return (
-    <div className="mx-auto max-w-[600px] px-4 py-12 sm:py-20">
-      <div className="mb-10">
-        <Image
-          src={brand.logoPath}
-          alt={`${brand.name} logo`}
-          width={126}
-          height={25}
-          className="mb-5 h-6 w-auto"
-        />
-        <h1 className="text-2xl font-bold tracking-tight text-[var(--foreground)] sm:text-3xl">
-          Get £25 when you open a Starling account with my code
-        </h1>
-        <p className="mt-2 text-lg text-[var(--body-text)]">
-          There&apos;s no referral link. Copy the code and enter it during your
-          Starling application.
-        </p>
-        <div className="mt-6 flex flex-col items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--card)] p-4">
-          <CopyableCode
-            code={code}
-            label="Copy code"
-            provider={brand.slug}
-            className="w-full max-w-xs"
-          />
-          <TrackedCtaLink
-            href={brand.brandUrl!}
-            provider={brand.slug}
-            className="text-sm font-medium text-[var(--accent-icon)] hover:text-[var(--accent)] hover:underline"
-          >
-            Go to starlingbank.com ↗
-          </TrackedCtaLink>
-        </div>
-      </div>
+    <div className="spotlight-bg">
+      <div className="mx-auto max-w-5xl px-4 pb-16 pt-10 sm:pt-16">
+        {/* Hero: offer left, action right */}
+        <section className="grid items-center gap-8 md:grid-cols-[1.1fr_1fr] md:gap-12">
+          <div>
+            <Image src={brand.logoPath} alt={`${brand.name} logo`} width={126} height={25} className="mb-6 h-6 w-auto" />
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent-icon)]">Starling referral code</p>
+            <h1 className="mt-2 text-4xl font-extrabold leading-[1.05] tracking-tight text-[var(--foreground)] sm:text-6xl">
+              Get <span className="text-[var(--accent)]">£25</span> for opening a Starling account
+            </h1>
+            <p className="mt-4 max-w-md text-lg text-[var(--body-text)]">
+              Free account, no switch needed. Enter the code when you apply and meet the conditions in the app.
+            </p>
+          </div>
 
-      <section className={`mb-8 ${cardClass}`}>
-        <SectionHeading icon={Gift}>The offer</SectionHeading>
-        <dl className="mt-3 flex flex-col gap-3">
-          {OFFER_FACTS.map((f) => (
-            <div key={f.label}>
-              <dt className="text-sm font-semibold text-[var(--foreground)]">{f.label}</dt>
-              <dd className="text-[var(--body-text)] leading-relaxed">{f.value}</dd>
-            </div>
-          ))}
-        </dl>
-        <p className="mt-4 text-sm">
-          <a
-            href={TERMS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackProviderOutboundClick(brand.slug, "terms")}
-            className={textLinkClass}
-          >
-            Read the full Refer a Friend T&amp;Cs ↗
-          </a>
-        </p>
-      </section>
+          <div className="rounded-3xl border border-[var(--border)] bg-white p-5 shadow-[0_20px_50px_-20px_rgba(0,83,60,0.25)] sm:p-7">
+            <CodeTicket code={code} provider={brand.slug} />
+            <TrackedCtaLink
+              href={brand.brandUrl!}
+              provider={brand.slug}
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-[var(--cta-from)] to-[var(--cta-to)] px-6 py-4 text-lg font-semibold text-white shadow-md transition hover:brightness-110"
+            >
+              Open Starling <span className="sr-only">(starlingbank.com)</span>
+              <ArrowUpRight className="size-5" aria-hidden />
+            </TrackedCtaLink>
+            <p className="mt-3 text-center text-xs text-[var(--muted)]">There&apos;s no referral link. The code is the only way to claim.</p>
+          </div>
+        </section>
 
-      <section className={`mb-8 ${cardClass}`}>
-        <SectionHeading icon={ListOrdered}>How to use the code</SectionHeading>
-        <ol className="mt-3 flex flex-col gap-3">
+        {/* Steps */}
+        <ol className="mt-14 grid gap-4 sm:grid-cols-3">
           {STEPS.map((s, i) => (
-            <li key={s.title} className="flex gap-3">
-              <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-[var(--border)] text-sm font-semibold text-[var(--foreground)]">
-                {i + 1}
-              </span>
-              <span>
-                <span className="block font-semibold text-[var(--foreground)]">{s.title}</span>
-                <span className="text-[var(--body-text)]">{s.body}</span>
-              </span>
+            <li key={s.title} className="relative rounded-2xl border border-[var(--border)] bg-white p-5">
+              <span className="text-5xl font-black text-[var(--accent)]/15">{i + 1}</span>
+              <h2 className="mt-1 font-bold text-[var(--foreground)]">{s.title}</h2>
+              <p className="mt-1 text-sm text-[var(--body-text)]">{s.body}</p>
             </li>
           ))}
         </ol>
-      </section>
 
-      <section className={`mb-8 ${cardClass}`}>
-        <SectionHeading icon={Landmark}>Easy Direct Debits to set up</SectionHeading>
-        <p className="mt-3 text-[var(--body-text)]">
-          If your reward conditions ask for a Direct Debit, these are low-cost ones
-          people commonly use:
-        </p>
-        <ul className="mt-3 flex flex-col gap-2">
-          {DIRECT_DEBITS.map((d) => (
-            <li key={d.name} className="text-[var(--body-text)]">
-              <span className="font-semibold text-[var(--foreground)]">{d.name}</span>
-              {" · "}
-              {d.detail}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 text-sm text-[var(--body-text)]">
-          Source:{" "}
-          <a
-            href={DD_SOURCE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackProviderOutboundClick(brand.slug, "dd_source")}
-            className={textLinkClass}
-          >
-            beermoneyuk.co.uk bank-switching guide ↗
-          </a>
-          . Remember, standing orders don&apos;t count.
-        </p>
-      </section>
+        {/* Still deciding */}
+        <section className="mt-14 rounded-3xl bg-[#321E37] px-6 py-8 text-white sm:px-10">
+          <h2 className="text-2xl font-bold tracking-tight">Still deciding?</h2>
+          <p className="mt-1 text-white/75">You keep your current bank. Starling just sits alongside it.</p>
+          <ul className="mt-6 grid gap-5 sm:grid-cols-3">
+            {WHY_STARLING.map((w, i) => {
+              const Icon = WHY_ICONS[i];
+              return (
+                <li key={w.title}>
+                  <Icon className="size-6 text-[#9be3c5]" aria-hidden />
+                  <h3 className="mt-2 font-semibold">{w.title}</h3>
+                  <p className="text-sm text-white/75">{w.body}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
 
-      <section className={`mb-8 ${cardClass}`}>
-        <SectionHeading icon={Info}>What I get</SectionHeading>
-        <p className="mt-3 text-[var(--body-text)]">{content.whatDoIGet}</p>
-      </section>
+        {/* Fine print, folded */}
+        <section className="mx-auto mt-14 max-w-2xl">
+          <h2 className="text-xl font-bold text-[var(--foreground)]">The fine print</h2>
+          <div className="mt-4 divide-y divide-[var(--border)] rounded-2xl border border-[var(--border)] bg-white">
+            <Fold title="Who can use the code">
+              <ul className="list-disc space-y-1 pl-5">{ELIGIBILITY.map((e) => <li key={e}>{e}</li>)}</ul>
+            </Fold>
+            <Fold title="What doesn't count towards the conditions">{DOES_NOT_COUNT}</Fold>
+            <Fold title="Cheap Direct Debits, if you need one">
+              <ul className="space-y-1">
+                {DIRECT_DEBITS.map((d) => (
+                  <li key={d.name}>
+                    <span className="font-semibold text-[var(--foreground)]">{d.name}</span> · {d.detail}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2 text-sm">
+                Source:{" "}
+                <a href={DD_SOURCE_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackProviderOutboundClick(brand.slug, "dd_source")} className={linkClass}>
+                  beermoneyuk.co.uk bank-switching guide ↗
+                </a>
+              </p>
+            </Fold>
+            <Fold title="What I get">{content.whatDoIGet}</Fold>
+          </div>
+          <p className="mt-4 text-sm">
+            <a href={TERMS_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackProviderOutboundClick(brand.slug, "terms")} className={linkClass}>
+              Read the full Refer a Friend T&amp;Cs ↗
+            </a>
+          </p>
+        </section>
+      </div>
     </div>
+  );
+}
+
+function Fold({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <details className="group px-5 [&_summary::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer items-center justify-between py-4 font-semibold text-[var(--foreground)]">
+        {title}
+        <ChevronDown className="size-5 text-[var(--muted)] transition group-open:rotate-180" aria-hidden />
+      </summary>
+      <div className="pb-4 text-[var(--body-text)]">{children}</div>
+    </details>
   );
 }
