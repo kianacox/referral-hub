@@ -12,13 +12,16 @@ import {
   DIRECT_DEBITS,
   DOES_NOT_COUNT,
   ELIGIBILITY,
+  PROOF_FACTS,
+  PROOF_SCREENSHOT,
   STEPS,
   TERMS_URL,
   WHY_STARLING,
 } from "@/components/landing/starling/offer";
 
 const WHY_ICONS = [Wallet, PiggyBank, ShieldCheck];
-const linkClass = "font-medium text-[var(--accent-icon)] hover:text-[var(--accent)] hover:underline";
+const pinClass = "grid size-[26px] place-items-center rounded-full bg-[#9be3c5] text-[13px] font-extrabold text-[#321E37]";
+const linkClass ="font-medium text-[var(--accent-icon)] hover:text-[var(--accent)] hover:underline";
 
 /** Code-first for ready-to-go visitors, a short pitch for the undecided, fine print folded away. */
 export function StarlingLandingPage({ brand, content }: { brand: Brand; content: LandingPageContent }) {
@@ -64,6 +67,42 @@ export function StarlingLandingPage({ brand, content }: { brand: Brand; content:
             </li>
           ))}
         </ol>
+
+        {/* Proof: the offer as my own app shows it, pinned to plain-English facts */}
+        <section className="mt-14 grid items-center gap-6 md:grid-cols-[300px_1fr] md:gap-10">
+          <div className="relative mx-auto w-full max-w-[300px] overflow-hidden rounded-[18px] shadow-[0_24px_50px_-24px_rgba(0,0,0,0.5)]">
+            <Image
+              src={PROOF_SCREENSHOT.src}
+              alt="The How it works card from my Starling app: you'll both get £25 if your friend opens an account with your code and sets up a Direct Debit in 30 days, there's no minimum amount, and a code works for up to 10 people."
+              width={PROOF_SCREENSHOT.width}
+              height={PROOF_SCREENSHOT.height}
+              sizes="300px"
+              className="block h-auto w-full"
+            />
+            {PROOF_FACTS.map((f, i) => (
+              <span key={f.title} style={{ top: f.pinTop }} className={`${pinClass} absolute left-[3%]`} aria-hidden>
+                {i + 1}
+              </span>
+            ))}
+          </div>
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent-icon)]">Straight from my app</p>
+            <h2 className="mt-1 text-balance text-2xl font-extrabold tracking-tight text-[var(--foreground)] sm:text-3xl">This is the offer Starling shows me</h2>
+            <p className="mt-2 text-[var(--body-text)]">Screenshot of the Refer a friend screen in my own Starling account.</p>
+            <ol className="mt-5 space-y-4">
+              {PROOF_FACTS.map((f, i) => (
+                <li key={f.title} className="grid grid-cols-[26px_1fr] items-start gap-3">
+                  <span className={pinClass} aria-hidden>{i + 1}</span>
+                  <div>
+                    <h3 className="font-bold text-[var(--foreground)]">{f.title}</h3>
+                    <p className="text-sm text-[var(--body-text)]">{f.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-4 font-mono text-xs text-[var(--muted)]">Captured {PROOF_SCREENSHOT.capturedOn}</p>
+          </div>
+        </section>
 
         {/* Still deciding */}
         <section className="mt-14 rounded-3xl bg-[#321E37] px-6 py-8 text-white sm:px-10">

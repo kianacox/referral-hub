@@ -37,6 +37,18 @@ describe("Starling offer data", () => {
   });
 });
 
+describe("StarlingLandingPage proof section", () => {
+  it("shows the app screenshot with descriptive alt text and the three facts", () => {
+    renderPage();
+    expect(screen.getByRole("img", { name: /how it works card from my starling app/i })).toHaveAttribute(
+      "src",
+      "/starling_how_it_works.webp",
+    );
+    expect(screen.getByRole("heading", { name: "This is the offer Starling shows me" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "My code works for 10 people" })).toBeInTheDocument();
+  });
+});
+
 describe("StarlingLandingPage analytics", () => {
   it("copies the code, shows Copied! and fires code_copy", async () => {
     renderPage();

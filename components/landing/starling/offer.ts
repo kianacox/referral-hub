@@ -36,6 +36,33 @@ export const DIRECT_DEBITS = [
   { name: "Moneybox", detail: "Round-ups paid by Direct Debit" },
 ];
 
+/** Screenshot of the Refer a friend screen in my Starling app, cropped to the "How it works" card. */
+export const PROOF_SCREENSHOT = {
+  src: "/starling_how_it_works.webp",
+  width: 640,
+  height: 893,
+  capturedOn: "19 Nov 2026",
+};
+
+/** Plain-English versions of the screenshot's lines. `pinTop` places each numbered pin over its line (% of image height). */
+export const PROOF_FACTS = [
+  {
+    title: "We both get £25",
+    body: "Once you open an account with my code and set up a Direct Debit within 30 days.",
+    pinTop: "10.6%",
+  },
+  {
+    title: "Any Direct Debit amount works",
+    body: "There's no minimum. Some payment types don't count (see the fine print).",
+    pinTop: "31.6%",
+  },
+  {
+    title: "My code works for 10 people",
+    body: "After that it stops. If it fails at sign-up, that's why.",
+    pinTop: "56.8%",
+  },
+];
+
 /** For lower-intent visitors. General Starling features, not referral terms: verify before shipping. */
 export const WHY_STARLING = [
   { title: "No monthly fee", body: "A free personal current account. You don't have to close your current bank." },
