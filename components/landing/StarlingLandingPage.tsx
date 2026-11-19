@@ -8,6 +8,7 @@ import { TrackedCtaLink } from "@/components/landing/TrackedCtaLink";
 import { trackProviderOutboundClick } from "@/lib/analytics";
 import { CodeTicket } from "@/components/landing/starling/CodeTicket";
 import {
+  CODE_USES,
   DD_SOURCE_URL,
   DIRECT_DEBITS,
   DOES_NOT_COUNT,
@@ -96,6 +97,7 @@ export function StarlingLandingPage({ brand, content }: { brand: Brand; content:
                   <div>
                     <h3 className="font-bold text-[var(--foreground)]">{f.title}</h3>
                     <p className="text-sm text-[var(--body-text)]">{f.body}</p>
+                    {f.showCodesLeft && <CodesLeft {...CODE_USES} />}
                   </div>
                 </li>
               ))}
@@ -155,6 +157,19 @@ export function StarlingLandingPage({ brand, content }: { brand: Brand; content:
         </section>
       </div>
     </div>
+  );
+}
+
+function CodesLeft({ left, total }: { left: number; total: number }) {
+  return (
+    <p className="mt-2 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-white px-3 py-1 text-xs font-semibold text-[var(--foreground)]">
+      <span className="flex gap-0.5" aria-hidden>
+        {Array.from({ length: total }, (_, i) => (
+          <span key={i} className={`h-2.5 w-1.5 rounded-full ${i < left ? "bg-[var(--accent)]" : "bg-[var(--border)]"}`} />
+        ))}
+      </span>
+      <span className="font-mono">{left}/{total}</span> codes left
+    </p>
   );
 }
 
