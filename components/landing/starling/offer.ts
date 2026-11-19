@@ -44,6 +44,9 @@ export const PROOF_SCREENSHOT = {
   capturedOn: "19 Nov 2026",
 };
 
+/** Update `left` by hand each time someone uses the code. */
+export const CODE_USES = { left: 10, total: 10 };
+
 /** Plain-English versions of the screenshot's lines. `pinTop` places each numbered pin over its line (% of image height). */
 export const PROOF_FACTS = [
   {
@@ -60,6 +63,7 @@ export const PROOF_FACTS = [
     title: "My code works for 10 people",
     body: "After that it stops. If it fails at sign-up, that's why.",
     pinTop: "56.8%",
+    showCodesLeft: true,
   },
 ];
 

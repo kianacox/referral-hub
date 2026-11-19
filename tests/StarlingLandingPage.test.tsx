@@ -46,6 +46,7 @@ describe("StarlingLandingPage proof section", () => {
     );
     expect(screen.getByRole("heading", { name: "This is the offer Starling shows me" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "My code works for 10 people" })).toBeInTheDocument();
+    expect(screen.getByText(/codes left/)).toHaveTextContent("10/10 codes left");
   });
 });
 
