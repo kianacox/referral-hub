@@ -78,6 +78,14 @@ describe("Lloyds referral link", () => {
     expect(staleLloydsLinks).toHaveLength(0);
   });
 
+  it("labels every CTA with its destination and links to the footer info pages", () => {
+    render(<LloydsLandingPage brand={brand!} content={content} />);
+    const ctas = screen.getAllByRole("link", { name: /apply at lloydsbank\.co\.uk/i });
+    expect(ctas.length).toBe(3);
+    ctas.forEach((c) => expect(c).toHaveAttribute("href", LLOYDS_REFERRAL_LINK));
+    expect(screen.getByRole("link", { name: "Privacy Policy" })).toHaveAttribute("href", "/privacy");
+  });
+
   it("navigates out to Lloyds when a CTA is clicked", () => {
     render(<LloydsLandingPage brand={brand!} content={content} />);
 

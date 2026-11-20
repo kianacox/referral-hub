@@ -28,7 +28,7 @@ beforeEach(() => {
 describe("KlarnaLandingPage links", () => {
   it("points both sign-up CTAs at the referral link", () => {
     renderPage();
-    const ctas = screen.getAllByRole("link", { name: /sign up with my link/i });
+    const ctas = screen.getAllByRole("link", { name: /sign up on klarna\.com/i });
     expect(ctas).toHaveLength(2);
     ctas.forEach((cta) => {
       expect(cta).toHaveAttribute("href", brand.referralLink);
@@ -63,7 +63,7 @@ describe("KlarnaLandingPage links", () => {
 describe("KlarnaLandingPage analytics", () => {
   it("tags each CTA click with its placement", () => {
     renderPage();
-    const [hero, repeat] = screen.getAllByRole("link", { name: /sign up with my link/i });
+    const [hero, repeat] = screen.getAllByRole("link", { name: /sign up on klarna\.com/i });
     fireEvent.click(hero);
     fireEvent.click(repeat);
     expect(analytics.trackProviderCtaClick).toHaveBeenNthCalledWith(1, "klarna", "hero");

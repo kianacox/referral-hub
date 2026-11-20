@@ -3,6 +3,7 @@
 import { useDisclaimer } from "@/components/context/DisclaimerContext";
 import { usePathname } from "next/navigation";
 import { getEarnBrandBySlug } from "@/lib/brands";
+import { FooterLegal } from "@/components/layout/FooterLegal";
 
 export function Footer() {
   const pathname = usePathname();
@@ -24,6 +25,7 @@ export function Footer() {
             {disclaimer}
           </p>
         )}
+        <FooterLegal className="mt-4 text-[var(--muted)]" />
       </div>
     </footer>
   );

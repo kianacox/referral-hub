@@ -28,6 +28,8 @@ export type Brand = {
   primaryCtaLabel?: string;
   /** Trustpilot page URL and star score (e.g. 4.4) */
   trustpilot?: TrustpilotData;
+  /** Where sign-up actually happens, for the finance-page independence disclaimer (e.g. "Starling's own app") */
+  signUpPlace?: string;
   /** If true, the page ships its own footer, so the shared Footer is suppressed */
   standaloneLayout?: boolean;
 };
@@ -52,6 +54,7 @@ export const ALL_BRANDS: Brand[] = [
     referralLink:
       "https://apply.lloydsbank.co.uk/pca/onboard/lloyds/index-app.html?from=ob&channel=referrals&journeyType=raf&referralToken=8kMtnCauQOuTJv7Erekd8Xce2oCa9pBctvdQSozXGkU=",
     primaryCtaLabel: "Claim your £30",
+    signUpPlace: "Lloyds Bank's own website",
     standaloneLayout: true,
   },
   {
@@ -143,6 +146,7 @@ export const ALL_BRANDS: Brand[] = [
     rewardRank: 6,
     referralLink: "https://l.klarna.com/22XC/invite_WWkVC66J0KPFJS3Y",
     primaryCtaLabel: "Get up to £40",
+    signUpPlace: "Klarna's own app",
   },
   {
     id: "starling-bank",
@@ -159,6 +163,7 @@ export const ALL_BRANDS: Brand[] = [
     rewardRank: 7,
     referralCode: "VVDCRGY",
     brandUrl: "https://www.starlingbank.com/",
+    signUpPlace: "Starling's own app",
   },
   {
     id: "myprotein",
