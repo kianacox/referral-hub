@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CONTACT_EMAIL } from "@/constants/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -34,6 +35,12 @@ export default function AboutPage() {
       <p>
         There are no forms, accounts or logins here, and I never ask for your details. See the{" "}
         <Link href="/privacy" className="underline">Privacy Policy</Link> for more.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about a code or this site? Email{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`} className="underline">{CONTACT_EMAIL}</a>.
       </p>
     </article>
   );

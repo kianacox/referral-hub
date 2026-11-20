@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CONTACT_EMAIL } from "@/constants/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -87,6 +88,12 @@ export default function PrivacyPage() {
 
       <h2>10. Changes to this policy</h2>
       <p>We may update this policy from time to time. Changes take effect when posted on this page.</p>
+
+      <h2>11. Contact</h2>
+      <p>
+        Privacy questions or requests can go to{" "}
+        <a href={`mailto:${CONTACT_EMAIL}`} className="underline">{CONTACT_EMAIL}</a>.
+      </p>
     </article>
   );
 }

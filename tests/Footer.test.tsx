@@ -26,4 +26,10 @@ describe("Footer", () => {
       screen.getByText(/© 2026 referral hub/i),
     ).toBeInTheDocument();
   });
+
+  it("links to the contact page", () => {
+    mockPathname.mockReturnValue("/");
+    render(<Footer />);
+    expect(screen.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
+  });
 });

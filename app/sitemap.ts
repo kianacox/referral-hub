@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     ...landingPages,
-    ...["about", "privacy"].map((path) => ({
+    ...["about", "privacy", "contact"].map((path) => ({
       url: `${BASE_URL}/${path}`,
       lastModified: new Date(),
       changeFrequency: "yearly" as const,
