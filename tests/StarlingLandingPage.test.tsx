@@ -59,6 +59,18 @@ describe("StarlingLandingPage analytics", () => {
     expect(analytics.trackProviderCodeCopy).toHaveBeenCalledWith("starling-bank");
   });
 
+  it("labels the CTA with its destination and links straight to the official domain", () => {
+    renderPage();
+    const cta = screen.getByRole("link", { name: "Go to starlingbank.com" });
+    expect(new URL(cta.getAttribute("href")!).hostname).toBe("www.starlingbank.com");
+  });
+
+  it("shows no Starling logo and captions the screenshot as my own account", () => {
+    renderPage();
+    expect(screen.queryByRole("img", { name: /logo/i })).not.toBeInTheDocument();
+    expect(screen.getByText(/screenshot from my own personal starling account/i)).toBeInTheDocument();
+  });
+
   it("tracks every outbound link and opens it in a new tab", () => {
     renderPage();
     const site = screen.getByRole("link", { name: /starlingbank\.com/i });

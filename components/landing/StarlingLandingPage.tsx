@@ -21,7 +21,7 @@ import {
 } from "@/components/landing/starling/offer";
 
 const WHY_ICONS = [Wallet, PiggyBank, ShieldCheck];
-const pinClass = "grid size-[26px] place-items-center rounded-full bg-[#9be3c5] text-[13px] font-extrabold text-[#321E37]";
+const pinClass = "grid size-[26px] place-items-center rounded-full bg-[var(--foreground)] text-[13px] font-extrabold text-white";
 const linkClass ="font-medium text-[var(--accent-icon)] hover:text-[var(--accent)] hover:underline";
 
 /** Code-first for ready-to-go visitors, a short pitch for the undecided, fine print folded away. */
@@ -34,7 +34,6 @@ export function StarlingLandingPage({ brand, content }: { brand: Brand; content:
         {/* Hero: offer left, action right */}
         <section className="grid items-center gap-8 md:grid-cols-[1.1fr_1fr] md:gap-12">
           <div>
-            <Image src={brand.logoPath} alt={`${brand.name} logo`} width={126} height={25} className="mb-6 h-6 w-auto" />
             <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent-icon)]">Starling referral code</p>
             <h1 className="mt-2 text-4xl font-extrabold leading-[1.05] tracking-tight text-[var(--foreground)] sm:text-6xl">
               Get <span className="text-[var(--accent)]">£25</span> for opening a Starling account
@@ -44,17 +43,17 @@ export function StarlingLandingPage({ brand, content }: { brand: Brand; content:
             </p>
           </div>
 
-          <div className="rounded-3xl border border-[var(--border)] bg-white p-5 shadow-[0_20px_50px_-20px_rgba(0,83,60,0.25)] sm:p-7">
+          <div className="rounded-3xl border border-[var(--border)] bg-white p-5 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.2)] sm:p-7">
             <CodeTicket code={code} provider={brand.slug} />
             <TrackedCtaLink
               href={brand.brandUrl!}
               provider={brand.slug}
               className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-[var(--cta-from)] to-[var(--cta-to)] px-6 py-4 text-lg font-semibold text-white shadow-md transition hover:brightness-110"
             >
-              Open Starling <span className="sr-only">(starlingbank.com)</span>
+              Go to starlingbank.com
               <ArrowUpRight className="size-5" aria-hidden />
             </TrackedCtaLink>
-            <p className="mt-3 text-center text-xs text-[var(--muted)]">There&apos;s no referral link. The code is the only way to claim.</p>
+            <p className="mt-3 text-center text-xs text-[var(--muted)]">Opens Starling&apos;s official site in a new tab. There&apos;s no referral link: the code is the only way to claim.</p>
           </div>
         </section>
 
@@ -89,7 +88,10 @@ export function StarlingLandingPage({ brand, content }: { brand: Brand; content:
           <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent-icon)]">Straight from my app</p>
             <h2 className="mt-1 text-balance text-2xl font-extrabold tracking-tight text-[var(--foreground)] sm:text-3xl">This is the offer Starling shows me</h2>
-            <p className="mt-2 text-[var(--body-text)]">Screenshot of the Refer a friend screen in my own Starling account.</p>
+            <p className="mt-2 text-[var(--body-text)]">
+              Screenshot from my own personal Starling account (the Refer a friend screen), cropped to the offer card. It
+              shows no account details. The numbered pins are mine.
+            </p>
             <ol className="mt-5 space-y-4">
               {PROOF_FACTS.map((f, i) => (
                 <li key={f.title} className="grid grid-cols-[26px_1fr] items-start gap-3">
@@ -107,7 +109,7 @@ export function StarlingLandingPage({ brand, content }: { brand: Brand; content:
         </section>
 
         {/* Still deciding */}
-        <section className="mt-14 rounded-3xl bg-[#321E37] px-6 py-8 text-white sm:px-10">
+        <section className="mt-14 rounded-3xl bg-[var(--foreground)] px-6 py-8 text-white sm:px-10">
           <h2 className="text-2xl font-bold tracking-tight">Still deciding?</h2>
           <p className="mt-1 text-white/75">You keep your current bank. Starling just sits alongside it.</p>
           <ul className="mt-6 grid gap-5 sm:grid-cols-3">
@@ -115,7 +117,7 @@ export function StarlingLandingPage({ brand, content }: { brand: Brand; content:
               const Icon = WHY_ICONS[i];
               return (
                 <li key={w.title}>
-                  <Icon className="size-6 text-[#9be3c5]" aria-hidden />
+                  <Icon className="size-6 text-white" aria-hidden />
                   <h3 className="mt-2 font-semibold">{w.title}</h3>
                   <p className="text-sm text-white/75">{w.body}</p>
                 </li>

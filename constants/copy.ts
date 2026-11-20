@@ -5,3 +5,7 @@ export const HOMEPAGE_DISCLOSURE =
 
 export const COPY_CODE = "Copy";
 export const COPIED = "Copied!";
+
+/** Short site-wide independence line, shown in every footer. */
+export const FOOTER_INDEPENDENCE =
+  "Referral Hub is an independent personal site. It isn't affiliated with, endorsed by or operated by any brand listed, and it doesn't collect your details.";

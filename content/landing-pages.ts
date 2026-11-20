@@ -535,9 +535,9 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     ],
   },
   "lloyds-bank": {
-    seoTitle: "Get £30 free — Lloyds Bank refer-a-friend | Personal Referral Hub",
+    seoTitle: "Lloyds Bank refer-a-friend £30: independent personal referral page",
     seoDescription:
-      "Use my personal Lloyds Bank refer-a-friend link to open a new current account and earn £30 cash within 30 days. FCA-regulated, takes 10 minutes, no switching required.",
+      "Independent personal referral page, not run by Lloyds Bank. Use my refer-a-friend link to apply on Lloyds' own website and get £30. No switching needed. This page collects no personal details.",
     keywords: [
       "lloyds refer a friend",
       "lloyds £30 bonus",
@@ -587,9 +587,9 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     ],
   },
   klarna: {
-    seoTitle: "Klarna referral link UK: get up to £40 in cashback",
+    seoTitle: "Klarna referral link UK, up to £40: independent personal referral page",
     seoDescription:
-      "Use my Klarna invite link to join a Klarna membership and get up to £40 in cashback points: £6 on Everywhere, £13 on Plus, £25 on Premium or £40 on Max.",
+      "Independent personal referral page, not run by Klarna. Join a Klarna membership through my invite link and get up to £40 in cashback points. You sign up in Klarna's own app; this page collects no personal details.",
     keywords: [
       "klarna referral link",
       "klarna referral link uk",
@@ -635,9 +635,9 @@ I wasn’t actually looking for a subscription. I got a free bag of Exhale healt
     ],
   },
   "starling-bank": {
-    seoTitle: "Starling Bank referral code VVDCRGY: £25 when you open an account",
+    seoTitle: "Starling Bank referral code VVDCRGY, £25: independent personal referral page",
     seoDescription:
-      "Enter Starling referral code VVDCRGY during your account application and complete the reward conditions shown in the app to get £25. No referral link needed.",
+      "Independent personal referral page, not run by Starling Bank. Enter my code VVDCRGY when you apply in Starling's own app and meet the reward conditions to get £25. This page collects no personal details.",
     keywords: [
       "starling bank referral code",
       "starling refer a friend",

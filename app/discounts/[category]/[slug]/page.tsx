@@ -6,6 +6,7 @@ import type { Brand, BrandCategory } from "@/lib/brands";
 import { LANDING_PAGE_CONTENT } from "@/content/landing-pages";
 import type { LandingPageContent } from "@/content/landing-pages";
 import { buildFaqJsonLd } from "@/lib/seo";
+import { IndependenceDisclaimer } from "@/components/ui/IndependenceDisclaimer";
 import { LandingPageTemplate } from "@/components/landing/LandingPageTemplate";
 import { ExhaleLandingPage } from "@/components/landing/ExhaleLandingPage";
 import { AirtimeLandingPage } from "@/components/landing/AirtimeLandingPage";
@@ -86,6 +87,9 @@ export default async function BrandLandingPage({ params }: PageProps) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
+      )}
+      {brand.category === "finance" && brand.signUpPlace && (
+        <IndependenceDisclaimer brandName={brand.name} signUpPlace={brand.signUpPlace} />
       )}
       <PageContent brand={brand} content={content} />
     </>

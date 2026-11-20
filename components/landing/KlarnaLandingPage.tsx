@@ -19,10 +19,10 @@ const CSS_VARS = `
   --kl-body: #5c5852;
   --kl-muted: #706b65;
   --kl-rule: #e6e2d8;
-  --kl-pink: #b0305c;
-  --kl-pink-dark: #8a2347;
-  --kl-pink-soft: #fbe8ee;
-  --kl-pink-wash: #fdf3f6;
+  --kl-accent: #3b4a5a;
+  --kl-accent-dark: #2a3644;
+  --kl-accent-soft: #e9edf1;
+  --kl-accent-wash: #f4f6f8;
   --kl-hover-bg: #f3efe6;
 `;
 
@@ -33,7 +33,7 @@ const MEMBERSHIPS_URL = "https://www.klarna.com/uk/memberships/";
 const STEPS = [
   {
     title: "Open my invite link",
-    body: "Tap “Sign up with my link” and accept the invite from Klarna.",
+    body: "Tap “Sign up on klarna.com” and accept the invite from Klarna.",
   },
   {
     title: "Choose a membership",
@@ -104,7 +104,7 @@ function SignUpLink({ href, onClick }: SignUpLinkProps) {
         transition: "background-color 150ms, box-shadow 150ms",
       }}
     >
-      Sign up with my link →
+      Sign up on klarna.com ↗
     </a>
   );
 }
@@ -201,8 +201,8 @@ function Hero({ link, copied, onCtaClick, onCopy }: HeroProps) {
             minHeight: 48,
             width: "100%",
             borderRadius: 8,
-            border: `1px dashed ${copied ? "var(--kl-pink)" : "rgba(176,48,92,0.35)"}`,
-            background: copied ? "var(--kl-pink-wash)" : "var(--kl-surface)",
+            border: `1px dashed ${copied ? "var(--kl-accent)" : "rgba(59,74,90,0.35)"}`,
+            background: copied ? "var(--kl-accent-wash)" : "var(--kl-surface)",
             padding: "0 6px 0 14px",
             cursor: "pointer",
             fontFamily: "inherit",
@@ -231,8 +231,8 @@ function Hero({ link, copied, onCtaClick, onCopy }: HeroProps) {
               minWidth: 84,
               height: 34,
               borderRadius: 6,
-              background: copied ? "var(--kl-ink)" : "var(--kl-pink-soft)",
-              color: copied ? "#ffffff" : "var(--kl-pink)",
+              background: copied ? "var(--kl-ink)" : "var(--kl-accent-soft)",
+              color: copied ? "#ffffff" : "var(--kl-accent)",
               fontSize: 13,
               fontWeight: 600,
               transform: `scale(${copied ? 1.06 : 1})`,
@@ -317,8 +317,8 @@ function Steps() {
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: 9999,
-                background: "var(--kl-pink-soft)",
-                color: "var(--kl-pink)",
+                background: "var(--kl-accent-soft)",
+                color: "var(--kl-accent)",
                 fontSize: 14,
                 fontWeight: 600,
               }}
@@ -428,10 +428,10 @@ function MembershipTable() {
                     <span
                       style={{
                         borderRadius: 6,
-                        background: "var(--kl-pink-soft)",
+                        background: "var(--kl-accent-soft)",
                         padding: "4px 9px",
                         fontWeight: 600,
-                        color: "var(--kl-pink)",
+                        color: "var(--kl-accent)",
                       }}
                     >
                       {t.reward}
@@ -517,7 +517,7 @@ function Faq({ items, onOpen }: FaqProps) {
                 <span
                   aria-hidden
                   style={{
-                    color: "var(--kl-pink)",
+                    color: "var(--kl-accent)",
                     fontSize: 18,
                     lineHeight: 1,
                     transform: `rotate(${isOpen ? 45 : 0}deg)`,
@@ -598,7 +598,7 @@ function RepeatCta({ link, copied, onCtaClick, onCopy }: RepeatCtaProps) {
             fontFamily: "inherit",
             fontSize: 14,
             fontWeight: 500,
-            color: copied ? "var(--kl-pink)" : "var(--kl-ink)",
+            color: copied ? "var(--kl-accent)" : "var(--kl-ink)",
             cursor: "pointer",
             transition: "color 200ms ease, background-color 200ms ease",
           }}
@@ -649,13 +649,13 @@ export function KlarnaLandingPage({ brand, content }: KlarnaLandingPageProps) {
     <>
       <style>{`
         .kl-root { ${CSS_VARS} }
-        .kl-root a { color: var(--kl-pink); }
-        .kl-root a:hover { color: var(--kl-pink-dark); }
+        .kl-root a { color: var(--kl-accent); }
+        .kl-root a:hover { color: var(--kl-accent-dark); }
         .kl-root a.kl-cta, .kl-root a.kl-cta:hover { color: #ffffff; }
         .kl-cta:hover { background: var(--kl-ink-hover) !important; box-shadow: 0 14px 24px -10px rgba(26,25,24,0.5) !important; }
-        .kl-copy-box:hover { border-color: var(--kl-pink) !important; }
+        .kl-copy-box:hover { border-color: var(--kl-accent) !important; }
         .kl-copy-plain:hover { background: var(--kl-hover-bg) !important; }
-        .kl-faq-button:hover { color: var(--kl-pink) !important; }
+        .kl-faq-button:hover { color: var(--kl-accent) !important; }
         @media (prefers-reduced-motion: reduce) {
           .kl-root * { transition: none !important; }
         }
@@ -666,7 +666,7 @@ export function KlarnaLandingPage({ brand, content }: KlarnaLandingPageProps) {
         style={{
           minHeight: "100%",
           background:
-            "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(196,70,120,0.08), transparent 55%), var(--kl-page)",
+            "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59,74,90,0.06), transparent 55%), var(--kl-page)",
           color: "var(--kl-body)",
           fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
         }}

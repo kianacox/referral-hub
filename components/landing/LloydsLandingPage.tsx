@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import type { Brand } from "@/lib/brands";
 import type { LandingPageContent } from "@/content/landing-pages";
 import { trackProviderCtaClick } from "@/lib/analytics";
+import { FooterLegal } from "@/components/layout/FooterLegal";
 
 const fraunces = localFont({
   src: "../../app/fonts/Fraunces-Variable.woff2",
@@ -13,12 +14,12 @@ const fraunces = localFont({
 });
 
 const COLORS = {
-  green900: "#003827",
-  green800: "#00533C",
-  green700: "#006A4D",
-  green600: "#1A7F60",
-  green100: "#E4F1EB",
-  green50: "#F1F8F4",
+  tone900: "#1F2A37",
+  tone800: "#2A3644",
+  tone700: "#3B4A5A",
+  tone600: "#52677C",
+  tone100: "#E9EDF1",
+  tone50: "#F4F6F8",
   cream: "#FAF7F2",
   ink: "#1A1F1C",
   ink2: "#3D4A43",
@@ -356,9 +357,9 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
       {/* ---- Global styles (keyframes, reveal, etc.) ---- */}
       <style>{`
         @keyframes pulse {
-          0%   { box-shadow: 0 0 0 0 rgba(0, 106, 77, 0.5); }
-          70%  { box-shadow: 0 0 0 8px rgba(0, 106, 77, 0); }
-          100% { box-shadow: 0 0 0 0 rgba(0, 106, 77, 0); }
+          0%   { box-shadow: 0 0 0 0 rgba(59, 74, 90, 0.5); }
+          70%  { box-shadow: 0 0 0 8px rgba(59, 74, 90, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(59, 74, 90, 0); }
         }
         @keyframes float {
           0%, 100% { transform: translateY(0) rotate(-6deg); }
@@ -378,15 +379,15 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
         }
         .lloyds-perk-card:hover {
           transform: translateY(-4px);
-          box-shadow: 0 4px 16px rgba(0, 56, 39, 0.08), 0 12px 32px rgba(0, 56, 39, 0.06);
-          border-color: ${COLORS.green100} !important;
+          box-shadow: 0 4px 16px rgba(31, 42, 55, 0.08), 0 12px 32px rgba(31, 42, 55, 0.06);
+          border-color: ${COLORS.tone100} !important;
         }
         .lloyds-step-card {
           transition: all 0.25s ease;
         }
         .lloyds-step-card:hover {
-          background: ${COLORS.green50} !important;
-          border-color: ${COLORS.green100} !important;
+          background: ${COLORS.tone50} !important;
+          border-color: ${COLORS.tone100} !important;
         }
         /* Lift the more-offers bar above this page's mobile sticky CTA */
         :root { --more-offers-bar-offset: 80px; }
@@ -418,7 +419,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
           padding: "80px 0 100px",
           overflow: "hidden",
           background: `
-            radial-gradient(ellipse at top right, rgba(0, 106, 77, 0.08), transparent 60%),
+            radial-gradient(ellipse at top right, rgba(59, 74, 90, 0.08), transparent 60%),
             radial-gradient(ellipse at bottom left, rgba(232, 197, 71, 0.06), transparent 50%),
             ${COLORS.cream}
           `,
@@ -431,7 +432,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(0, 56, 39, 0.04) 1px, transparent 0)",
+              "radial-gradient(circle at 1px 1px, rgba(31, 42, 55, 0.04) 1px, transparent 0)",
             backgroundSize: "32px 32px",
             pointerEvents: "none",
             maskImage:
@@ -457,8 +458,8 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                 className="inline-flex items-center"
                 style={{
                   gap: 8,
-                  background: COLORS.green100,
-                  color: COLORS.green800,
+                  background: COLORS.tone100,
+                  color: COLORS.tone800,
                   padding: "8px 14px",
                   borderRadius: 999,
                   fontSize: "0.82rem",
@@ -473,7 +474,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                     width: 8,
                     height: 8,
                     borderRadius: "50%",
-                    background: COLORS.green700,
+                    background: COLORS.tone700,
                     display: "inline-block",
                     flexShrink: 0,
                   }}
@@ -496,7 +497,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                 Get{" "}
                 <span
                   style={{
-                    background: `linear-gradient(120deg, ${COLORS.green700}, ${COLORS.green600})`,
+                    background: `linear-gradient(120deg, ${COLORS.tone700}, ${COLORS.tone600})`,
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
@@ -541,11 +542,11 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                     borderRadius: 999,
                     fontWeight: 600,
                     fontSize: "1.12rem",
-                    background: COLORS.green700,
+                    background: COLORS.tone700,
                     color: "white",
                     textDecoration: "none",
                     boxShadow:
-                      "0 6px 20px rgba(0, 106, 77, 0.28), inset 0 -2px 0 rgba(0,0,0,0.12)",
+                      "0 6px 20px rgba(59, 74, 90, 0.28), inset 0 -2px 0 rgba(0,0,0,0.12)",
                     transition:
                       "all 0.25s cubic-bezier(.2,.8,.2,1)",
                     lineHeight: 1,
@@ -553,7 +554,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                     cursor: "pointer",
                   }}
                 >
-                  Claim Your £30 Bonus →
+                  Apply at lloydsbank.co.uk ↗
                 </a>
               </div>
 
@@ -570,72 +571,12 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                   <span
                     key={text}
                     className="inline-flex items-center"
-                    style={{ gap: 8, fontWeight: 500, color: COLORS.green700 }}
+                    style={{ gap: 8, fontWeight: 500, color: COLORS.tone700 }}
                   >
                     {icon}
                     <span style={{ color: COLORS.ink2 }}>{text}</span>
                   </span>
                 ))}
-              </div>
-
-              {/* Social proof */}
-              <div
-                className="flex items-center"
-                style={{
-                  gap: 14,
-                  marginTop: 28,
-                  padding: "14px 18px",
-                  background: "white",
-                  border: `1px solid ${COLORS.line}`,
-                  borderRadius: 16,
-                  boxShadow:
-                    "0 1px 2px rgba(0, 56, 39, 0.06), 0 2px 8px rgba(0, 56, 39, 0.04)",
-                  maxWidth: 420,
-                }}
-              >
-                {/* Avatars */}
-                <div className="flex">
-                  {[
-                    {
-                      initials: "SK",
-                      bg: "linear-gradient(135deg, #1A7F60, #006A4D)",
-                    },
-                    {
-                      initials: "JM",
-                      bg: "linear-gradient(135deg, #D4A82B, #B88817)",
-                    },
-                    {
-                      initials: "AR",
-                      bg: "linear-gradient(135deg, #5A6E55, #3D4A43)",
-                    },
-                    { initials: "+2k", bg: COLORS.green800, small: true },
-                  ].map(({ initials, bg, small }, i) => (
-                    <div
-                      key={initials}
-                      className="flex items-center justify-center"
-                      style={{
-                        width: 34,
-                        height: 34,
-                        borderRadius: "50%",
-                        border: "2px solid white",
-                        marginLeft: i === 0 ? 0 : -10,
-                        background: bg,
-                        fontWeight: 600,
-                        fontSize: small ? "0.7rem" : "0.78rem",
-                        color: "white",
-                        flexShrink: 0,
-                      }}
-                    >
-                      {initials}
-                    </div>
-                  ))}
-                </div>
-                <div
-                  style={{ fontSize: "0.86rem", color: COLORS.ink2, lineHeight: 1.4 }}
-                >
-                  <strong style={{ color: COLORS.ink }}>Thousands</strong> have
-                  claimed their £30 through Lloyds&apos; refer-a-friend.
-                </div>
               </div>
             </div>
 
@@ -704,13 +645,12 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                 className="lloyds-reward-card"
                 style={{
                   position: "relative",
-                  background: `linear-gradient(145deg, ${COLORS.green800} 0%, ${COLORS.green700} 60%, ${COLORS.green600} 100%)`,
+                  background: `linear-gradient(145deg, ${COLORS.tone800} 0%, ${COLORS.tone700} 60%, ${COLORS.tone600} 100%)`,
                   borderRadius: 24,
                   padding: "36px 32px",
                   width: "100%",
                   maxWidth: 360,
-                  aspectRatio: "1.586 / 1",
-                  boxShadow: "0 20px 60px rgba(0, 56, 39, 0.18)",
+                  boxShadow: "0 20px 60px rgba(31, 42, 55, 0.18)",
                   color: "white",
                   display: "flex",
                   flexDirection: "column",
@@ -761,38 +701,6 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                     }}
                   >
                     Welcome Bonus
-                  </div>
-                  {/* Chip */}
-                  <div
-                    style={{
-                      width: 38,
-                      height: 28,
-                      background: `linear-gradient(135deg, ${COLORS.accent} 0%, ${COLORS.accent2} 100%)`,
-                      borderRadius: 5,
-                      position: "relative",
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: 6,
-                        left: 4,
-                        right: 4,
-                        height: 1,
-                        background: "rgba(0,0,0,0.12)",
-                      }}
-                    />
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: 14,
-                        left: 4,
-                        right: 4,
-                        height: 1,
-                        background: "rgba(0,0,0,0.12)",
-                        boxShadow: "0 4px 0 rgba(0,0,0,0.12)",
-                      }}
-                    />
                   </div>
                 </div>
 
@@ -885,9 +793,9 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                   style={{
                     width: 44,
                     height: 44,
-                    background: COLORS.green100,
+                    background: COLORS.tone100,
                     borderRadius: 12,
-                    color: COLORS.green700,
+                    color: COLORS.tone700,
                     flexShrink: 0,
                   }}
                 >
@@ -922,7 +830,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
           >
             <span
               style={{
-                color: COLORS.green700,
+                color: COLORS.tone700,
                 fontWeight: 600,
                 fontSize: "0.85rem",
                 letterSpacing: "0.14em",
@@ -967,7 +875,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
             <div
               className="lloyds-perk-card reveal"
               style={{
-                background: `linear-gradient(165deg, ${COLORS.green800}, ${COLORS.green700})`,
+                background: `linear-gradient(165deg, ${COLORS.tone800}, ${COLORS.tone700})`,
                 borderRadius: 24,
                 padding: 32,
                 position: "relative",
@@ -1052,9 +960,9 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                   style={{
                     width: 48,
                     height: 48,
-                    background: COLORS.green100,
+                    background: COLORS.tone100,
                     borderRadius: 14,
-                    color: COLORS.green700,
+                    color: COLORS.tone700,
                     marginBottom: 20,
                   }}
                 >
@@ -1090,7 +998,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
           >
             <span
               style={{
-                color: COLORS.green700,
+                color: COLORS.tone700,
                 fontWeight: 600,
                 fontSize: "0.85rem",
                 letterSpacing: "0.14em",
@@ -1130,7 +1038,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
               {
                 num: "01",
                 title: "Click my referral link",
-                body: "Hit the green button anywhere on this page. The link is valid for 30 days from when I generated it.",
+                body: "Tap the “Apply at lloydsbank.co.uk” button anywhere on this page. It goes straight to Lloyds’ own application page.",
               },
               {
                 num: "02",
@@ -1163,7 +1071,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                     fontFamily: "var(--font-fraunces), Georgia, serif",
                     fontSize: "2.6rem",
                     fontWeight: 600,
-                    color: COLORS.green700,
+                    color: COLORS.tone700,
                     lineHeight: 1,
                     marginBottom: 16,
                     fontStyle: "italic",
@@ -1201,7 +1109,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
           >
             <span
               style={{
-                color: COLORS.green700,
+                color: COLORS.tone700,
                 fontWeight: 600,
                 fontSize: "0.85rem",
                 letterSpacing: "0.14em",
@@ -1266,8 +1174,8 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                     width: 36,
                     height: 36,
                     borderRadius: "50%",
-                    background: COLORS.green100,
-                    color: COLORS.green800,
+                    background: COLORS.tone100,
+                    color: COLORS.tone800,
                     flexShrink: 0,
                   }}
                 >
@@ -1299,7 +1207,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                         width: 6,
                         height: 6,
                         borderRadius: "50%",
-                        background: COLORS.green700,
+                        background: COLORS.tone700,
                         marginTop: 9,
                         flexShrink: 0,
                         display: "inline-block",
@@ -1395,7 +1303,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
         id="claim"
         style={{
           padding: "100px 0",
-          background: `radial-gradient(ellipse at top, rgba(232, 197, 71, 0.08), transparent 50%), ${COLORS.green900}`,
+          background: `radial-gradient(ellipse at top, rgba(232, 197, 71, 0.08), transparent 50%), ${COLORS.tone900}`,
           position: "relative",
           overflow: "hidden",
         }}
@@ -1422,34 +1330,6 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
             color: "white",
           }}
         >
-          {/* Urgency tag */}
-          <div
-            className="inline-flex items-center"
-            style={{
-              gap: 8,
-              background: "rgba(255,255,255,0.1)",
-              border: "1px solid rgba(255,255,255,0.18)",
-              padding: "8px 16px",
-              borderRadius: 999,
-              fontSize: "0.86rem",
-              color: "rgba(255,255,255,0.92)",
-              marginBottom: 28,
-              fontWeight: 500,
-            }}
-          >
-            <span
-              style={{
-                width: 8,
-                height: 8,
-                background: COLORS.accent,
-                borderRadius: "50%",
-                boxShadow: `0 0 0 4px rgba(232, 197, 71, 0.18)`,
-                display: "inline-block",
-                flexShrink: 0,
-              }}
-            />
-            Referral link active for 30 days only
-          </div>
 
           <h2
             style={{
@@ -1496,7 +1376,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
               fontWeight: 600,
               fontSize: "1.12rem",
               background: COLORS.accent,
-              color: COLORS.green900,
+              color: COLORS.tone900,
               textDecoration: "none",
               boxShadow: "0 10px 30px rgba(232, 197, 71, 0.3)",
               transition: "all 0.25s cubic-bezier(.2,.8,.2,1)",
@@ -1505,7 +1385,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
               cursor: "pointer",
             }}
           >
-            Claim Your £30 Bonus Now →
+            Apply at lloydsbank.co.uk ↗
           </a>
 
           {/* Trust row */}
@@ -1546,7 +1426,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
           >
             <span
               style={{
-                color: COLORS.green700,
+                color: COLORS.tone700,
                 fontWeight: 600,
                 fontSize: "0.85rem",
                 letterSpacing: "0.14em",
@@ -1600,7 +1480,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                         "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
                       fontSize: "1.08rem",
                       fontWeight: 600,
-                      color: isOpen ? COLORS.green700 : COLORS.ink,
+                      color: isOpen ? COLORS.tone700 : COLORS.ink,
                       cursor: "pointer",
                       gap: 24,
                       transition: "color 0.2s ease",
@@ -1614,8 +1494,8 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                         width: 32,
                         height: 32,
                         borderRadius: "50%",
-                        background: isOpen ? COLORS.green700 : COLORS.green50,
-                        color: isOpen ? "white" : COLORS.green700,
+                        background: isOpen ? COLORS.tone700 : COLORS.tone50,
+                        color: isOpen ? "white" : COLORS.tone700,
                         flexShrink: 0,
                         transform: isOpen ? "rotate(45deg)" : "none",
                         transition: "all 0.3s ease",
@@ -1654,7 +1534,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
           >
             <span
               style={{
-                color: COLORS.green700,
+                color: COLORS.tone700,
                 fontWeight: 600,
                 fontSize: "0.85rem",
                 letterSpacing: "0.14em",
@@ -1783,7 +1663,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                     alignItems: "flex-start",
                   }}
                 >
-                  <span style={{ color: COLORS.green700, marginTop: 2 }}>
+                  <span style={{ color: COLORS.tone700, marginTop: 2 }}>
                     <CheckIcon size={20} />
                   </span>
                   <span>{term.text}</span>
@@ -1826,7 +1706,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
                   marginBottom: 16,
                 }}
               >
-                The £30 Hub
+                Referral Hub
               </div>
               <p style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.7 }}>
                 A personal referral page sharing my Lloyds Bank refer-a-friend
@@ -1958,6 +1838,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
               or withdrawn at any time.
             </p>
           </div>
+          <FooterLegal className="mt-8" />
         </div>
       </footer>
 
@@ -1987,7 +1868,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
             borderRadius: 999,
             fontWeight: 600,
             fontSize: "1rem",
-            background: COLORS.green700,
+            background: COLORS.tone700,
             color: "white",
             textDecoration: "none",
             transition: "all 0.25s cubic-bezier(.2,.8,.2,1)",
@@ -1996,7 +1877,7 @@ export function LloydsLandingPage({ brand, content }: LloydsLandingPageProps) {
             cursor: "pointer",
           }}
         >
-          Claim Your £30 Bonus →
+          Apply at lloydsbank.co.uk ↗
         </a>
       </div>
 
