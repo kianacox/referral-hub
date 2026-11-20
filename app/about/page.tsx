@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE_OWNER } from "@/constants/copy";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Who runs Referral Hub, why it exists, and how referral rewards work here.",
+  description: "Referral Hub is a personal referral site where both of us benefit when you sign up with my code or link.",
   alternates: { canonical: "https://referral-hub.app/about" },
 };
 
@@ -13,30 +12,28 @@ export default function AboutPage() {
     <article className="mx-auto max-w-2xl px-4 py-12 text-[var(--body-text)] [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-[var(--foreground)] [&_p]:mt-3">
       <h1 className="text-3xl font-extrabold tracking-tight text-[var(--foreground)]">About Referral Hub</h1>
 
-      <h2>Who runs it</h2>
       <p>
-        Referral Hub is a personal website run by me, {SITE_OWNER}, an individual in the UK. It isn&apos;t a company,
-        and it isn&apos;t run by, affiliated with or endorsed by any of the brands it lists.
+        Referral Hub is a personal referral site. It&apos;s where I share my own referral codes and links for apps and
+        services I use.
       </p>
 
-      <h2>Why it exists</h2>
+      <h2>How it works</h2>
       <p>
-        Lots of apps and banks I use have refer-a-friend schemes. This site is where I share my own referral codes and
-        links for them, with a plain explanation of what you get and what you need to do.
+        Many brands run refer-a-friend schemes: when someone signs up with an existing customer&apos;s code or link, the
+        brand rewards both of them. If you sign up with mine, you get the new-customer reward and I get the
+        referrer&apos;s reward. It doesn&apos;t cost you anything extra and doesn&apos;t reduce what you get.
       </p>
 
-      <h2>How the money works</h2>
+      <h2>Independent</h2>
       <p>
-        When someone signs up with my code or link, the brand usually rewards both of us under its standard
-        refer-a-friend scheme, the same one any customer can use. It doesn&apos;t cost you anything and doesn&apos;t
-        reduce your reward. Each page says what I get.
+        This site isn&apos;t affiliated with, endorsed by or operated by any of the brands listed. You always sign up
+        directly with the brand, on its own website or app, and the brand sets the terms of each offer.
       </p>
 
-      <h2>What this site doesn&apos;t do</h2>
+      <h2>Your details</h2>
       <p>
-        There are no forms, accounts or logins here, and I never ask for your details. You always sign up directly with
-        the brand, on its own website or app. See the <Link href="/privacy" className="underline">Privacy Policy</Link>{" "}
-        for the analytics the site uses, or <Link href="/contact" className="underline">get in touch</Link>.
+        There are no forms, accounts or logins here, and I never ask for your details. See the{" "}
+        <Link href="/privacy" className="underline">Privacy Policy</Link> for more.
       </p>
     </article>
   );

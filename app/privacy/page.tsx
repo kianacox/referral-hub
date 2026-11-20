@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { CONTACT_EMAIL } from "@/constants/copy";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Referral Hub collects no personal details. This page explains the analytics it uses and what happens when you click through to a brand.",
+  description: "How Referral Hub handles information when you visit the site.",
   alternates: { canonical: "https://referral-hub.app/privacy" },
 };
 
@@ -14,54 +12,81 @@ export default function PrivacyPage() {
       <h1 className="text-3xl font-extrabold tracking-tight text-[var(--foreground)]">Privacy Policy</h1>
       <p className="text-sm text-[var(--muted)]">Last updated 20 November 2026</p>
 
-      <h2>The short version</h2>
+      <h2>1. Introduction</h2>
       <p>
-        Referral Hub doesn&apos;t collect your personal details. There are no forms, sign-ups, accounts or logins on
-        this site, and I will never ask for your name, email, bank details or passwords.
+        This Privacy Policy explains how Referral Hub (&ldquo;the site&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;)
+        handles information when you visit referral-hub.app. By using the site, you agree to this policy.
       </p>
 
-      <h2>Analytics</h2>
-      <p>To see which pages are useful, the site uses:</p>
+      <h2>2. Information we collect</h2>
+      <p>
+        We do not ask you to provide any personal information. The site has no forms, accounts, logins or newsletter
+        sign-ups.
+      </p>
+      <p>When you visit, some information is collected automatically:</p>
+      <ul>
+        <li>Pages viewed and how you interact with them, such as clicks on buttons and links</li>
+        <li>Browser type, device type and operating system</li>
+        <li>Approximate location (country or city), derived from your IP address</li>
+        <li>The website that referred you to the site</li>
+      </ul>
+
+      <h2>3. How we use information</h2>
+      <p>
+        We use this information only to understand how the site is used and to improve it. We do not sell, rent or trade
+        it, and we do not use it to identify you.
+      </p>
+
+      <h2>4. Cookies and analytics</h2>
+      <p>The site uses the following analytics services:</p>
       <ul>
         <li>
-          <strong>Vercel Web Analytics</strong>: counts page views without cookies and without identifying you.
+          <strong>Google Analytics</strong>, which uses cookies to collect the usage information described above. You
+          can opt out with Google&apos;s{" "}
+          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="underline">
+            browser add-on
+          </a>
+          .
         </li>
         <li>
-          <strong>Google Analytics</strong>: sets first-party cookies and records which pages you view, your browser
-          and device type, your approximate location (country or city level), and clicks on things like &ldquo;Copy
-          code&rdquo; and outbound links. It doesn&apos;t record anything you type, because there&apos;s nowhere to
-          type.
+          <strong>Vercel Web Analytics</strong>, which counts page views without cookies.
         </li>
       </ul>
+      <p>You can block or delete cookies at any time in your browser settings. The site will still work.</p>
+
+      <h2>5. Hosting</h2>
       <p>
-        You can block these with your browser&apos;s cookie settings or Google&apos;s{" "}
-        <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" className="underline">
-          opt-out add-on
-        </a>
-        .
+        The site is hosted by Vercel, which processes standard technical data (such as IP addresses) to deliver pages
+        and keep the service secure.
       </p>
 
-      <h2>Hosting</h2>
+      <h2>6. Third-party websites</h2>
       <p>
-        The site is hosted by Vercel, which processes standard request data (such as IP address and browser) to serve
-        pages and keep the service secure.
+        The site links to other brands&apos; websites and apps. When you follow a link, you leave Referral Hub, and any
+        information you provide there is collected by that brand under its own privacy policy. We are not responsible
+        for the privacy practices of other sites. The brand may record that you used a referral code or link so it can
+        pay the referral reward.
       </p>
 
-      <h2>When you click through to a brand</h2>
+      <h2>7. Data retention</h2>
       <p>
-        Links and buttons take you straight to the brand&apos;s own website or app. Anything you enter there is
-        collected by that brand under its own privacy policy, not by me. The brand will know you used my referral code
-        or link so it can pay the reward.
+        Analytics data is kept only for as long as the analytics providers&apos; standard retention settings allow, and
+        is used in aggregate.
       </p>
 
-      <h2>Copying a code</h2>
-      <p>The &ldquo;Copy&rdquo; buttons write the code to your clipboard. The site never reads your clipboard.</p>
-
-      <h2>Contact</h2>
+      <h2>8. Your rights</h2>
       <p>
-        Questions about this policy: {CONTACT_EMAIL}. More on the <Link href="/contact" className="underline">Contact</Link>{" "}
-        page.
+        Depending on where you live, including under UK GDPR, you may have the right to access, correct or delete
+        personal data held about you, or to object to its processing. As the site does not collect information that
+        identifies you, there is usually no personal data to provide. You can stop analytics collection at any time by
+        blocking cookies.
       </p>
+
+      <h2>9. Children&apos;s privacy</h2>
+      <p>The site is not aimed at children under 18 and does not knowingly collect information from them.</p>
+
+      <h2>10. Changes to this policy</h2>
+      <p>We may update this policy from time to time. Changes take effect when posted on this page.</p>
     </article>
   );
 }

@@ -6,12 +6,6 @@ export const HOMEPAGE_DISCLOSURE =
 export const COPY_CODE = "Copy";
 export const COPIED = "Copied!";
 
-/** Who runs the site, as shown on the About page. */
-export const SITE_OWNER = "Kian";
-
-/** Public contact address for the Contact and Privacy pages. Placeholder until a public address is chosen. */
-export const CONTACT_EMAIL = "[contact email to be added]";
-
 /** Short site-wide independence line, shown in every footer. */
 export const FOOTER_INDEPENDENCE =
   "Referral Hub is an independent personal site. It isn't affiliated with, endorsed by or operated by any brand listed, and it doesn't collect your details.";

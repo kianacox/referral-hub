@@ -31,11 +31,10 @@ describe("IndependenceDisclaimer", () => {
 });
 
 describe("site footer", () => {
-  it("links to About, Privacy Policy and Contact and states independence", () => {
+  it("links to About and Privacy Policy and states independence", () => {
     render(<Footer />);
     expect(screen.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
     expect(screen.getByRole("link", { name: "Privacy Policy" })).toHaveAttribute("href", "/privacy");
-    expect(screen.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
     expect(screen.getByText(/independent personal site/i)).toBeInTheDocument();
   });
 });

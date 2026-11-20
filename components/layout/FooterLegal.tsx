@@ -4,10 +4,9 @@ import { FOOTER_INDEPENDENCE } from "@/constants/copy";
 const LINKS = [
   { href: "/about", label: "About" },
   { href: "/privacy", label: "Privacy Policy" },
-  { href: "/contact", label: "Contact" },
 ];
 
-/** Independence line plus About / Privacy / Contact. Inherits text colour so it works on light and dark footers. */
+/** Independence line plus About / Privacy. Inherits text colour so it works on light and dark footers. */
 export function FooterLegal({ className = "" }: { className?: string }) {
   return (
     <div className={`text-center text-xs ${className}`}>
