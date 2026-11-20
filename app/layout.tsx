@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { DisclaimerProvider } from "@/components/context/DisclaimerContext";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/next"
+import { SITE_ORGANIZATION_JSON_LD } from "@/lib/seo";
 
 import "./globals.css";
 
@@ -84,6 +85,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable} ${fraunces.variable} ${poppins.variable} ${barlowCondensed.variable} spotlight-bg flex min-h-screen flex-col antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_ORGANIZATION_JSON_LD) }}
+        />
         <GoogleAnalytics />
         <Analytics />
         <DisclaimerProvider>
