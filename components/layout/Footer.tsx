@@ -2,17 +2,16 @@
 
 import { useDisclaimer } from "@/components/context/DisclaimerContext";
 import { usePathname } from "next/navigation";
-import { getEarnBrandBySlug } from "@/lib/brands";
+import { findLandingPage, type LandingChromeItem } from "@/lib/landing-path";
 import { FooterLegal } from "@/components/layout/FooterLegal";
 
-export function Footer() {
+export function Footer({ landingPages }: { landingPages: LandingChromeItem[] }) {
   const pathname = usePathname();
   const disclaimer = useDisclaimer();
 
   // Suppress chrome on standalone earn landing pages (e.g. Lloyds)
-  const earnSlug = pathname.startsWith("/earn/") ? pathname.split("/")[2] : null;
-  const brand = earnSlug ? getEarnBrandBySlug(earnSlug) : null;
-  if (brand?.standaloneLayout) return null;
+  const page = pathname.startsWith("/earn/") ? findLandingPage(landingPages, pathname) : undefined;
+  if (page?.standaloneLayout) return null;
 
   return (
     <footer className="mt-auto border-t border-[var(--border)] bg-[var(--header-footer-bg)]">

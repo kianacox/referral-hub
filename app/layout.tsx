@@ -6,6 +6,7 @@ import { DisclaimerProvider } from "@/components/context/DisclaimerContext";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/next"
 import { SITE_ORGANIZATION_JSON_LD } from "@/lib/seo";
+import { getSiteChrome } from "@/lib/landing-chrome";
 
 import "./globals.css";
 
@@ -80,6 +81,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const chrome = getSiteChrome();
   return (
     <html lang="en">
       <body
@@ -91,10 +93,10 @@ export default function RootLayout({
         />
         <GoogleAnalytics />
         <Analytics />
-        <DisclaimerProvider>
-          <Navbar />
+        <DisclaimerProvider landingPages={chrome.landingPages}>
+          <Navbar {...chrome} />
           <main className="flex-1">{children}</main>
-          <Footer />
+          <Footer landingPages={chrome.landingPages} />
         </DisclaimerProvider>
       </body>
     </html>
