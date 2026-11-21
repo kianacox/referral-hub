@@ -1,4 +1,8 @@
 import type { NextConfig } from "next";
+import { isFinancePagesEnabled } from "./lib/flags";
+
+// With finance pages off, /discounts/finance is not redirected, so it 404s.
+const listCategories = isFinancePagesEnabled() ? "bills|health|finance" : "bills|health";
 
 const nextConfig: NextConfig = {
   async redirects() {
@@ -6,7 +10,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/discounts", destination: "/", permanent: true },
       {
-        source: "/discounts/:category(bills|health|finance)",
+        source: `/discounts/:category(${listCategories})`,
         destination: "/#:category",
         permanent: true,
       },

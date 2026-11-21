@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
-import { countOtherOffers, getBrandByPathname } from "@/lib/brands";
+import { findLandingPage, type SiteChrome } from "@/lib/landing-path";
 import { trackMoreOffersClick } from "@/lib/analytics";
 import { SITE_TAGLINE } from "@/constants/copy";
 import { MoreOffersBar } from "@/components/layout/MoreOffersBar";
@@ -35,9 +35,9 @@ function Wordmark() {
   );
 }
 
-export function Navbar() {
+export function Navbar({ landingPages, sections }: SiteChrome) {
   const pathname = usePathname();
-  const landingBrand = getBrandByPathname(pathname);
+  const landingBrand = findLandingPage(landingPages, pathname);
 
   // Brand landing pages get the quiet single-row nav plus a sticky offers bar
   // (design 1c) — nothing competes with the offer above the fold.
@@ -58,7 +58,7 @@ export function Navbar() {
         </header>
         <MoreOffersBar
           brandSlug={landingBrand.slug}
-          otherOfferCount={countOtherOffers(landingBrand.slug)}
+          otherOfferCount={landingPages.length - 1}
         />
       </>
     );
@@ -75,8 +75,8 @@ export function Navbar() {
       <div className="border-t border-[#f1ede4] bg-[var(--header-footer-bg)]">
         {/* useSearchParams needs a Suspense boundary; the fallback keeps the
             nav in the static HTML with "All offers" selected. */}
-        <Suspense fallback={<CategoryNav />}>
-          <CategoryNavFromUrl />
+        <Suspense fallback={<CategoryNav sections={sections} />}>
+          <CategoryNavFromUrl sections={sections} />
         </Suspense>
       </div>
     </header>

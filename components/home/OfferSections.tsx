@@ -48,6 +48,10 @@ export function OfferSectionList({ sections, active }: OfferSectionListProps) {
 
 /** Filters sections by `?category=`. Render inside <Suspense>. */
 export function OfferSections({ sections }: { sections: SectionWithBrands[] }) {
-  const active = toBrandCategory(useSearchParams().get("category"));
+  const category = toBrandCategory(useSearchParams().get("category"));
+  // A hidden category (e.g. ?category=finance with the flag off) shows everything, not an empty page.
+  const active = sections.some(({ section }) => section.id === category)
+    ? category
+    : undefined;
   return <OfferSectionList sections={sections} active={active} />;
 }

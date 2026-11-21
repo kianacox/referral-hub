@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import {
   getBrandsByCategory,
   getFeaturedBrand,
-  HOME_SECTIONS,
+  getVisibleHomeSections,
 } from "@/lib/brands";
 import { FeaturedOfferHero } from "@/components/home/FeaturedOfferHero";
 import {
@@ -41,19 +41,19 @@ const HOW_IT_WORKS_STEPS = [
 
 export default function Home() {
   const featured = getFeaturedBrand();
-  const sections = HOME_SECTIONS.map((section) => ({
+  const sections = getVisibleHomeSections().map((section) => ({
     section,
     brands: getBrandsByCategory(section.id),
-  })).filter(({ brands }) => brands.length > 0);
+  }));
 
   return (
     <div id="top" className="mx-auto w-full max-w-6xl px-4 pb-14 pt-7">
-      <FeaturedOfferHero brand={featured} />
+      {featured && <FeaturedOfferHero brand={featured} />}
 
       <section
         id="how-it-works"
         aria-label="How referrals work"
-        className="mt-5 flex scroll-mt-[110px] flex-wrap items-start gap-x-8 gap-y-5 rounded-2xl border border-[var(--border)] bg-[var(--card)] px-6 py-5"
+        className={`${featured ? "mt-5" : ""} flex scroll-mt-[110px] flex-wrap items-start gap-x-8 gap-y-5 rounded-2xl border border-[var(--border)] bg-[var(--card)] px-6 py-5`}
       >
         {HOW_IT_WORKS_STEPS.map((step, i) => (
           <div

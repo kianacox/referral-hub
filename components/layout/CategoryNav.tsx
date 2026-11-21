@@ -10,9 +10,9 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import {
-  HOME_SECTIONS,
   toBrandCategory,
   type BrandCategory,
+  type HomeSection,
 } from "@/lib/brands";
 
 const ICONS: Record<BrandCategory, LucideIcon> = {
@@ -21,19 +21,23 @@ const ICONS: Record<BrandCategory, LucideIcon> = {
   finance: PiggyBank,
 };
 
-const items = [
-  { id: undefined, label: "All offers", short: "All", Icon: LayoutGrid, href: "/#top" },
-  ...HOME_SECTIONS.map((s) => ({
-    id: s.id,
-    label: s.title,
-    short: s.shortTitle,
-    Icon: ICONS[s.id],
-    // Filter via the query string, then land on the section's heading.
-    href: `/?category=${s.id}#${s.id}`,
-  })),
-];
+function navItems(sections: HomeSection[]) {
+  return [
+    { id: undefined, label: "All offers", short: "All", Icon: LayoutGrid, href: "/#top" },
+    ...sections.map((s) => ({
+      id: s.id,
+      label: s.title,
+      short: s.shortTitle,
+      Icon: ICONS[s.id],
+      // Filter via the query string, then land on the section's heading.
+      href: `/?category=${s.id}#${s.id}`,
+    })),
+  ];
+}
 
 type CategoryNavProps = {
+  /** Visible homepage sections (hidden categories are already removed). */
+  sections: HomeSection[];
   /** Selected category; undefined means "All offers". */
   active?: BrandCategory;
 };
@@ -42,10 +46,14 @@ type CategoryNavProps = {
  * Homepage category filter: icon tabs on mobile so every option
  * fits without sideways scrolling, pill chips from `sm` up.
  */
-export function CategoryNav({ active }: CategoryNavProps) {
+export function CategoryNav({ sections, active }: CategoryNavProps) {
+  const items = navItems(sections);
   return (
     <>
-      <div className="mx-auto grid max-w-6xl grid-cols-4 px-2 sm:hidden">
+      <div
+        className="mx-auto grid max-w-6xl px-2 sm:hidden"
+        style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
+      >
         {items.map(({ id, short, Icon, href }) => {
           const isActive = id === active;
           return (
@@ -89,7 +97,8 @@ export function CategoryNav({ active }: CategoryNavProps) {
 }
 
 /** Reads the selected category from `?category=`. Render inside <Suspense>. */
-export function CategoryNavFromUrl() {
-  const active = toBrandCategory(useSearchParams().get("category"));
-  return <CategoryNav active={active} />;
+export function CategoryNavFromUrl({ sections }: { sections: HomeSection[] }) {
+  const category = toBrandCategory(useSearchParams().get("category"));
+  const active = sections.some((s) => s.id === category) ? category : undefined;
+  return <CategoryNav sections={sections} active={active} />;
 }

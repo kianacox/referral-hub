@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Navbar } from "@/components/layout/Navbar";
 import { getVisibleBrands } from "@/lib/brands";
+import { getSiteChrome } from "@/lib/landing-chrome";
 
 const mockPathname = vi.fn();
 const mockSearchParams = vi.fn(() => new URLSearchParams());
@@ -38,7 +39,7 @@ describe("Navbar on the homepage", () => {
   });
 
   it("keeps the pill chip row", () => {
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     expect(screen.getByRole("link", { name: "All offers" })).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "Bills & home" }),
@@ -46,14 +47,14 @@ describe("Navbar on the homepage", () => {
   });
 
   it("shows a mobile icon tab for every category", () => {
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     for (const name of ["All", "Bills", "Health", "Money"]) {
       expect(screen.getByRole("link", { name })).toBeInTheDocument();
     }
   });
 
   it("links each category to its filtered view", () => {
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     expect(screen.getByRole("link", { name: "Health" })).toHaveAttribute(
       "href",
       "/?category=health#health",
@@ -61,7 +62,7 @@ describe("Navbar on the homepage", () => {
   });
 
   it("marks All offers as selected when no category is set", () => {
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     expect(screen.getByRole("link", { name: "All" })).toHaveAttribute(
       "aria-current",
       "true",
@@ -75,7 +76,7 @@ describe("Navbar on the homepage", () => {
     mockSearchParams.mockReturnValueOnce(
       new URLSearchParams("category=finance"),
     );
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     expect(screen.getByRole("link", { name: "Money" })).toHaveAttribute(
       "aria-current",
       "true",
@@ -89,7 +90,7 @@ describe("Navbar on the homepage", () => {
   });
 
   it("does not render the landing page offers link", () => {
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     expect(screen.queryByRole("link", { name: /All offers →/ })).toBeNull();
   });
 });
@@ -102,12 +103,12 @@ describe("Navbar on a brand landing page", () => {
   });
 
   it("drops the pill chip row", () => {
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     expect(screen.queryByRole("link", { name: "Bills & home" })).toBeNull();
   });
 
   it("links the wordmark back to the homepage", () => {
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     expect(screen.getByRole("link", { name: "Referral Hub" })).toHaveAttribute(
       "href",
       "/#top",
@@ -115,7 +116,7 @@ describe("Navbar on a brand landing page", () => {
   });
 
   it("shows a quiet all-offers link", () => {
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     expect(screen.getByRole("link", { name: /All offers/ })).toHaveAttribute(
       "href",
       "/#top",
@@ -123,14 +124,14 @@ describe("Navbar on a brand landing page", () => {
   });
 
   it("tracks the all-offers click as a nav click", () => {
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     fireEvent.click(screen.getByRole("link", { name: /All offers/ }));
     expect(trackMoreOffersClick).toHaveBeenCalledWith("ribbon-rewards", "nav");
   });
 
   it("renders on pages that ship their own footer", () => {
     mockPathname.mockReturnValue("/earn/lloyds-bank");
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     expect(screen.getByRole("link", { name: /All offers/ })).toBeInTheDocument();
 
     window.scrollY = 401;
@@ -141,12 +142,12 @@ describe("Navbar on a brand landing page", () => {
 
   it("renders on discount landing pages", () => {
     mockPathname.mockReturnValue("/discounts/health/exhale-coffee");
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     expect(screen.getByRole("link", { name: /All offers/ })).toBeInTheDocument();
   });
 
   it("passes the live offer count to the sticky bar", () => {
-    render(<Navbar />);
+    render(<Navbar {...getSiteChrome()} />);
     window.scrollY = 401;
     fireEvent.scroll(window);
     expect(

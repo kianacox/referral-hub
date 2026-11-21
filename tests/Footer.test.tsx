@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Footer } from "@/components/layout/Footer";
+import { getSiteChrome } from "@/lib/landing-chrome";
 
 const mockPathname = vi.fn();
 
@@ -15,13 +16,13 @@ describe("Footer", () => {
 
   it("returns null when earn brand uses standalone layout", () => {
     mockPathname.mockReturnValue("/earn/lloyds-bank");
-    const { container } = render(<Footer />);
+    const { container } = render(<Footer landingPages={getSiteChrome().landingPages} />);
     expect(container.firstChild).toBeNull();
   });
 
   it("renders copyright on standard routes", () => {
     mockPathname.mockReturnValue("/earn");
-    render(<Footer />);
+    render(<Footer landingPages={getSiteChrome().landingPages} />);
     expect(
       screen.getByText(/© 2026 referral hub/i),
     ).toBeInTheDocument();
@@ -29,7 +30,7 @@ describe("Footer", () => {
 
   it("links to the contact page", () => {
     mockPathname.mockReturnValue("/");
-    render(<Footer />);
+    render(<Footer landingPages={getSiteChrome().landingPages} />);
     expect(screen.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
   });
 });

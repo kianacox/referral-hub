@@ -4,6 +4,7 @@ import { ALL_BRANDS } from "@/lib/brands";
 import { LANDING_PAGE_CONTENT } from "@/content/landing-pages";
 import { IndependenceDisclaimer } from "@/components/ui/IndependenceDisclaimer";
 import { Footer } from "@/components/layout/Footer";
+import { getSiteChrome } from "@/lib/landing-chrome";
 
 vi.mock("next/navigation", () => ({ usePathname: () => "/discounts/finance/starling-bank" }));
 
@@ -32,7 +33,7 @@ describe("IndependenceDisclaimer", () => {
 
 describe("site footer", () => {
   it("links to About and Privacy Policy and states independence", () => {
-    render(<Footer />);
+    render(<Footer landingPages={getSiteChrome().landingPages} />);
     expect(screen.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
     expect(screen.getByRole("link", { name: "Privacy Policy" })).toHaveAttribute("href", "/privacy");
     expect(screen.getByText(/independent personal site/i)).toBeInTheDocument();

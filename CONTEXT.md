@@ -46,6 +46,9 @@ A `Record<string, EarnPageComponent>` in `app/earn/[slug]/page.tsx` that maps ea
 **standaloneLayout**
 Optional flag on `Brand`. When `true`, the brand's earn page uses a fully custom component registered in `EARN_PAGE_REGISTRY`.
 
+**financial**
+Optional flag on `Brand` marking a financial product (bank, BNPL, card-linked cashback…), whatever its category. Gated by `ENABLE_FINANCE_PAGES`.
+
 **rewardRank**
 Numeric field on `Brand` controlling the display order of cards on the homepage. Lower number = higher position.
 
@@ -155,6 +158,9 @@ GA event helper for the "see my rewards" scroll-to action on the Ribbon page.
 
 **NEXT_PUBLIC_GA_ID**
 Enables Google Analytics. Undefined in local dev; set in Vercel environment for production.
+
+**ENABLE_FINANCE_PAGES**
+Server-only flag, read only in `lib/flags.ts`. Financial-product brands (`financial: true` on `Brand`) are visible only when it is exactly `"true"`; otherwise their pages 404 (`notFound()`, plus `proxy.ts` for their images and URLs) and they are dropped from every brand list. Each financial brand has its own route folder (e.g. `app/discounts/finance/klarna/`) so its client code stays out of the shared `[slug]` route chunk. Client components never read it: `app/layout.tsx` passes them visible pages via `getSiteChrome()`.
 
 **NEXT_PUBLIC_SHOW_GYMSHARK**
 Feature flag controlling Gymshark brand visibility. Pattern for all future conditional brand gating.

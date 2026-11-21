@@ -1,91 +1,36 @@
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import type React from "react";
 import { getEarnBrandBySlug, getEarnSlugs } from "@/lib/brands";
-import type { Brand } from "@/lib/brands";
-import { LANDING_PAGE_CONTENT } from "@/content/landing-pages";
-import type { LandingPageContent } from "@/content/landing-pages";
-import { buildFaqJsonLd } from "@/lib/seo";
-import { IndependenceDisclaimer } from "@/components/ui/IndependenceDisclaimer";
-import { LloydsLandingPage } from "@/components/landing/LloydsLandingPage";
-import { RibbonRewardsLandingPage } from "@/components/landing/RibbonRewardsLandingPage";
+import {
+  BrandLandingRoute,
+  brandLandingMetadata,
+  type LandingPageComponent,
+} from "@/components/landing/BrandLandingRoute";
 import { VirginMediaLandingPage } from "@/components/landing/VirginMediaLandingPage";
 
-type EarnPageComponent = React.ComponentType<{
-  brand: Brand;
-  content: LandingPageContent;
-}>;
-
-const EARN_PAGE_REGISTRY: Record<string, EarnPageComponent> = {
-  "ribbon-rewards": RibbonRewardsLandingPage,
+/** Financial brands (e.g. Lloyds, Ribbon) have their own route folders; see the discounts route. */
+const EARN_PAGE_REGISTRY: Record<string, LandingPageComponent> = {
   "virgin-media": VirginMediaLandingPage,
-  "lloyds-bank": LloydsLandingPage,
 };
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+function getRouteBrand(slug: string) {
+  const brand = getEarnBrandBySlug(slug);
+  return brand?.financial ? undefined : brand;
+}
+
 export function generateStaticParams() {
-  return getEarnSlugs().map((slug) => ({ slug }));
+  return getEarnSlugs().filter((slug) => getRouteBrand(slug)).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const brand = getEarnBrandBySlug(slug);
-  const content = slug ? LANDING_PAGE_CONTENT[slug] : undefined;
-  if (!brand || !content) return { title: "Not found" };
-
-  return {
-    title: content.seoTitle,
-    description: content.seoDescription,
-    keywords: content.keywords,
-    openGraph: {
-      title: content.seoTitle,
-      description: content.seoDescription,
-    },
-    alternates: { canonical: `https://referral-hub.app/earn/${slug}` },
-  };
+  return brandLandingMetadata(getRouteBrand(slug), `/earn/${slug}`);
 }
 
 export default async function EarnBrandLandingPage({ params }: PageProps) {
   const { slug } = await params;
-  const brand = getEarnBrandBySlug(slug);
-  const content = slug ? LANDING_PAGE_CONTENT[slug] : undefined;
-
-  if (!brand || !content) notFound();
-
-  const PageComponent = EARN_PAGE_REGISTRY[slug];
-  if (!PageComponent) notFound();
-
-  const productJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: brand.name,
-    description: content.seoDescription,
-    offers: {
-      "@type": "Offer",
-      description: brand.offerSummary,
-    },
-  };
-  const faqJsonLd = content.faq?.length ? buildFaqJsonLd(content.faq) : null;
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-      />
-      {faqJsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-      )}
-      {brand.category === "finance" && brand.signUpPlace && (
-        <IndependenceDisclaimer brandName={brand.name} signUpPlace={brand.signUpPlace} />
-      )}
-      <PageComponent brand={brand} content={content} />
-    </>
-  );
+  return <BrandLandingRoute brand={getRouteBrand(slug)} Page={EARN_PAGE_REGISTRY[slug]} />;
 }

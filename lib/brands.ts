@@ -1,3 +1,5 @@
+import { isFinancePagesEnabled } from "@/lib/flags";
+
 export type BrandCategory = "health" | "finance" | "bills";
 
 export type BrandSection = "discounts" | "earn";
@@ -24,6 +26,8 @@ export type Brand = {
   brandUrl?: string;
   /** If set, brand is only shown when matching env var is truthy */
   featureFlag?: "gymshark";
+  /** Financial product (bank, BNPL, card-linked cashback…). Hidden unless ENABLE_FINANCE_PAGES is "true", whatever its category. */
+  financial?: boolean;
   /** Primary CTA button label (e.g. "Get £25 now" for Ribbon) */
   primaryCtaLabel?: string;
   /** Trustpilot page URL and star score (e.g. 4.4) */
@@ -39,6 +43,7 @@ const SHOW_GYMSHARK = process.env.NEXT_PUBLIC_SHOW_GYMSHARK === "true";
 export const ALL_BRANDS: Brand[] = [
   {
     id: "lloyds-bank",
+    financial: true,
     name: "Lloyds Bank",
     slug: "lloyds-bank",
     category: "finance",
@@ -59,6 +64,7 @@ export const ALL_BRANDS: Brand[] = [
   },
   {
     id: "ribbon-rewards",
+    financial: true,
     name: "Ribbon Rewards",
     slug: "ribbon-rewards",
     category: "bills",
@@ -95,6 +101,7 @@ export const ALL_BRANDS: Brand[] = [
   },
   {
     id: "airtime",
+    financial: true,
     name: "Airtime",
     slug: "airtime",
     category: "bills",
@@ -133,6 +140,7 @@ export const ALL_BRANDS: Brand[] = [
   },
   {
     id: "klarna",
+    financial: true,
     name: "Klarna",
     slug: "klarna",
     category: "finance",
@@ -150,6 +158,7 @@ export const ALL_BRANDS: Brand[] = [
   },
   {
     id: "starling-bank",
+    financial: true,
     name: "Starling Bank",
     slug: "starling-bank",
     category: "finance",
@@ -223,17 +232,21 @@ export const ALL_BRANDS: Brand[] = [
 
 export const FEATURED_BRAND_SLUG = "lloyds-bank";
 
-export function getVisibleBrands(): Brand[] {
-  return ALL_BRANDS.filter((b) => {
-    if (b.featureFlag === "gymshark") return SHOW_GYMSHARK;
-    return true;
-  });
+function isBrandVisible(b: Brand): boolean {
+  if (b.featureFlag === "gymshark" && !SHOW_GYMSHARK) return false;
+  if (b.financial && !isFinancePagesEnabled()) return false;
+  return true;
 }
 
-export function getFeaturedBrand(): Brand {
+export function getVisibleBrands(): Brand[] {
+  return ALL_BRANDS.filter(isBrandVisible);
+}
+
+/** Undefined when the featured brand is hidden by a flag; the homepage then skips the hero. */
+export function getFeaturedBrand(): Brand | undefined {
   const brand = ALL_BRANDS.find((b) => b.slug === FEATURED_BRAND_SLUG);
   if (!brand) throw new Error(`Featured brand ${FEATURED_BRAND_SLUG} missing`);
-  return brand;
+  return isBrandVisible(brand) ? brand : undefined;
 }
 
 export function getBrandsByCategory(category: BrandCategory): Brand[] {
@@ -258,16 +271,12 @@ export function getBrandBySlug(
     (b) =>
       b.section === "discounts" && b.category === category && b.slug === slug,
   );
-  if (!brand) return undefined;
-  if (brand.featureFlag === "gymshark" && !SHOW_GYMSHARK) return undefined;
-  return brand;
+  return brand && isBrandVisible(brand) ? brand : undefined;
 }
 
 export function getEarnBrandBySlug(slug: string): Brand | undefined {
   const brand = ALL_BRANDS.find((b) => b.section === "earn" && b.slug === slug);
-  if (!brand) return undefined;
-  if (brand.featureFlag === "gymshark" && !SHOW_GYMSHARK) return undefined;
-  return brand;
+  return brand && isBrandVisible(brand) ? brand : undefined;
 }
 
 /** Slugs for /discounts/[category]/[slug] static generation */
@@ -284,27 +293,6 @@ export function getDiscountSlugs(): {
 /** Slugs for /earn/[slug] static generation */
 export function getEarnSlugs(): string[] {
   return getEarnBrands().map((b) => b.slug);
-}
-
-/**
- * Resolves the brand whose landing page a pathname points at.
- * Returns undefined for every other route (homepage, unknown slug, mismatched category).
- */
-export function getBrandByPathname(pathname: string): Brand | undefined {
-  const segments = pathname.split("/").filter(Boolean);
-
-  if (segments[0] === "earn" && segments.length === 2) {
-    return getEarnBrandBySlug(segments[1]);
-  }
-  if (segments[0] === "discounts" && segments.length === 3) {
-    return getBrandBySlug(segments[1] as BrandCategory, segments[2]);
-  }
-  return undefined;
-}
-
-/** How many visible offers exist besides the one being viewed. Never hardcode this. */
-export function countOtherOffers(currentSlug?: string): number {
-  return getVisibleBrands().filter((b) => b.slug !== currentSlug).length;
 }
 
 /** Landing page URL for a brand */
@@ -345,6 +333,11 @@ export const HOME_SECTIONS: HomeSection[] = [
       "Cash for opening an account or joining a membership, and a clearer view of where your money goes.",
   },
 ];
+
+/** Homepage sections that have at least one visible brand. */
+export function getVisibleHomeSections(): HomeSection[] {
+  return HOME_SECTIONS.filter((s) => getBrandsByCategory(s.id).length > 0);
+}
 
 export const CATEGORIES: BrandCategory[] = ["bills", "health", "finance"];
 
