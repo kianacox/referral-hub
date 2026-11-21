@@ -16,6 +16,7 @@ import { isFinancePagesEnabled } from "@/lib/flags";
 import { getSiteChrome } from "@/lib/landing-chrome";
 import sitemap from "@/app/sitemap";
 import LloydsPage from "@/app/earn/lloyds-bank/page";
+import RibbonPage from "@/app/earn/ribbon-rewards/page";
 import KlarnaPage from "@/app/discounts/finance/klarna/page";
 import StarlingPage from "@/app/discounts/finance/starling-bank/page";
 import AirtimePage from "@/app/discounts/bills/airtime/page";
@@ -27,8 +28,9 @@ vi.mock("next/font/local", () => ({
   default: () => ({ className: "", variable: "" }),
 }));
 
-const HIDDEN = ["lloyds-bank", "klarna", "starling-bank", "airtime"];
+const HIDDEN = ["ribbon-rewards", "lloyds-bank", "klarna", "starling-bank", "airtime"];
 const HIDDEN_URLS = [
+  "/earn/ribbon-rewards",
   "/earn/lloyds-bank",
   "/discounts/finance/klarna",
   "/discounts/finance/starling-bank",
@@ -67,7 +69,7 @@ describe("with ENABLE_FINANCE_PAGES off", () => {
   it("hides every financial brand, and only those", () => {
     for (const slug of HIDDEN) expect(slugs()).not.toContain(slug);
     expect(slugs()).toEqual(
-      expect.arrayContaining(["ribbon-rewards", "virgin-media", "exhale-coffee"]),
+      expect.arrayContaining(["virgin-media", "exhale-coffee", "myprotein", "runna"]),
     );
   });
 
@@ -102,7 +104,7 @@ describe("with ENABLE_FINANCE_PAGES off", () => {
   });
 
   it("404s every hidden page", () => {
-    for (const Page of [LloydsPage, KlarnaPage, StarlingPage, AirtimePage]) {
+    for (const Page of [RibbonPage, LloydsPage, KlarnaPage, StarlingPage, AirtimePage]) {
       expect(() => run(Page())).toThrow(expect.objectContaining(notFound));
     }
   });
@@ -114,7 +116,9 @@ describe("with ENABLE_FINANCE_PAGES off", () => {
     expect(status("/klarna_logo.svg")).toBe(404);
     expect(status("/airtime_logo.png")).toBe(404);
     expect(status("/_next/image?url=%2Fklarna_logo.svg&w=64&q=75")).toBe(404);
-    expect(status("/ribbon_rewards_logo.webp")).toBe(200);
+    expect(status("/ribbon_rewards_logo.webp")).toBe(404);
+    expect(status("/ribbon_proof_of_use.jpg")).toBe(404);
+    expect(status("/exhale_logo.png")).toBe(200);
   });
 
   it("sends hidden page URLs to the not-found page", () => {
@@ -123,7 +127,7 @@ describe("with ENABLE_FINANCE_PAGES off", () => {
       expect(res.status).toBe(404);
       expect(res.headers.get("x-middleware-rewrite")).toContain("/__not-found");
     }
-    expect(status("/earn/ribbon-rewards")).toBe(200);
+    expect(status("/earn/virgin-media")).toBe(200);
   });
 });
 
@@ -131,7 +135,7 @@ describe("with ENABLE_FINANCE_PAGES=true", () => {
   beforeEach(() => vi.stubEnv("ENABLE_FINANCE_PAGES", "true"));
 
   it("renders every hidden page again", () => {
-    for (const Page of [LloydsPage, KlarnaPage, StarlingPage, AirtimePage]) {
+    for (const Page of [RibbonPage, LloydsPage, KlarnaPage, StarlingPage, AirtimePage]) {
       expect(() => run(Page())).not.toThrow();
     }
   });

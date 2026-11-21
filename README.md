@@ -27,7 +27,7 @@ Copy `.env.example` to `.env.local` and set as needed:
 | Variable | Description |
 |----------|-------------|
 | `NEXT_PUBLIC_SHOW_GYMSHARK` | Set to `"true"` to show the Gymshark brand and landing page. Omit or leave empty to hide it. |
-| `ENABLE_FINANCE_PAGES` | Server-only. Set to exactly `"true"` to show financial-product pages (brands with `financial: true` in `lib/brands.ts`: Lloyds, Starling, Klarna, Airtime). Anything else hides them: their URLs and images 404 and they drop out of nav, homepage, sitemap and JSON-LD. Pages are prerendered, so redeploy after changing it. |
+| `ENABLE_FINANCE_PAGES` | Server-only. Set to exactly `"true"` to show financial-product pages (brands with `financial: true` in `lib/brands.ts`: Ribbon Rewards, Lloyds, Starling, Klarna, Airtime). Anything else hides them: their URLs and images 404 and they drop out of nav, homepage, sitemap and JSON-LD. Pages are prerendered, so redeploy after changing it. |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics measurement ID (e.g. `G-XXXXXXXXXX`). Leave empty to disable GA. |
 
 ## Routes

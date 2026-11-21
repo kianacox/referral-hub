@@ -1,14 +1,18 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { ALL_BRANDS, getBrandLandingHref } from "@/lib/brands";
 import { isFinancePagesEnabled } from "@/lib/flags";
+import { LANDING_PAGE_CONTENT } from "@/content/landing-pages";
 
 const financialBrands = ALL_BRANDS.filter((b) => b.financial);
 
-/** Public images used only by financial-product pages, besides each brand's logo. */
-const EXTRA_FINANCE_ASSETS = ["/starling_how_it_works.webp"];
+/** Public images used only by financial-product pages, besides logos and screenshots in their content. */
+const EXTRA_FINANCE_ASSETS = ["/starling_how_it_works.webp", "/ribbbon_rewards_calculator.jpg"];
 
 const FINANCE_ASSETS = new Set([
   ...financialBrands.map((b) => b.logoPath),
+  ...financialBrands.flatMap((b) =>
+    (LANDING_PAGE_CONTENT[b.slug]?.socialProofImages ?? []).map((img) => img.src),
+  ),
   ...EXTRA_FINANCE_ASSETS,
 ]);
 

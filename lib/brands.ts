@@ -64,6 +64,7 @@ export const ALL_BRANDS: Brand[] = [
   },
   {
     id: "ribbon-rewards",
+    financial: true,
     name: "Ribbon Rewards",
     slug: "ribbon-rewards",
     category: "bills",

@@ -5,12 +5,10 @@ import {
   brandLandingMetadata,
   type LandingPageComponent,
 } from "@/components/landing/BrandLandingRoute";
-import { RibbonRewardsLandingPage } from "@/components/landing/RibbonRewardsLandingPage";
 import { VirginMediaLandingPage } from "@/components/landing/VirginMediaLandingPage";
 
-/** Financial brands (e.g. Lloyds) have their own route folders; see the discounts route. */
+/** Financial brands (e.g. Lloyds, Ribbon) have their own route folders; see the discounts route. */
 const EARN_PAGE_REGISTRY: Record<string, LandingPageComponent> = {
-  "ribbon-rewards": RibbonRewardsLandingPage,
   "virgin-media": VirginMediaLandingPage,
 };
 
